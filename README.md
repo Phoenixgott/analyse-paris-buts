@@ -17,10 +17,12 @@ npm test           # tests Vitest
 npm run build      # construit dist/ (site + service worker)
 npm run preview    # sert dist/ sur http://localhost:4173/analyse-paris-buts/
 npm run icones     # régénère les icônes PWA
-npm run demo       # régénère les 6 matchs de démonstration (data/demo/)
+npm run demo       # régénère les 6 matchs de démonstration (data/demo/) et leurs calculs
+npm run modeles -- AAAA-MM-JJ   # calcule le modèle des matchs d'un jour collecté
 ```
 
-Schéma des données d'un match : [docs/SCHEMA.md](docs/SCHEMA.md).
+Schéma des données d'un match : [docs/SCHEMA.md](docs/SCHEMA.md). Le modèle expliqué pas à pas :
+[docs/MODELE.md](docs/MODELE.md).
 
 Le déploiement sur GitHub Pages se fait automatiquement à chaque push sur `main`
 (`.github/workflows/deploy.yml`). Dans les réglages du repo : **Settings → Pages → Source :

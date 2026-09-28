@@ -59,7 +59,9 @@ stade et enjeu 3. Chaque rubrique rapporte ses points au prorata des champs rée
 data/index.json                      { jours: ["AAAA-MM-JJ", …], demo: "demo" }
 data/<jour>/index.json               résumé des matchs du jour (accueil)
 data/<jour>/matchs/<match_id>.json   fiche complète (ce schéma)
-data/demo/…                          6 matchs fictifs (npm run demo)
+data/<jour>/modeles/<match_id>.json  calculs du modèle (schema/modele.schema.json, voir docs/MODELE.md)
+data/ligues/<competition_id>.json    historique de la ligue, lu par le modèle — NON publié sur le site
+data/demo/…                          6 matchs fictifs + leurs ligues fictives (npm run demo)
 ```
 
 L'accueil affiche le jour d'aujourd'hui (Europe/Paris) s'il figure dans `jours`, sinon la démo,

@@ -75,11 +75,18 @@ tests/       Vitest
   aussi valoir quand un match est exporté ou copié dans le prompt IA.
 - Validation du schéma par un petit validateur maison (`schema/valider.js`) plutôt qu'Ajv, pour
   rester dans les dépendances figées.
+- Dixon-Coles a besoin de l'historique de toute la ligue, absent du schéma du match : fichier
+  séparé `data/ligues/<competition_id>.json` (à remplir par la collecte en phase 4, non publié).
+  Sans lui, repli sur la forme des deux équipes.
+- Les calculs du modèle sont un fichier à part (`modeles/<id>.json`, schéma dédié) : le schéma du
+  match reste le contrat des données collectées.
 
 ## Suivi des phases
 
 - Phase 0 : validée le 28/09/2026 (site en ligne, installé sur Android).
-- Phase 1 : livrée le 28/09/2026, en attente de validation.
+- Phase 1 : validée le 28/09/2026.
+- Phase 2 : livrée le 28/09/2026, en attente de validation. Point ouvert : demi-vie de 60 jours
+  (voir docs/MODELE.md, « Limite connue »).
 
 ## Décisions en attente (avant la phase 4)
 
