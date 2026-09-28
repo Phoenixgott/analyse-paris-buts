@@ -69,6 +69,18 @@ tests/       Vitest
 | Topic ntfy.sh protégé par son seul secret | Nom long aléatoire, en Secret |
 | Crons GitHub en retard de 5 à 30 min | Sans gravité |
 
+## Écarts assumés au cahier des charges
+
+- Champ `demo` (booléen) ajouté au schéma du match : la règle 3 (DÉMO toujours visible) doit
+  aussi valoir quand un match est exporté ou copié dans le prompt IA.
+- Validation du schéma par un petit validateur maison (`schema/valider.js`) plutôt qu'Ajv, pour
+  rester dans les dépendances figées.
+
+## Suivi des phases
+
+- Phase 0 : validée le 28/09/2026 (site en ligne, installé sur Android).
+- Phase 1 : livrée le 28/09/2026, en attente de validation.
+
 ## Décisions en attente (avant la phase 4)
 
 - Sources gratuites supplémentaires sans clé (Open-Meteo, ClubElo, football-data.co.uk) : oui/non.
