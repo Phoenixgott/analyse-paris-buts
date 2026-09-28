@@ -7,103 +7,87 @@ estimées (Over/Under 0.5 → 5.5, 1re mi-temps, buteurs) et prompt d'analyse IA
 ## Règles non négociables
 
 1. Aucune donnée inventée : donnée absente = `null`, affichée « N/D ».
-2. Aucune clé API dans le front ni dans le repo : GitHub Secrets uniquement.
+2. **Aucune clé API**, nulle part. Les données de match sont collectées par prompt (voir plus bas).
 3. Données de démonstration toujours marquées « DÉMO » à l'écran.
 4. Chaque pourcentage affiché a une info-bulle expliquant son calcul.
 5. Jamais de promesse de gain ; pied de page 18+ et lien joueurs-info-service.fr.
 6. Qualité des données < 40/100 : match « non fiable », aucun pari suggéré.
 7. « PASSER » est un verdict valable et fréquent.
 
-## Choix techniques (figés)
+## Choix techniques
 
-Vite + JavaScript vanilla + Chart.js + vite-plugin-pwa ; pas de framework ni de backend.
-Collecte : scripts Node 20 dans `/scripts`, lancés par GitHub Actions. Tests : Vitest.
-Déploiement : Actions → Pages à chaque push sur `main`. Données JSON commitées dans
-`/data/AAAA-MM-JJ/`, purgées après 30 jours (sauf `/data/predictions`).
-Cron : 05:30 UTC (matchs, stats, cotes) et 16:00 UTC (cotes et compos du soir).
+Vite + JavaScript vanilla + Chart.js + vite-plugin-pwa ; pas de framework ni de backend. Tests : Vitest.
+Déploiement : Actions → Pages à chaque push sur `main`.
 
-## Arborescence cible
+**Collecte des matchs : par prompt, sans clé API** (décision du 28/09/2026, remplace les API et les
+crons 05:30 / 16:00 du cahier des charges). Page « Récupérer les matchs » :
+1. liste du jour → 2. fiches complètes (1 à 3 matchs par demande) → 3. mise à jour avant le match
+(cotes, compos, absents). À chaque étape, le site génère la demande, l'utilisateur la colle dans une
+conversation Claude avec la recherche web, puis recolle la réponse. Le site la vérifie (schéma,
+vraisemblance, source obligatoire par bloc), la range **sur l'appareil** (IndexedDB, avec sauvegarde
+en fichier) et calcule le modèle **dans le navigateur**.
+
+**Historique des ligues : football-data.co.uk** (fichiers CSV publics, sans clé ni compte), téléchargé
+chaque nuit par `.github/workflows/historiques.yml` dans `data/ligues/` (saison en cours + précédente,
+16 championnats). Sans historique (coupes d'Europe, féminines, sélections, palier 2) : repli sur la
+forme des deux équipes.
+
+## Arborescence
 
 ```
 index.html · vite.config.js · package.json
-docs/        PLAN.md · SCHEMA.md · SOURCES.md
+docs/        PLAN.md · SCHEMA.md · MODELE.md
 public/      favicon.svg · icons/
-src/         main.js · router.js · etat.js
+src/         main.js · router.js · format.js · explications.js
   styles/    tokens, base, layout, composants
-  pages/     accueil · top-picks · match · journal · fiabilite
-  composants/ carte-kpi · tableau-triable · badge · info-bulle · filtres · sidebar · bandeau-demo
-  graphiques/ forme · over-under · tranches-15 · radar · jauge
-  prompt/    modele.js (texte exact) · generateur.js
-  journal/   stockage (IndexedDB) · resolution · export-csv · limites
-modele/      JS pur partagé site + scripts : dixon-coles · grille · marches · mi-temps · buteurs ·
-             ajustements · value-kelly · confiance
-schema/      match.schema.json · valider.js
-scripts/     sources/ (api-football, football-data, thesportsdb) · lib/ (quota, cache, http,
-             normaliser, competitions) · collecte-matin · collecte-soir · purge ·
-             archiver-predictions · backtest · alertes-ntfy · generer-icones
-data/        AAAA-MM-JJ/ · quota.json · cache/ · predictions/
+  pages/     accueil · collecte · match (+ section-modele, section-prompt, blocs-graphiques) · a-venir
+  composants/ carte-kpi · tableau-triable · badge · info-bulle · navigation · presse-papier
+  collecte/  competitions · prompts · import · noms
+  donnees/   chargement · local (IndexedDB)
+  graphiques/ donnees · fiche (Chart.js) · registre
+  prompt/    modele-prompt (texte exact) · generateur
+modele/      JS pur : dixon-coles · grille · mi-temps · buteurs · ajustements · value-kelly · confiance · analyser
+schema/      match.schema.json · modele.schema.json · valider.js · qualite.js
+scripts/     historiques/ (telecharger, csv) · lib/ (index-jour, modeles-jour) · demo/ · calculer-modeles · generer-icones
+data/        index.json · demo/ · ligues/
 tests/       Vitest
-.github/workflows/ deploy.yml · collecte.yml
+.github/workflows/ deploy.yml · historiques.yml
 ```
-
-## Points de conception
-
-- Le modèle tourne dans les Actions (Node) : prédictions archivées et alertes envoyées côté
-  serveur ; le site affiche des calculs déjà faits. Le même code `modele/` sert partout.
-- Un push fait avec `GITHUB_TOKEN` ne déclenche pas `deploy.yml` : la collecte l'appelle via
-  `workflow_call`.
-- Journal de paris stocké dans le navigateur (IndexedDB), résolu contre `resultats.json`.
-- `qualite_donnees` est calculée à partir des champs réellement remplis.
 
 ## Risques connus
 
-| Risque | Conséquence |
+| Risque | Conséquence / parade |
 |---|---|
-| API-Football gratuit : 100 requêtes/jour ; accès aux saisons en cours à vérifier avec la clé | ≈ 10 matchs complets/jour ; palier 2 réduit à la liste des matchs |
-| football-data.org gratuit : 12 compétitions, 10 req/min, ni cotes ni xG | Repli calendrier/résultats seulement |
-| TheSportsDB gratuit : données pauvres | Repli calendrier |
-| xG, cotes buteur, cote d'ouverture rares en gratuit | Souvent N/D ; « ouverture » = première cote relevée par nous |
-| Météo et Elo absents des 3 sources | N/D, sauf accord pour Open-Meteo / ClubElo |
-| Stats d'arbitre sans source directe | Calcul depuis l'historique, sinon N/D |
-| Pages gratuit exige un repo public | Données JSON publiques (aucune clé dedans) |
-| Topic ntfy.sh protégé par son seul secret | Nom long aléatoire, en Secret |
-| Crons GitHub en retard de 5 à 30 min | Sans gravité |
+| L'IA peut inventer ou mal recopier des chiffres | Source (URL) exigée par bloc, sinon bloc ignoré ; contrôles de vraisemblance (dates, scores, ordre et marge des cotes, cohérence des stats) ; rapport d'import ; la qualité baisse quand des blocs manquent |
+| Noms d'équipes différents entre l'IA et football-data.co.uk | Noms imposés dans les prompts + rapprochement automatique (sigles, abréviations), signalé dans le rapport ; nom inconnu → forme seule |
+| Données stockées sur un seul appareil | Sauvegarde / restauration en fichier ; demande de stockage persistant au navigateur |
+| Réponse de l'IA coupée si trop longue | 1 à 3 fiches par demande ; protocole « SUITE DISPONIBLE » / « continue » |
+| football-data.co.uk indisponible | Fichier existant conservé, échec visible dans l'Action ; le modèle garde le dernier historique |
+| Demi-vie de 60 jours : ~13-16 % d'erreur sur les buts attendus (simulation) | À trancher par le backtest (phase 6) |
+| Pages gratuit exige un repo public | Seuls la démo et les historiques publics y sont ; les matchs collectés restent sur l'appareil |
 
 ## Écarts assumés au cahier des charges
 
-- Champ `demo` (booléen) ajouté au schéma du match : la règle 3 (DÉMO toujours visible) doit
-  aussi valoir quand un match est exporté ou copié dans le prompt IA.
-- Validation du schéma par un petit validateur maison (`schema/valider.js`) plutôt qu'Ajv, pour
-  rester dans les dépendances figées.
-- Dixon-Coles a besoin de l'historique de toute la ligue, absent du schéma du match : fichier
-  séparé `data/ligues/<competition_id>.json` (à remplir par la collecte en phase 4, non publié).
-  Sans lui, repli sur la forme des deux équipes.
-- Les calculs du modèle sont un fichier à part (`modeles/<id>.json`, schéma dédié) : le schéma du
-  match reste le contrat des données collectées.
+- Champ `demo` ajouté au schéma du match (règle 3 jusque dans le prompt IA et l'export).
+- Validateur de schéma maison (`schema/valider.js`) plutôt qu'Ajv.
+- Historique des ligues dans `data/ligues/<competition_id>.json` (hors schéma du match).
+- Calculs du modèle dans un objet à part (schéma `modele.schema.json`).
+- Schéma du match v1.1.0 : `stats.buts_par_tranche` (graphique des tranches de 15 min).
+- Calculs du modèle v1.1.0 : champ `unites`.
+- Prompt IA : texte exact ; pour une démo, `{{COMPETITION}}` reçoit « (DÉMO : données fictives, ne pas parier) ».
+- Couleurs des graphiques : jaune #FFD500 / bleu ciel #5AB0FF (ΔE daltonisme 30).
+- **Phase 4 : collecte par prompt, stockage local, modèle dans le navigateur ; plus de quotas, de
+  crons de collecte, de `/data/AAAA-MM-JJ/` ni de purge à 30 jours.** Les phases 5 (alertes) et 6
+  (archivage) seront locales elles aussi (ntfy.sh accepte des envois depuis le navigateur, sans clé).
 
 ## Suivi des phases
 
 - Phase 0 : validée le 28/09/2026 (site en ligne, installé sur Android).
 - Phase 1 : validée le 28/09/2026.
-- Phase 2 : validée le 28/09/2026. Demi-vie gardée à 60 jours jusqu'au backtest (phase 6)
-  (voir docs/MODELE.md, « Limite connue »).
-- Phase 3 : livrée le 28/09/2026, en attente de validation.
-
-### Écarts de la phase 3
-
-- Schéma du match v1.1.0 : `stats.buts_par_tranche` ajouté, faute de quoi le graphique « buts par
-  tranche de 15 min » aurait été inventé (source prévue : stats d'équipe d'API-Football).
-- Calculs du modèle v1.1.0 : champ `unites` (le prompt mélange des % 0-100 et des probabilités 0-1).
-- Prompt : texte exact du cahier des charges ; pour une démo, `{{COMPETITION}}` reçoit la mention
-  « (DÉMO : données fictives, ne pas parier) » (règle 3), sans toucher au texte du modèle.
-- Couleurs des graphiques : jaune #FFD500 (domicile / modèle) et bleu ciel #5AB0FF (extérieur /
-  marché), validés pour le daltonisme (ΔE 30) et le contraste ; le jaune est plus clair que la plage
-  recommandée pour des séries, mais imposé par le design.
-
-## Décisions en attente (avant la phase 4)
-
-- Sources gratuites supplémentaires sans clé (Open-Meteo, ClubElo, football-data.co.uk) : oui/non.
-- Plan API-Football : gratuit ou payant.
+- Phase 2 : validée le 28/09/2026. Demi-vie gardée à 60 jours jusqu'au backtest (phase 6).
+- Phase 3 : validée le 28/09/2026.
+- Phase 4 (revue, collecte par prompt) : livrée le 28/09/2026, en attente de validation sur une
+  vraie journée de Ligue 1 importée par l'utilisateur.
 
 ## Phases
 
@@ -113,6 +97,6 @@ tests/       Vitest
 | 1 | Design, schéma JSON, 6 matchs DÉMO, Accueil + Fiche match sans calcul | Aucun défilement horizontal à 360 px, ouverture hors ligne |
 | 2 | Modèle + tests | Grille = 100 %, Over décroissants, Over + Under = 100 %, tests verts |
 | 3 | Graphiques + générateur de prompt (Copier, Exporter .json) | Aucun `{{…}}` restant, JSON valide |
-| 4 | Collecte réelle : Ligue 1, puis palier 1, puis palier 2 | Schéma respecté, quota jamais dépassé, manquants à null |
-| 5 | Top picks, Journal, alertes ntfy.sh | Résolution auto d'un pari test, alerte reçue |
-| 6 | Archivage, backtest, page Fiabilité | Brier sur une journée réelle ; < 100 prédictions : « échantillon insuffisant » |
+| 4 | Collecte par prompt (Ligue 1 d'abord, puis palier 1, puis palier 2) + historiques football-data.co.uk | Chaque fiche importée respecte le schéma, manquants à null, rapport d'import clair |
+| 5 | Top picks, Journal, alertes ntfy.sh (depuis le navigateur) | Résolution d'un pari test, alerte reçue |
+| 6 | Archivage local des prédictions, backtest, page Fiabilité | Brier sur une journée réelle ; < 100 prédictions : « échantillon insuffisant » |

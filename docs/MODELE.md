@@ -1,17 +1,20 @@
 # Le modèle, pas à pas
 
-Code : [`modele/`](../modele) (JavaScript pur, sans dépendance, utilisé par les scripts de calcul).
-Réglages : [`modele/reglages.js`](../modele/reglages.js), surchargeables par `config/modele.json`.
-Sortie : `data/<jour>/modeles/<match_id>.json`, schéma [`schema/modele.schema.json`](../schema/modele.schema.json)
-(probabilités de 0 à 1). C'est le bloc « CALCULS DU SITE » du prompt IA.
+Code : [`modele/`](../modele) (JavaScript pur, sans dépendance). Il tourne **dans le navigateur**
+pour les matchs collectés par prompt (10 à 30 ms par match), et dans Node pour la démo.
+Réglages : [`modele/reglages.js`](../modele/reglages.js).
+Sortie : schéma [`schema/modele.schema.json`](../schema/modele.schema.json) (probabilités de 0 à 1),
+mise en cache sur l'appareil. C'est le bloc « CALCULS DU SITE » du prompt IA.
 
 **Probabilités estimées, pas des certitudes.**
 
 ## 1. Historique
 
-- Historique de la ligue : `data/ligues/<competition_id>.json` (rempli par la collecte, phase 4),
-  `{ matchs: [{ date, domicile, exterieur, score: "x-y", score_mt }] }`, score vu du domicile.
-- Complété par les 10 derniers matchs de chaque équipe (champ `forme` du match), sans doublon.
+- Historique de la ligue : `data/ligues/<competition_id>.json`, téléchargé chaque nuit depuis
+  football-data.co.uk (saison en cours + précédente),
+  `{ equipes_saison, matchs: [{ date, domicile, exterieur, score: "x-y", score_mt, cote_over_2_5, … }] }`.
+- Complété par les 10 derniers matchs de chaque équipe (champ `forme` du match), sans doublon : un
+  match de la forme est ignoré si l'historique contient déjà un match de cette équipe ce jour-là.
   Sans historique de ligue (sélections, petites ligues), le modèle ne s'appuie que sur la forme.
 - **Seuls les matchs joués avant le jour du match comptent** (aucune fuite du futur, testé).
 - Poids d'un match = 0,5^(âge en jours / demi-vie). Demi-vie par défaut : 60 jours.

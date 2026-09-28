@@ -56,16 +56,18 @@ Par équipe (moyenne des deux, 55 pts) : classement 10, forme 15, statistiques 2
 absents 3, compo 2. Match (45 pts) : confrontations 5, cotes 20, buteurs 10, arbitre 4, météo 3,
 stade et enjeu 3. Chaque rubrique rapporte ses points au prorata des champs réellement remplis.
 
-## Fichiers publiés
+## Où sont les données
+
+- **Matchs collectés par prompt** : sur l'appareil (IndexedDB « analyse-paris-buts », magasins
+  `annonces`, `matchs`, `modeles`), jamais publiés. Chaque fiche est validée contre ce schéma à l'import
+  et à la restauration d'une sauvegarde. `match_id` = `AAAA-MM-JJ-domicile-exterieur` (jour de Paris).
+- **Publiés sur le site** :
 
 ```
-data/index.json                      { jours: ["AAAA-MM-JJ", …], demo: "demo" }
-data/<jour>/index.json               résumé des matchs du jour (accueil)
-data/<jour>/matchs/<match_id>.json   fiche complète (ce schéma)
-data/<jour>/modeles/<match_id>.json  calculs du modèle (schema/modele.schema.json, voir docs/MODELE.md)
-data/ligues/<competition_id>.json    historique de la ligue, lu par le modèle — NON publié sur le site
-data/demo/…                          6 matchs fictifs + leurs ligues fictives (npm run demo)
+data/index.json                      { jours: [], demo: "demo" }
+data/ligues/<competition_id>.json    historique football-data.co.uk, lu par le modèle dans le navigateur
+data/demo/…                          6 matchs fictifs et leurs calculs (npm run demo) ; ligues fictives non publiées
 ```
 
-L'accueil affiche le jour d'aujourd'hui (Europe/Paris) s'il figure dans `jours`, sinon la démo,
-avec un bandeau DÉMO.
+L'accueil affiche aujourd'hui (Europe/Paris) si des matchs ont été importés, sinon la démo avec un
+bandeau DÉMO ; un menu permet de choisir un autre jour importé.
