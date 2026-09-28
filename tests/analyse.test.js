@@ -115,4 +115,15 @@ describe('cas limites de l’analyse', () => {
     expect(h[0]).toEqual({ date: '2026-09-01', domicile: 'B', exterieur: 'A', score: '1-2', score_mt: '0-1' });
     expect(fusionnerHistorique([], h).matchs).toHaveLength(1);
   });
+
+  it('ne double pas un match de l’historique dont l’adversaire est écrit autrement dans la forme', () => {
+    const ligue = [{ date: '2026-09-27', domicile: 'Paris SG', exterieur: 'Lyon', score: '1-1', score_mt: '1-0' }];
+    const forme = [
+      { date: '2026-09-27', domicile: 'Paris Saint-Germain', exterieur: 'Lyon', score: '1-1', score_mt: '1-0' },
+      { date: '2026-09-23', domicile: 'Lyon', exterieur: 'Rangers', score: '2-0', score_mt: '1-0' }, // coupe d'Europe : ajouté
+    ];
+    const f = fusionnerHistorique(ligue, forme);
+    expect(f.n_forme).toBe(1);
+    expect(f.matchs.map((x) => x.exterieur)).toEqual(['Lyon', 'Rangers']);
+  });
 });

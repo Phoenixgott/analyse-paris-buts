@@ -36,11 +36,20 @@ export function historiqueDepuisForme(match) {
   return sortie;
 }
 
-/** Historique de la ligue complété par la forme des deux équipes (sans doublon). */
+/**
+ * Historique de la ligue complété par la forme des deux équipes, sans doublon. Un match de la forme
+ * est un doublon si l'historique contient déjà un match de l'une de ses équipes ce jour-là (le nom
+ * de l'adversaire peut être écrit autrement par la collecte).
+ */
 export function fusionnerHistorique(ligue, forme) {
   const cle = (m) => `${m.date}|${normaliserNom(m.domicile)}|${normaliserNom(m.exterieur)}`;
   const vus = new Set(ligue.map(cle));
-  const ajoutes = forme.filter((m) => !vus.has(cle(m)) && vus.add(cle(m)));
+  const joue = new Set(ligue.flatMap((m) => [`${m.date}|${normaliserNom(m.domicile)}`, `${m.date}|${normaliserNom(m.exterieur)}`]));
+  const ajoutes = forme.filter((m) => {
+    if (vus.has(cle(m)) || joue.has(`${m.date}|${normaliserNom(m.domicile)}`) || joue.has(`${m.date}|${normaliserNom(m.exterieur)}`)) return false;
+    vus.add(cle(m));
+    return true;
+  });
   return { matchs: [...ligue, ...ajoutes], n_ligue: ligue.length, n_forme: ajoutes.length };
 }
 

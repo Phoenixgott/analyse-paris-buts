@@ -28,20 +28,22 @@ export const manifeste = {
 };
 
 const DOSSIER_DONNEES = resolve('data');
-// Jamais publiés (à tout niveau) : cache brut des API et historiques de ligue, lus seulement par
-// les scripts de calcul ; le site n'affiche que les résultats.
-const EXCLUS = ['cache', 'ligues'];
+// Non publiés : un éventuel cache brut, et les ligues fictives de la démo (ses calculs sont déjà
+// faits). Les historiques réels (data/ligues) sont publiés : le modèle tourne dans le navigateur.
+const estExclu = (chemin) => {
+  const parties = relative(DOSSIER_DONNEES, chemin).split(sep);
+  return parties.includes('cache') || (parties[0] === 'demo' && parties[1] === 'ligues');
+};
 
 function fichiersDonnees(dossier = DOSSIER_DONNEES) {
   if (!existsSync(dossier)) return [];
   return readdirSync(dossier, { withFileTypes: true }).flatMap((entree) => {
     const chemin = join(dossier, entree.name);
-    if (entree.isDirectory()) return EXCLUS.includes(entree.name) ? [] : fichiersDonnees(chemin);
+    if (estExclu(chemin)) return [];
+    if (entree.isDirectory()) return fichiersDonnees(chemin);
     return entree.name.endsWith('.json') ? [chemin] : [];
   });
 }
-
-const estExclu = (chemin) => relative(DOSSIER_DONNEES, chemin).split(sep).some((partie) => EXCLUS.includes(partie));
 
 // Publie /data (JSON commités par la collecte) sous <base>data/ : servi en dev, copié au build.
 function donnees() {
