@@ -1,0 +1,301 @@
+{
+  "schema_version": "1.0.0",
+  "demo": true,
+  "match_id": "demo-int-nordalie-valdoranie",
+  "generated_at": "2026-09-28T05:30:00Z",
+  "competition": {
+    "id": "demo-int-ldn",
+    "nom": "Ligue des nations",
+    "pays": "International",
+    "categorie": "INT",
+    "palier": 1
+  },
+  "coup_envoi": "2026-09-28T18:45:00Z",
+  "stade": {
+    "nom": "Stade national",
+    "ville": "Nordhavn"
+  },
+  "enjeu": null,
+  "equipes": {
+    "domicile": {
+      "id": "demo-int-nordalie-valdoranie-d",
+      "nom": "Nordalie",
+      "elo": 1655,
+      "classement": null,
+      "forme": [
+        {
+          "date": "2026-09-25",
+          "adversaire": "Adversaire fictif A",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-18",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "E",
+          "score": "1-3",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-11",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-04",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "3-1",
+          "score_mt": "2-1"
+        },
+        {
+          "date": "2026-08-28",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "2-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-21",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-14",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "D",
+          "score": "1-3",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-07",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "E",
+          "score": "3-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-07-31",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-24",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "E",
+          "score": "1-0",
+          "score_mt": "1-0"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 1.1,
+        "buts_encaisses_moy": 0.9,
+        "buts_mt_marques_moy": 0.5,
+        "buts_mt_encaisses_moy": 0.1,
+        "xg_moy": null,
+        "tirs_cadres_moy": 5.56,
+        "pct_over15": 50,
+        "pct_over25": 40,
+        "pct_over35": 30,
+        "pct_but_avant_30": 30
+      },
+      "jours_repos": 3,
+      "absents": null,
+      "compo_probable": null
+    },
+    "exterieur": {
+      "id": "demo-int-nordalie-valdoranie-e",
+      "nom": "Valdoranie",
+      "elo": 1598,
+      "classement": null,
+      "forme": [
+        {
+          "date": "2026-09-25",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-18",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "E",
+          "score": "1-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-11",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "D",
+          "score": "3-2",
+          "score_mt": "3-0"
+        },
+        {
+          "date": "2026-09-04",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "E",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-28",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-21",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "2-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-08-14",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-07",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "E",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-31",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-07-24",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "0-1",
+          "score_mt": "0-0"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 0.7,
+        "buts_encaisses_moy": 0.7,
+        "buts_mt_marques_moy": 0.4,
+        "buts_mt_encaisses_moy": 0.2,
+        "xg_moy": null,
+        "tirs_cadres_moy": 5.08,
+        "pct_over15": 40,
+        "pct_over25": 20,
+        "pct_over35": 10,
+        "pct_but_avant_30": 20
+      },
+      "jours_repos": 3,
+      "absents": null,
+      "compo_probable": null
+    }
+  },
+  "h2h": null,
+  "arbitre": null,
+  "meteo": {
+    "temperature": 9,
+    "vent": 24,
+    "pluie": 1.2
+  },
+  "buteurs": null,
+  "cotes": {
+    "total_buts": {
+      "over_0_5": {
+        "meilleure": 1.06,
+        "bookmaker": "Book A",
+        "ouverture": 1.02,
+        "mouvement": 0.04
+      },
+      "over_1_5": {
+        "meilleure": 1.4,
+        "bookmaker": "Book B",
+        "ouverture": 1.36,
+        "mouvement": 0.04
+      },
+      "over_2_5": {
+        "meilleure": 2.25,
+        "bookmaker": "Book B",
+        "ouverture": 2.21,
+        "mouvement": 0.04
+      },
+      "over_3_5": {
+        "meilleure": 4.37,
+        "bookmaker": "Book C",
+        "ouverture": 4.5,
+        "mouvement": -0.13
+      },
+      "over_4_5": {
+        "meilleure": 10.08,
+        "bookmaker": "Book C",
+        "ouverture": 10.58,
+        "mouvement": -0.5
+      },
+      "over_5_5": {
+        "meilleure": 27.08,
+        "bookmaker": "Book A",
+        "ouverture": 28.14,
+        "mouvement": -1.06
+      },
+      "under_0_5": {
+        "meilleure": 10.65,
+        "bookmaker": "Book B",
+        "ouverture": 10.41,
+        "mouvement": 0.24
+      },
+      "under_1_5": {
+        "meilleure": 3.13,
+        "bookmaker": "Book B",
+        "ouverture": 3.03,
+        "mouvement": 0.1
+      },
+      "under_2_5": {
+        "meilleure": 1.7,
+        "bookmaker": "Book A",
+        "ouverture": 1.67,
+        "mouvement": 0.03
+      },
+      "under_3_5": {
+        "meilleure": 1.24,
+        "bookmaker": "Book C",
+        "ouverture": 1.2,
+        "mouvement": 0.04
+      },
+      "under_4_5": {
+        "meilleure": 1.07,
+        "bookmaker": "Book C",
+        "ouverture": 1.03,
+        "mouvement": 0.04
+      },
+      "under_5_5": {
+        "meilleure": 1.01,
+        "bookmaker": "Book C",
+        "ouverture": 1.01,
+        "mouvement": 0
+      }
+    },
+    "mt_over_0_5": null,
+    "mt_over_1_5": null,
+    "buteur": null
+  },
+  "qualite_donnees": 57,
+  "sources": [
+    {
+      "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
+      "recupere_le": "2026-09-28T05:30:00Z"
+    }
+  ]
+}

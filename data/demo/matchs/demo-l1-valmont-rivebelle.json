@@ -1,0 +1,508 @@
+{
+  "schema_version": "1.0.0",
+  "demo": true,
+  "match_id": "demo-l1-valmont-rivebelle",
+  "generated_at": "2026-09-28T05:30:00Z",
+  "competition": {
+    "id": "demo-fr-l1",
+    "nom": "Ligue 1",
+    "pays": "France",
+    "categorie": "H",
+    "palier": 1
+  },
+  "coup_envoi": "2026-09-28T18:45:00Z",
+  "stade": {
+    "nom": "Stade des Forges",
+    "ville": "Valmont"
+  },
+  "enjeu": "Haut de tableau : le 3e reçoit le 5e.",
+  "equipes": {
+    "domicile": {
+      "id": "demo-l1-valmont-rivebelle-d",
+      "nom": "Olympique de Valmont",
+      "elo": 1712,
+      "classement": {
+        "rang": 3,
+        "points": 16,
+        "joues": 7,
+        "bp": 15,
+        "bc": 6
+      },
+      "forme": [
+        {
+          "date": "2026-09-22",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "3-2",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-09-15",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "E",
+          "score": "2-0",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-09-08",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-09-01",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "3-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-25",
+          "adversaire": "Adversaire fictif A",
+          "lieu": "D",
+          "score": "2-2",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-08-18",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "3-1",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-08-11",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "2-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-04",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "2-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-07-28",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "D",
+          "score": "1-3",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-07-21",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "0-1",
+          "score_mt": "0-1"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 2.14,
+        "buts_encaisses_moy": 0.86,
+        "buts_mt_marques_moy": 0.86,
+        "buts_mt_encaisses_moy": 0.43,
+        "xg_moy": 1.87,
+        "tirs_cadres_moy": 6.37,
+        "pct_over15": 86,
+        "pct_over25": 57,
+        "pct_over35": 43,
+        "pct_but_avant_30": 43
+      },
+      "jours_repos": 6,
+      "absents": [
+        {
+          "nom": "K. Okonkwo",
+          "raison": "Blessure (genou)"
+        }
+      ],
+      "compo_probable": [
+        "M. Colombo",
+        "Y. Petrov",
+        "M. Duval",
+        "K. Okonkwo",
+        "N. Oyelaran",
+        "Y. Fontaine",
+        "C. Barreto",
+        "N. Sousa",
+        "G. Renard",
+        "H. Iglesias",
+        "N. Ferrand"
+      ]
+    },
+    "exterieur": {
+      "id": "demo-l1-valmont-rivebelle-e",
+      "nom": "FC Rivebelle",
+      "elo": 1668,
+      "classement": {
+        "rang": 5,
+        "points": 8,
+        "joues": 7,
+        "bp": 8,
+        "bc": 9
+      },
+      "forme": [
+        {
+          "date": "2026-09-25",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-09-18",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "1-3",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-09-11",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "D",
+          "score": "2-1",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-09-04",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "E",
+          "score": "2-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-28",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-21",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "1-2",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-08-14",
+          "adversaire": "Adversaire fictif A",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-07",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "E",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-31",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-24",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "2-0",
+          "score_mt": "1-0"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 1.14,
+        "buts_encaisses_moy": 1.29,
+        "buts_mt_marques_moy": 0.43,
+        "buts_mt_encaisses_moy": 0.43,
+        "xg_moy": 1,
+        "tirs_cadres_moy": 5.93,
+        "pct_over15": 86,
+        "pct_over25": 57,
+        "pct_over35": 14,
+        "pct_but_avant_30": 29
+      },
+      "jours_repos": 3,
+      "absents": [
+        {
+          "nom": "P. Duval",
+          "raison": "Incertain"
+        }
+      ],
+      "compo_probable": [
+        "P. Solberg",
+        "R. Vasseur",
+        "D. Barreto",
+        "M. Morvan",
+        "L. Sousa",
+        "T. Almeida",
+        "T. Ferrand",
+        "L. Maalouf",
+        "E. Weber",
+        "C. Colombo",
+        "J. Renard"
+      ]
+    }
+  },
+  "h2h": [
+    {
+      "date": "2026-04-28",
+      "score": "2-1",
+      "score_mt": "2-0"
+    },
+    {
+      "date": "2025-10-07",
+      "score": "2-1",
+      "score_mt": "2-0"
+    },
+    {
+      "date": "2025-03-30",
+      "score": "1-1",
+      "score_mt": "0-0"
+    },
+    {
+      "date": "2024-09-28",
+      "score": "2-1",
+      "score_mt": "1-0"
+    },
+    {
+      "date": "2024-03-20",
+      "score": "1-0",
+      "score_mt": "1-0"
+    },
+    {
+      "date": "2023-09-20",
+      "score": "0-1",
+      "score_mt": "0-1"
+    }
+  ],
+  "arbitre": {
+    "nom": "P. Lemarchand",
+    "cartons_moy": 4.1,
+    "penaltys_moy": 0.31
+  },
+  "meteo": {
+    "temperature": 14,
+    "vent": 12,
+    "pluie": 0
+  },
+  "buteurs": [
+    {
+      "nom": "V. Tanaka",
+      "equipe": "D",
+      "buts_par_90": 0.65,
+      "tirs_par_90": 3.2,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 85
+    },
+    {
+      "nom": "P. Okonkwo",
+      "equipe": "D",
+      "buts_par_90": 0.34,
+      "tirs_par_90": 2.34,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 75
+    },
+    {
+      "nom": "C. Almeida",
+      "equipe": "D",
+      "buts_par_90": 0.17,
+      "tirs_par_90": 1.55,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": 88
+    },
+    {
+      "nom": "H. Fontaine",
+      "equipe": "E",
+      "buts_par_90": 0.62,
+      "tirs_par_90": 2.7,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 85
+    },
+    {
+      "nom": "L. Maalouf",
+      "equipe": "E",
+      "buts_par_90": 0.39,
+      "tirs_par_90": 2.53,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 75
+    },
+    {
+      "nom": "Y. Ndiaye",
+      "equipe": "E",
+      "buts_par_90": 0.14,
+      "tirs_par_90": 1.64,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": 88
+    }
+  ],
+  "cotes": {
+    "total_buts": {
+      "over_0_5": {
+        "meilleure": 1.03,
+        "bookmaker": "Book A",
+        "ouverture": 1.01,
+        "mouvement": 0.02
+      },
+      "over_1_5": {
+        "meilleure": 1.28,
+        "bookmaker": "Book C",
+        "ouverture": 1.22,
+        "mouvement": 0.06
+      },
+      "over_2_5": {
+        "meilleure": 1.89,
+        "bookmaker": "Book B",
+        "ouverture": 1.94,
+        "mouvement": -0.05
+      },
+      "over_3_5": {
+        "meilleure": 3.32,
+        "bookmaker": "Book A",
+        "ouverture": 3.19,
+        "mouvement": 0.13
+      },
+      "over_4_5": {
+        "meilleure": 6.86,
+        "bookmaker": "Book A",
+        "ouverture": 7.16,
+        "mouvement": -0.3
+      },
+      "over_5_5": {
+        "meilleure": 16.44,
+        "bookmaker": "Book C",
+        "ouverture": 16.15,
+        "mouvement": 0.29
+      },
+      "under_0_5": {
+        "meilleure": 14.74,
+        "bookmaker": "Book C",
+        "ouverture": 15.06,
+        "mouvement": -0.32
+      },
+      "under_1_5": {
+        "meilleure": 3.96,
+        "bookmaker": "Book B",
+        "ouverture": 3.81,
+        "mouvement": 0.15
+      },
+      "under_2_5": {
+        "meilleure": 1.98,
+        "bookmaker": "Book C",
+        "ouverture": 2.07,
+        "mouvement": -0.09
+      },
+      "under_3_5": {
+        "meilleure": 1.36,
+        "bookmaker": "Book A",
+        "ouverture": 1.31,
+        "mouvement": 0.05
+      },
+      "under_4_5": {
+        "meilleure": 1.12,
+        "bookmaker": "Book A",
+        "ouverture": 1.14,
+        "mouvement": -0.02
+      },
+      "under_5_5": {
+        "meilleure": 1.03,
+        "bookmaker": "Book B",
+        "ouverture": 1.06,
+        "mouvement": -0.03
+      }
+    },
+    "mt_over_0_5": {
+      "meilleure": 1.36,
+      "bookmaker": "Book B",
+      "ouverture": 1.42,
+      "mouvement": -0.06
+    },
+    "mt_over_1_5": {
+      "meilleure": 2.83,
+      "bookmaker": "Book B",
+      "ouverture": 2.92,
+      "mouvement": -0.09
+    },
+    "buteur": [
+      {
+        "nom": "V. Tanaka",
+        "equipe": "D",
+        "cote": {
+          "meilleure": 1.9,
+          "bookmaker": "Book A",
+          "ouverture": 1.88,
+          "mouvement": 0.02
+        }
+      },
+      {
+        "nom": "P. Okonkwo",
+        "equipe": "D",
+        "cote": {
+          "meilleure": 3.52,
+          "bookmaker": "Book A",
+          "ouverture": 3.66,
+          "mouvement": -0.14
+        }
+      },
+      {
+        "nom": "C. Almeida",
+        "equipe": "D",
+        "cote": {
+          "meilleure": 5.68,
+          "bookmaker": "Book B",
+          "ouverture": 5.71,
+          "mouvement": -0.03
+        }
+      },
+      {
+        "nom": "H. Fontaine",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 1.96,
+          "bookmaker": "Book B",
+          "ouverture": 1.99,
+          "mouvement": -0.03
+        }
+      },
+      {
+        "nom": "L. Maalouf",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 3.13,
+          "bookmaker": "Book C",
+          "ouverture": 3.03,
+          "mouvement": 0.1
+        }
+      },
+      {
+        "nom": "Y. Ndiaye",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 6.8,
+          "bookmaker": "Book A",
+          "ouverture": 6.65,
+          "mouvement": 0.15
+        }
+      }
+    ]
+  },
+  "qualite_donnees": 100,
+  "sources": [
+    {
+      "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
+      "recupere_le": "2026-09-28T05:30:00Z"
+    }
+  ]
+}

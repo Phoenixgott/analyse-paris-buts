@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0.0",
+  "demo": true,
+  "match_id": "demo-d1f-montaval-clairefont",
+  "generated_at": "2026-09-28T05:30:00Z",
+  "competition": {
+    "id": "demo-fr-d1f",
+    "nom": "D1 féminine",
+    "pays": "France",
+    "categorie": "F",
+    "palier": 1
+  },
+  "coup_envoi": "2026-09-28T13:00:00Z",
+  "stade": {
+    "nom": "Stade Jean-Brunet",
+    "ville": "Montaval"
+  },
+  "enjeu": "Choc en tête : les deux équipes sont invaincues.",
+  "equipes": {
+    "domicile": {
+      "id": "demo-d1f-montaval-clairefont-d",
+      "nom": "Stade Montaval",
+      "elo": null,
+      "classement": {
+        "rang": 1,
+        "points": 10,
+        "joues": 4,
+        "bp": 12,
+        "bc": 3
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "D",
+          "score": "5-1",
+          "score_mt": "3-0"
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "3-0",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-31",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "E",
+          "score": "3-1",
+          "score_mt": "1-1"
+        },
+        {
+          "date": "2026-08-24",
+          "adversaire": "Adversaire fictif F",
+          "lieu": "D",
+          "score": "1-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-17",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "E",
+          "score": "1-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-10",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "D",
+          "score": "2-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-03",
+          "adversaire": "Adversaire fictif L",
+          "lieu": "E",
+          "score": "3-0",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-07-27",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-07-20",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "3-2",
+          "score_mt": "1-1"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 3,
+        "buts_encaisses_moy": 0.75,
+        "buts_mt_marques_moy": 1.75,
+        "buts_mt_encaisses_moy": 0.25,
+        "xg_moy": null,
+        "tirs_cadres_moy": 7.15,
+        "pct_over15": 100,
+        "pct_over25": 75,
+        "pct_over35": 50,
+        "pct_but_avant_30": 75
+      },
+      "jours_repos": 7,
+      "absents": [],
+      "compo_probable": null
+    },
+    "exterieur": {
+      "id": "demo-d1f-montaval-clairefont-e",
+      "nom": "AS Clairefont",
+      "elo": null,
+      "classement": {
+        "rang": 2,
+        "points": 12,
+        "joues": 4,
+        "bp": 12,
+        "bc": 3
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif A",
+          "lieu": "D",
+          "score": "2-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "E",
+          "score": "4-0",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "D",
+          "score": "3-1",
+          "score_mt": "3-1"
+        },
+        {
+          "date": "2026-08-31",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "3-2",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-24",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "D",
+          "score": "2-2",
+          "score_mt": "2-1"
+        },
+        {
+          "date": "2026-08-17",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "E",
+          "score": "4-1",
+          "score_mt": "2-1"
+        },
+        {
+          "date": "2026-08-10",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-03",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "E",
+          "score": "1-2",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-07-27",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-20",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "E",
+          "score": "4-0",
+          "score_mt": "2-0"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 3,
+        "buts_encaisses_moy": 0.75,
+        "buts_mt_marques_moy": 1.75,
+        "buts_mt_encaisses_moy": 0.25,
+        "xg_moy": null,
+        "tirs_cadres_moy": 6.98,
+        "pct_over15": 100,
+        "pct_over25": 75,
+        "pct_over35": 75,
+        "pct_but_avant_30": 50
+      },
+      "jours_repos": 7,
+      "absents": [
+        {
+          "nom": "S. Vidal",
+          "raison": "Blessure (genou)"
+        }
+      ],
+      "compo_probable": null
+    }
+  },
+  "h2h": [
+    {
+      "date": "2026-04-19",
+      "score": "0-2",
+      "score_mt": "0-1"
+    },
+    {
+      "date": "2025-10-20",
+      "score": "0-0",
+      "score_mt": "0-0"
+    },
+    {
+      "date": "2025-04-01",
+      "score": "2-0",
+      "score_mt": "0-0"
+    },
+    {
+      "date": "2024-10-08",
+      "score": "2-2",
+      "score_mt": "1-1"
+    },
+    {
+      "date": "2024-03-24",
+      "score": "0-1",
+      "score_mt": "0-0"
+    },
+    {
+      "date": "2023-09-05",
+      "score": "2-1",
+      "score_mt": "0-0"
+    }
+  ],
+  "arbitre": {
+    "nom": "C. Rigaud",
+    "cartons_moy": null,
+    "penaltys_moy": null
+  },
+  "meteo": null,
+  "buteurs": [
+    {
+      "nom": "V. Ferrand",
+      "equipe": "D",
+      "buts_par_90": 0.7,
+      "tirs_par_90": 3.5,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": null
+    },
+    {
+      "nom": "M. Varga",
+      "equipe": "D",
+      "buts_par_90": 0.37,
+      "tirs_par_90": 1.91,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": null
+    },
+    {
+      "nom": "M. Vasseur",
+      "equipe": "D",
+      "buts_par_90": 0.22,
+      "tirs_par_90": 1.12,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": null
+    },
+    {
+      "nom": "M. Mendes",
+      "equipe": "E",
+      "buts_par_90": 0.54,
+      "tirs_par_90": 3.34,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": null
+    },
+    {
+      "nom": "D. Kowalczyk",
+      "equipe": "E",
+      "buts_par_90": 0.29,
+      "tirs_par_90": 2.56,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": null
+    },
+    {
+      "nom": "K. Okonkwo",
+      "equipe": "E",
+      "buts_par_90": 0.23,
+      "tirs_par_90": 1.48,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": null
+    }
+  ],
+  "cotes": {
+    "total_buts": {
+      "over_0_5": {
+        "meilleure": 1.02,
+        "bookmaker": "Book C",
+        "ouverture": 1.01,
+        "mouvement": 0.01
+      },
+      "over_1_5": {
+        "meilleure": 1.23,
+        "bookmaker": "Book A",
+        "ouverture": 1.25,
+        "mouvement": -0.02
+      },
+      "over_2_5": {
+        "meilleure": 1.74,
+        "bookmaker": "Book A",
+        "ouverture": 1.66,
+        "mouvement": 0.08
+      },
+      "over_3_5": {
+        "meilleure": 2.92,
+        "bookmaker": "Book A",
+        "ouverture": 3.01,
+        "mouvement": -0.09
+      },
+      "over_4_5": {
+        "meilleure": 5.74,
+        "bookmaker": "Book A",
+        "ouverture": 5.54,
+        "mouvement": 0.2
+      },
+      "over_5_5": {
+        "meilleure": 13.03,
+        "bookmaker": "Book A",
+        "ouverture": 13.07,
+        "mouvement": -0.04
+      },
+      "under_0_5": {
+        "meilleure": 17.56,
+        "bookmaker": "Book B",
+        "ouverture": 17.88,
+        "mouvement": -0.32
+      },
+      "under_1_5": {
+        "meilleure": 4.5,
+        "bookmaker": "Book A",
+        "ouverture": 4.29,
+        "mouvement": 0.21
+      },
+      "under_2_5": {
+        "meilleure": 2.17,
+        "bookmaker": "Book C",
+        "ouverture": 2.15,
+        "mouvement": 0.02
+      },
+      "under_3_5": {
+        "meilleure": 1.44,
+        "bookmaker": "Book B",
+        "ouverture": 1.43,
+        "mouvement": 0.01
+      },
+      "under_4_5": {
+        "meilleure": 1.16,
+        "bookmaker": "Book A",
+        "ouverture": 1.17,
+        "mouvement": -0.01
+      },
+      "under_5_5": {
+        "meilleure": 1.04,
+        "bookmaker": "Book A",
+        "ouverture": 1.09,
+        "mouvement": -0.05
+      }
+    },
+    "mt_over_0_5": null,
+    "mt_over_1_5": null,
+    "buteur": null
+  },
+  "qualite_donnees": 79,
+  "sources": [
+    {
+      "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
+      "recupere_le": "2026-09-28T05:30:00Z"
+    }
+  ]
+}

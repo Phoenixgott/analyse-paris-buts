@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.0.0",
+  "demo": true,
+  "match_id": "demo-sa-montecolle-valdoro",
+  "generated_at": "2026-09-28T05:30:00Z",
+  "competition": {
+    "id": "demo-it-sa",
+    "nom": "Serie A",
+    "pays": "Italie",
+    "categorie": "H",
+    "palier": 1
+  },
+  "coup_envoi": "2026-09-28T16:30:00Z",
+  "stade": {
+    "nom": "Stadio del Colle",
+    "ville": "Montecolle"
+  },
+  "enjeu": "Lutte pour le maintien : 16e contre 18e.",
+  "equipes": {
+    "domicile": {
+      "id": "demo-sa-montecolle-valdoro-d",
+      "nom": "AC Montecolle",
+      "elo": 1590,
+      "classement": {
+        "rang": 16,
+        "points": 3,
+        "joues": 6,
+        "bp": 5,
+        "bc": 13
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "D",
+          "score": "2-1",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "2-4",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-08-31",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "E",
+          "score": "0-2",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-08-24",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-08-17",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "E",
+          "score": "0-3",
+          "score_mt": "0-2"
+        },
+        {
+          "date": "2026-08-10",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-03",
+          "adversaire": "Adversaire fictif I",
+          "lieu": "E",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-27",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "D",
+          "score": "1-4",
+          "score_mt": "1-3"
+        },
+        {
+          "date": "2026-07-20",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "E",
+          "score": "0-2",
+          "score_mt": "0-2"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 0.83,
+        "buts_encaisses_moy": 2.17,
+        "buts_mt_marques_moy": 0.17,
+        "buts_mt_encaisses_moy": 1.33,
+        "xg_moy": null,
+        "tirs_cadres_moy": 4.3,
+        "pct_over15": 83,
+        "pct_over25": 67,
+        "pct_over35": 17,
+        "pct_but_avant_30": 17
+      },
+      "jours_repos": 7,
+      "absents": [
+        {
+          "nom": "C. Roussel",
+          "raison": null
+        }
+      ],
+      "compo_probable": null
+    },
+    "exterieur": {
+      "id": "demo-sa-montecolle-valdoro-e",
+      "nom": "Sporting Valdoro",
+      "elo": 1561,
+      "classement": {
+        "rang": 18,
+        "points": 4,
+        "joues": 6,
+        "bp": 4,
+        "bc": 11
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "1-1"
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "0-3",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "1-2"
+        },
+        {
+          "date": "2026-08-31",
+          "adversaire": "Adversaire fictif A",
+          "lieu": "E",
+          "score": "1-1",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-24",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "D",
+          "score": "1-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-17",
+          "adversaire": "Adversaire fictif L",
+          "lieu": "E",
+          "score": "0-3",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-10",
+          "adversaire": "Adversaire fictif E",
+          "lieu": "D",
+          "score": "1-2",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-03",
+          "adversaire": "Adversaire fictif L",
+          "lieu": "E",
+          "score": "2-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-27",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "D",
+          "score": "0-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-20",
+          "adversaire": "Adversaire fictif L",
+          "lieu": "E",
+          "score": "2-4",
+          "score_mt": "2-1"
+        }
+      ],
+      "stats": {
+        "buts_marques_moy": 0.67,
+        "buts_encaisses_moy": 1.83,
+        "buts_mt_marques_moy": 0.67,
+        "buts_mt_encaisses_moy": 0.67,
+        "xg_moy": null,
+        "tirs_cadres_moy": 4,
+        "pct_over15": 83,
+        "pct_over25": 67,
+        "pct_over35": 0,
+        "pct_but_avant_30": 50
+      },
+      "jours_repos": 7,
+      "absents": [],
+      "compo_probable": null
+    }
+  },
+  "h2h": [
+    {
+      "date": "2026-04-20",
+      "score": "1-4",
+      "score_mt": "0-2"
+    },
+    {
+      "date": "2025-10-20",
+      "score": "1-0",
+      "score_mt": "0-0"
+    },
+    {
+      "date": "2025-03-29",
+      "score": "3-3",
+      "score_mt": "1-1"
+    },
+    {
+      "date": "2024-09-21",
+      "score": "0-1",
+      "score_mt": "0-1"
+    },
+    {
+      "date": "2024-03-20",
+      "score": "2-0",
+      "score_mt": "2-0"
+    },
+    {
+      "date": "2023-09-07",
+      "score": "1-1",
+      "score_mt": "1-1"
+    }
+  ],
+  "arbitre": {
+    "nom": "L. Benedetti",
+    "cartons_moy": null,
+    "penaltys_moy": null
+  },
+  "meteo": null,
+  "buteurs": [
+    {
+      "nom": "K. Okonkwo",
+      "equipe": "D",
+      "buts_par_90": 0.57,
+      "tirs_par_90": 3.2,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 85
+    },
+    {
+      "nom": "N. Petrov",
+      "equipe": "D",
+      "buts_par_90": 0.26,
+      "tirs_par_90": 2.36,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 75
+    },
+    {
+      "nom": "L. Marchetti",
+      "equipe": "D",
+      "buts_par_90": 0.18,
+      "tirs_par_90": 1.21,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": 88
+    },
+    {
+      "nom": "R. Giraud",
+      "equipe": "E",
+      "buts_par_90": 0.66,
+      "tirs_par_90": 2.93,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 85
+    },
+    {
+      "nom": "B. Lindqvist",
+      "equipe": "E",
+      "buts_par_90": 0.25,
+      "tirs_par_90": 2.11,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 75
+    },
+    {
+      "nom": "Y. Barreto",
+      "equipe": "E",
+      "buts_par_90": 0.17,
+      "tirs_par_90": 1.33,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": 88
+    }
+  ],
+  "cotes": {
+    "total_buts": {
+      "over_0_5": {
+        "meilleure": 1.07,
+        "bookmaker": "Book A",
+        "ouverture": 1.05,
+        "mouvement": 0.02
+      },
+      "over_1_5": {
+        "meilleure": 1.42,
+        "bookmaker": "Book A",
+        "ouverture": 1.48,
+        "mouvement": -0.06
+      },
+      "over_2_5": {
+        "meilleure": 2.32,
+        "bookmaker": "Book B",
+        "ouverture": 2.26,
+        "mouvement": 0.06
+      },
+      "over_3_5": {
+        "meilleure": 4.58,
+        "bookmaker": "Book B",
+        "ouverture": 4.48,
+        "mouvement": 0.1
+      },
+      "over_4_5": {
+        "meilleure": 10.77,
+        "bookmaker": "Book C",
+        "ouverture": 10.46,
+        "mouvement": 0.31
+      },
+      "over_5_5": {
+        "meilleure": 29.51,
+        "bookmaker": "Book C",
+        "ouverture": 30.12,
+        "mouvement": -0.61
+      },
+      "under_0_5": {
+        "meilleure": 10.13,
+        "bookmaker": "Book B",
+        "ouverture": 9.73,
+        "mouvement": 0.4
+      },
+      "under_1_5": {
+        "meilleure": 3.02,
+        "bookmaker": "Book C",
+        "ouverture": 3.02,
+        "mouvement": 0
+      },
+      "under_2_5": {
+        "meilleure": 1.66,
+        "bookmaker": "Book A",
+        "ouverture": 1.74,
+        "mouvement": -0.08
+      },
+      "under_3_5": {
+        "meilleure": 1.22,
+        "bookmaker": "Book C",
+        "ouverture": 1.19,
+        "mouvement": 0.03
+      },
+      "under_4_5": {
+        "meilleure": 1.06,
+        "bookmaker": "Book A",
+        "ouverture": 1.01,
+        "mouvement": 0.05
+      },
+      "under_5_5": {
+        "meilleure": 1.01,
+        "bookmaker": "Book B",
+        "ouverture": 1.02,
+        "mouvement": -0.01
+      }
+    },
+    "mt_over_0_5": {
+      "meilleure": 1.48,
+      "bookmaker": "Book C",
+      "ouverture": 1.41,
+      "mouvement": 0.07
+    },
+    "mt_over_1_5": {
+      "meilleure": 3.44,
+      "bookmaker": "Book A",
+      "ouverture": 3.43,
+      "mouvement": 0.01
+    },
+    "buteur": null
+  },
+  "qualite_donnees": 87,
+  "sources": [
+    {
+      "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
+      "recupere_le": "2026-09-28T05:30:00Z"
+    }
+  ]
+}

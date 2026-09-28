@@ -1,0 +1,103 @@
+{
+  "date": "2026-09-28",
+  "demo": true,
+  "genere_le": "2026-09-28T05:30:00Z",
+  "matchs": [
+    {
+      "match_id": "demo-no-fjellby-havnstad",
+      "fichier": "matchs/demo-no-fjellby-havnstad.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T11:00:00Z",
+      "competition": {
+        "id": "demo-no-d3",
+        "nom": "2. divisjon",
+        "pays": "Norvège",
+        "categorie": "H",
+        "palier": 2
+      },
+      "domicile": "Fjellby IL",
+      "exterieur": "Havnstad FK",
+      "qualite_donnees": 17
+    },
+    {
+      "match_id": "demo-d1f-montaval-clairefont",
+      "fichier": "matchs/demo-d1f-montaval-clairefont.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T13:00:00Z",
+      "competition": {
+        "id": "demo-fr-d1f",
+        "nom": "D1 féminine",
+        "pays": "France",
+        "categorie": "F",
+        "palier": 1
+      },
+      "domicile": "Stade Montaval",
+      "exterieur": "AS Clairefont",
+      "qualite_donnees": 79
+    },
+    {
+      "match_id": "demo-sa-montecolle-valdoro",
+      "fichier": "matchs/demo-sa-montecolle-valdoro.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T16:30:00Z",
+      "competition": {
+        "id": "demo-it-sa",
+        "nom": "Serie A",
+        "pays": "Italie",
+        "categorie": "H",
+        "palier": 1
+      },
+      "domicile": "AC Montecolle",
+      "exterieur": "Sporting Valdoro",
+      "qualite_donnees": 87
+    },
+    {
+      "match_id": "demo-int-nordalie-valdoranie",
+      "fichier": "matchs/demo-int-nordalie-valdoranie.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T18:45:00Z",
+      "competition": {
+        "id": "demo-int-ldn",
+        "nom": "Ligue des nations",
+        "pays": "International",
+        "categorie": "INT",
+        "palier": 1
+      },
+      "domicile": "Nordalie",
+      "exterieur": "Valdoranie",
+      "qualite_donnees": 57
+    },
+    {
+      "match_id": "demo-l1-valmont-rivebelle",
+      "fichier": "matchs/demo-l1-valmont-rivebelle.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T18:45:00Z",
+      "competition": {
+        "id": "demo-fr-l1",
+        "nom": "Ligue 1",
+        "pays": "France",
+        "categorie": "H",
+        "palier": 1
+      },
+      "domicile": "Olympique de Valmont",
+      "exterieur": "FC Rivebelle",
+      "qualite_donnees": 100
+    },
+    {
+      "match_id": "demo-pl-ashford-kingsbridge",
+      "fichier": "matchs/demo-pl-ashford-kingsbridge.json",
+      "demo": true,
+      "coup_envoi": "2026-09-28T19:00:00Z",
+      "competition": {
+        "id": "demo-en-pl",
+        "nom": "Premier League",
+        "pays": "Angleterre",
+        "categorie": "H",
+        "palier": 1
+      },
+      "domicile": "Ashford Rovers",
+      "exterieur": "Kingsbridge United",
+      "qualite_donnees": 95
+    }
+  ]
+}

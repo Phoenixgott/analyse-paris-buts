@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "demo": true,
+  "match_id": "demo-no-fjellby-havnstad",
+  "generated_at": "2026-09-28T05:30:00Z",
+  "competition": {
+    "id": "demo-no-d3",
+    "nom": "2. divisjon",
+    "pays": "Norvège",
+    "categorie": "H",
+    "palier": 2
+  },
+  "coup_envoi": "2026-09-28T11:00:00Z",
+  "stade": {
+    "nom": "Fjellby kunstgress",
+    "ville": "Fjellby"
+  },
+  "enjeu": null,
+  "equipes": {
+    "domicile": {
+      "id": "demo-no-fjellby-havnstad-d",
+      "nom": "Fjellby IL",
+      "elo": null,
+      "classement": {
+        "rang": 8,
+        "points": 29,
+        "joues": 22,
+        "bp": 29,
+        "bc": 37
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "3-2",
+          "score_mt": null
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "0-2",
+          "score_mt": null
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif K",
+          "lieu": "D",
+          "score": "1-1",
+          "score_mt": null
+        }
+      ],
+      "stats": null,
+      "jours_repos": null,
+      "absents": null,
+      "compo_probable": null
+    },
+    "exterieur": {
+      "id": "demo-no-fjellby-havnstad-e",
+      "nom": "Havnstad FK",
+      "elo": null,
+      "classement": {
+        "rang": 11,
+        "points": 0,
+        "joues": 22,
+        "bp": 15,
+        "bc": 44
+      },
+      "forme": [
+        {
+          "date": "2026-09-21",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": null
+        },
+        {
+          "date": "2026-09-14",
+          "adversaire": "Adversaire fictif L",
+          "lieu": "E",
+          "score": "0-1",
+          "score_mt": null
+        },
+        {
+          "date": "2026-09-07",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "D",
+          "score": "2-4",
+          "score_mt": null
+        }
+      ],
+      "stats": null,
+      "jours_repos": null,
+      "absents": null,
+      "compo_probable": null
+    }
+  },
+  "h2h": null,
+  "arbitre": null,
+  "meteo": null,
+  "buteurs": null,
+  "cotes": null,
+  "qualite_donnees": 17,
+  "sources": [
+    {
+      "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
+      "recupere_le": "2026-09-28T05:30:00Z"
+    }
+  ]
+}
