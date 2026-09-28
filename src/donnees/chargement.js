@@ -32,14 +32,22 @@ export function chargerMatch(dossier, matchId) {
   return chargerJSON(`${dossier}/matchs/${matchId}.json`);
 }
 
+/** Calculs du modèle ; null s'ils n'ont pas (encore) été publiés pour ce match. */
+export function chargerModele(dossier, matchId) {
+  return chargerJSON(`${dossier}/modeles/${matchId}.json`).catch(() => null);
+}
+
 /** Précharge les fiches du jour (palier 1 d'abord) pour qu'elles s'ouvrent aussi hors ligne. */
 export function prechargerFiches(dossier, resumes, limite = 80) {
   if (!navigator.onLine) return;
-  const ordre = [...resumes].sort((a, b) => a.competition.palier - b.competition.palier).slice(0, limite);
+  const ordre = [...resumes]
+    .sort((a, b) => a.competition.palier - b.competition.palier)
+    .slice(0, limite)
+    .flatMap((m) => [`${dossier}/${m.fichier}`, ...(m.modele ? [`${dossier}/modeles/${m.match_id}.json`] : [])]);
   const suivant = () => {
-    const m = ordre.shift();
-    if (!m) return;
-    chargerJSON(`${dossier}/${m.fichier}`).catch(() => {}).finally(suivant);
+    const chemin = ordre.shift();
+    if (!chemin) return;
+    chargerJSON(chemin).catch(() => {}).finally(suivant);
   };
   // Trois téléchargements en parallèle, sans gêner l'affichage.
   setTimeout(() => [suivant, suivant, suivant].forEach((f) => f()), 500);

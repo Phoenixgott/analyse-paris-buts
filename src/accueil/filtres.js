@@ -31,9 +31,20 @@ export function filtrerMatchs(matchs, filtres) {
 
 const parHeure = (a, b) => a.coup_envoi.localeCompare(b.coup_envoi) || a.match_id.localeCompare(b.match_id);
 
-/** tri : 'heure' | 'ligue'. ('value' arrive avec le modèle, phase 2.) */
+/** Plus grand d'abord ; valeurs absentes (N/D) toujours en dernier. */
+const decroissantNd = (a, b) => (a == null && b == null ? 0 : a == null ? 1 : b == null ? -1 : b - a);
+
+/** tri : 'heure' | 'ligue' | 'value' (paris suggérés par value décroissante, puis meilleure value brute). */
 export function trierMatchs(matchs, tri = 'heure') {
   const copie = [...matchs];
+  if (tri === 'value') {
+    return copie.sort(
+      (a, b) =>
+        decroissantNd(a.modele?.decision === 'PARIER' ? a.modele.value : null, b.modele?.decision === 'PARIER' ? b.modele.value : null) ||
+        decroissantNd(a.modele?.value_max ?? null, b.modele?.value_max ?? null) ||
+        parHeure(a, b),
+    );
+  }
   if (tri === 'ligue') {
     return copie.sort(
       (a, b) =>

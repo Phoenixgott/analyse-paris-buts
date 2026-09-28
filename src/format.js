@@ -31,6 +31,18 @@ export function pct(v, decimales = 0) {
   return estNombre(v) ? `${nombre(v, decimales)} %` : ND;
 }
 
+/** Probabilité stockée de 0 à 1, affichée en %. */
+export function proba(p, decimales = 1) {
+  return estNombre(p) ? pct(p * 100, decimales) : ND;
+}
+
+/** Value (fraction) signée : « +3,2 % », « −4,1 % ». */
+export function valueTexte(v) {
+  if (!estNombre(v)) return ND;
+  const signe = v > 0 ? '+' : v < 0 ? '−' : '';
+  return `${signe}${nombre(Math.abs(v) * 100, 1)} %`;
+}
+
 export function cote(v) {
   return nombre(v, 2);
 }

@@ -28,19 +28,20 @@ export const manifeste = {
 };
 
 const DOSSIER_DONNEES = resolve('data');
-// Jamais publiés : cache brut des API (peut contenir des réponses volumineuses).
-const EXCLUS = ['cache'];
+// Jamais publiés (à tout niveau) : cache brut des API et historiques de ligue, lus seulement par
+// les scripts de calcul ; le site n'affiche que les résultats.
+const EXCLUS = ['cache', 'ligues'];
 
 function fichiersDonnees(dossier = DOSSIER_DONNEES) {
   if (!existsSync(dossier)) return [];
   return readdirSync(dossier, { withFileTypes: true }).flatMap((entree) => {
     const chemin = join(dossier, entree.name);
-    if (entree.isDirectory()) {
-      return dossier === DOSSIER_DONNEES && EXCLUS.includes(entree.name) ? [] : fichiersDonnees(chemin);
-    }
+    if (entree.isDirectory()) return EXCLUS.includes(entree.name) ? [] : fichiersDonnees(chemin);
     return entree.name.endsWith('.json') ? [chemin] : [];
   });
 }
+
+const estExclu = (chemin) => relative(DOSSIER_DONNEES, chemin).split(sep).some((partie) => EXCLUS.includes(partie));
 
 // Publie /data (JSON commités par la collecte) sous <base>data/ : servi en dev, copié au build.
 function donnees() {
@@ -49,7 +50,7 @@ function donnees() {
     configureServer(server) {
       server.middlewares.use(`${BASE}data`, (req, res, next) => {
         const chemin = resolve(DOSSIER_DONNEES, `.${decodeURIComponent(req.url.split('?')[0])}`);
-        const autorise = chemin.startsWith(DOSSIER_DONNEES + sep) && !EXCLUS.some((d) => chemin.startsWith(join(DOSSIER_DONNEES, d)));
+        const autorise = chemin.startsWith(DOSSIER_DONNEES + sep) && !estExclu(chemin);
         if (!autorise || !existsSync(chemin) || statSync(chemin).isDirectory()) return next();
         res.setHeader('Content-Type', 'application/json; charset=utf-8');
         createReadStream(chemin).pipe(res);

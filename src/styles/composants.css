@@ -908,3 +908,147 @@ th[aria-sort='descending'] .table__tri {
   color: var(--texte-doux);
   font-weight: 400;
 }
+
+/* ---- Modèle (phase 2) ---- */
+/* Vert et rouge : uniquement value positive / négative (et, plus tard, gains / pertes). */
+.value--pos {
+  color: var(--gain);
+  font-weight: 700;
+}
+
+.value--neg {
+  color: var(--perte);
+}
+
+.badge--value {
+  border-color: var(--gain);
+  color: var(--gain);
+  background: rgba(46, 204, 113, 0.12);
+  margin-left: 6px;
+}
+
+.badge--passer {
+  color: var(--texte-doux);
+}
+
+.proba {
+  font-family: var(--chiffres);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--jaune);
+}
+
+.verdict {
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  border-radius: var(--rayon);
+  border: 2px solid var(--ligne);
+  background: var(--fond);
+}
+
+.verdict p {
+  margin: 0 0 6px;
+}
+
+.verdict--parier {
+  border-color: var(--gain);
+}
+
+.verdict__titre {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.verdict__decision {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: var(--bleu-clair);
+}
+
+.verdict--parier .verdict__decision {
+  background: var(--gain);
+  color: var(--fond);
+}
+
+.verdict__detail {
+  font-size: 0.9rem;
+}
+
+.verdict__avert {
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+
+@media (min-width: 1200px) {
+  .grille-kpi--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.kpi__sur {
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+
+.score-proba {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--ligne);
+  background: var(--fond);
+  font-size: 0.85rem;
+  font-family: var(--chiffres);
+}
+
+.score-proba strong {
+  color: var(--jaune);
+}
+
+.methode {
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid var(--ligne);
+  font-size: 0.9rem;
+}
+
+.methode summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--jaune);
+  cursor: pointer;
+}
+
+.methode .liste li {
+  margin-bottom: 6px;
+}
+
+.match-carte__modele {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--ligne);
+  font-size: 0.85rem;
+}
+
+.match-carte__modele .badge--value {
+  margin-left: 0;
+}
+
+.match-carte__modele .ib {
+  margin-left: 0;
+}
+
+.match-carte__pari {
+  font-weight: 700;
+}

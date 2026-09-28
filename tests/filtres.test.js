@@ -47,6 +47,16 @@ describe('tris de l’accueil', () => {
     expect(tries[0].competition.pays).toBe('Angleterre');
   });
 
+  it('trie par value : paris suggérés d’abord (value décroissante), matchs sans modèle en dernier', () => {
+    const tries = trierMatchs(matchs, 'value');
+    const parier = tries.filter((m) => m.modele?.decision === 'PARIER');
+    expect(tries.slice(0, parier.length)).toEqual(parier);
+    const values = parier.map((m) => m.modele.value);
+    expect(values).toEqual([...values].sort((a, b) => b - a));
+    const sansModele = { ...matchs[0], match_id: 'zz', modele: null };
+    expect(trierMatchs([sansModele, ...matchs], 'value').at(-1).match_id).toBe('zz');
+  });
+
   it('ne modifie pas la liste d’origine', () => {
     const copie = [...matchs];
     trierMatchs(matchs, 'ligue');

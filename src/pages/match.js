@@ -1,6 +1,7 @@
 // Fiche match — phase 1 : uniquement les données du JSON, aucun calcul de modèle.
 import { ND, cote, dateCourte, dateLongue, entier, esc, heure, mouvement, nombre, pct, resultat, texte } from '../format.js';
-import { chargerMatch } from '../donnees/chargement.js';
+import { chargerMatch, chargerModele } from '../donnees/chargement.js';
+import { sectionModele } from './section-modele.js';
 import { badgeCategorie, badgeDemo, badgeNonFiable, badgePalier, pastilleResultat } from '../composants/badge.js';
 import { kpiDuel, kpiSimple } from '../composants/carte-kpi.js';
 import { tableau } from '../composants/tableau-triable.js';
@@ -11,6 +12,7 @@ import { bandeauDemo } from './accueil.js';
 
 const SECTIONS = [
   ['resume', 'Résumé'],
+  ['modele', 'Modèle'],
   ['forme', 'Forme'],
   ['stats', 'Stats'],
   ['h2h', 'Face-à-face'],
@@ -76,11 +78,8 @@ function resume(m) {
     kpiDuel({ titre: 'Jours de repos', dom: entier(d.jours_repos), ext: entier(e.jours_repos), aide: EXPLICATIONS.jours_repos, ...noms }),
     kpiDuel({ titre: 'Elo', dom: entier(d.elo), ext: entier(e.elo), aide: EXPLICATIONS.elo, ...noms }),
   ];
-  const modele = `<div class="a-venir">
-      <p><strong>Probabilités du modèle</strong> (Over/Under 0,5 → 5,5, 1re mi-temps, buteurs) : calculées à partir de la phase 2.
-      Graphiques et prompt d'analyse IA : phase 3. Rien n'est affiché tant que le calcul n'est pas validé.</p>
-    </div>`;
-  return section('resume', 'Résumé', `<div class="grille-kpi">${cartes.join('')}</div>${modele}`);
+  const aVenir = `<div class="a-venir"><p>Graphiques (forme, Over/Under, buts par tranche de 15 min, radar, jauge) et prompt d'analyse IA : phase 3.</p></div>`;
+  return section('resume', 'Résumé', `<div class="grille-kpi">${cartes.join('')}</div>${aVenir}`);
 }
 
 function tableForme(eq) {
@@ -289,7 +288,7 @@ function sommaire() {
 }
 
 export async function pageMatch(app, dossier, matchId) {
-  const m = await chargerMatch(dossier, matchId);
+  const [m, calculs] = await Promise.all([chargerMatch(dossier, matchId), chargerModele(dossier, matchId)]);
   const { domicile: d, exterieur: e } = m.equipes;
   document.title = `${d.nom} – ${e.nom} — Analyse Paris Buts`;
   const fiable = estFiable(m.qualite_donnees);
@@ -306,6 +305,7 @@ export async function pageMatch(app, dossier, matchId) {
     }
     ${sommaire()}
     ${resume(m)}
+    ${sectionModele(calculs, m)}
     ${forme(m)}
     ${stats(m)}
     ${h2h(m)}

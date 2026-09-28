@@ -1,7 +1,9 @@
-import { CATEGORIES, dateLongue, esc, heure } from '../format.js';
+import { CATEGORIES, dateLongue, esc, heure, nombre, valueTexte } from '../format.js';
 import { chargerJournee, prechargerFiches } from '../donnees/chargement.js';
 import { FILTRES_VIDES, TRANCHES, filtrerMatchs, optionsFiltres, trierMatchs } from '../accueil/filtres.js';
-import { badgeCategorie, badgeDemo, badgeNonFiable, badgePalier, badgeQualite } from '../composants/badge.js';
+import { badge, badgeCategorie, badgeDemo, badgeNonFiable, badgePalier, badgeQualite } from '../composants/badge.js';
+import { ib } from '../composants/info-bulle.js';
+import { EXPLICATIONS } from '../explications.js';
 import { estFiable } from '../../schema/qualite.js';
 
 const CLE_FILTRES = 'apb.filtresAccueil';
@@ -48,7 +50,18 @@ function carteMatch(m, dossier) {
       <span class="badges">${m.demo ? badgeDemo() : ''}${badgeCategorie(m.competition.categorie)}${badgePalier(m.competition.palier)}${fiable ? '' : badgeNonFiable()}</span>
       <span class="match-carte__qualite"><span class="match-carte__label">Qualité</span>${badgeQualite(m.qualite_donnees)}</span>
     </div>
+    ${ligneModele(m.modele)}
   </article>`;
+}
+
+function ligneModele(r) {
+  if (!r) return '<p class="match-carte__modele discret">Modèle : N/D</p>';
+  if (!r.calculable) return '<p class="match-carte__modele">' + badge('PASSER', 'passer') + '<span class="discret">Modèle non calculable</span></p>';
+  const buts = `<span class="discret">Buts attendus ${esc(nombre(r.buts_attendus))}</span>`;
+  if (r.decision === 'PARIER') {
+    return `<p class="match-carte__modele">${badge(`Value ${valueTexte(r.value)}`, 'value')}${ib(EXPLICATIONS.value)}<span class="match-carte__pari">${esc(r.libelle)}</span>${buts}</p>`;
+  }
+  return `<p class="match-carte__modele">${badge('PASSER', 'passer')}${buts}</p>`;
 }
 
 function liste(matchs, dossier, tri) {
@@ -94,7 +107,7 @@ export async function pageAccueil(app) {
       <label>Trier par<select name="tri">
         <option value="heure"${reglages.tri === 'heure' ? ' selected' : ''}>Heure</option>
         <option value="ligue"${reglages.tri === 'ligue' ? ' selected' : ''}>Ligue</option>
-        <option value="value" disabled>Value (dès la phase 2)</option>
+        <option value="value"${reglages.tri === 'value' ? ' selected' : ''}>Value</option>
       </select></label>
       <button type="reset" class="bouton bouton--discret">Réinitialiser</button>
     </form>
