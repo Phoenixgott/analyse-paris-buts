@@ -2,6 +2,8 @@
 import { ND, cote, dateCourte, dateLongue, entier, esc, heure, mouvement, nombre, pct, resultat, texte } from '../format.js';
 import { chargerMatch, chargerModele } from '../donnees/chargement.js';
 import { sectionModele } from './section-modele.js';
+import { activerPrompt, sectionPrompt } from './section-prompt.js';
+import { blocForme, blocRadar, blocTranches } from './blocs-graphiques.js';
 import { badgeCategorie, badgeDemo, badgeNonFiable, badgePalier, pastilleResultat } from '../composants/badge.js';
 import { kpiDuel, kpiSimple } from '../composants/carte-kpi.js';
 import { tableau } from '../composants/tableau-triable.js';
@@ -13,6 +15,7 @@ import { bandeauDemo } from './accueil.js';
 const SECTIONS = [
   ['resume', 'Résumé'],
   ['modele', 'Modèle'],
+  ['prompt', 'Prompt IA'],
   ['forme', 'Forme'],
   ['stats', 'Stats'],
   ['h2h', 'Face-à-face'],
@@ -78,8 +81,7 @@ function resume(m) {
     kpiDuel({ titre: 'Jours de repos', dom: entier(d.jours_repos), ext: entier(e.jours_repos), aide: EXPLICATIONS.jours_repos, ...noms }),
     kpiDuel({ titre: 'Elo', dom: entier(d.elo), ext: entier(e.elo), aide: EXPLICATIONS.elo, ...noms }),
   ];
-  const aVenir = `<div class="a-venir"><p>Graphiques (forme, Over/Under, buts par tranche de 15 min, radar, jauge) et prompt d'analyse IA : phase 3.</p></div>`;
-  return section('resume', 'Résumé', `<div class="grille-kpi">${cartes.join('')}</div>${aVenir}`);
+  return section('resume', 'Résumé', `<div class="grille-kpi">${cartes.join('')}</div>`);
 }
 
 function tableForme(eq) {
@@ -110,12 +112,12 @@ function forme(m) {
   return section(
     'forme',
     'Forme (10 derniers matchs)',
-    `<div class="duo">${tableForme(d)}${tableForme(e)}</div>`,
+    `${blocForme(m)}<div class="duo">${tableForme(d)}${tableForme(e)}</div>`,
     'Score du point de vue de l’équipe (pour - contre). (D) domicile, (E) extérieur.',
   );
 }
 
-function stats(m) {
+function stats(m, calculs) {
   const { domicile: d, exterieur: e } = m.equipes;
   const c = (eq, cle) => (eq.classement ? eq.classement[cle] : null);
   const lignes = [
@@ -144,7 +146,8 @@ function stats(m) {
       <caption class="sr-only">Statistiques de la saison</caption>
       <thead><tr><th scope="col">Saison</th><th scope="col" class="num">${esc(d.nom)}</th><th scope="col" class="num">${esc(e.nom)}</th></tr></thead>
       <tbody>${corps}</tbody>
-    </table></div>`,
+    </table></div>
+    <div class="grille-graphiques">${blocTranches(m)}${blocRadar(m, calculs)}</div>`,
   );
 }
 
@@ -306,13 +309,24 @@ export async function pageMatch(app, dossier, matchId) {
     ${sommaire()}
     ${resume(m)}
     ${sectionModele(calculs, m)}
+    ${sectionPrompt(m, calculs)}
     ${forme(m)}
-    ${stats(m)}
+    ${stats(m, calculs)}
     ${h2h(m)}
     ${effectifs(m)}
     ${buteurs(m)}
     ${cotes(m)}
     ${infos(m)}`;
+
+  activerPrompt(app, m, calculs);
+
+  // Chart.js n'est chargé que sur la fiche. Si la page a changé entre-temps, on ne dessine rien.
+  const page = location.hash;
+  import('../graphiques/fiche.js')
+    .then(({ dessinerGraphiques }) => {
+      if (location.hash === page) dessinerGraphiques(app, m, calculs);
+    })
+    .catch((erreur) => console.error('Graphiques indisponibles', erreur));
 
   app.querySelector('.sommaire').addEventListener('click', (ev) => {
     const b = ev.target.closest('button[data-cible]');

@@ -1,6 +1,7 @@
 // Fiche match — section « Modèle » (phase 2) : probabilités, value, mises, confiance et verdict,
 // tous issus de modeles/<match_id>.json. Graphiques et prompt IA : phase 3.
-import { ND, cote, esc, nombre, pct, proba, texte, valueTexte } from '../format.js';
+import { ND, cote, esc, nombre, pct, proba, valueTexte } from '../format.js';
+import { blocJauge, blocOverUnder } from './blocs-graphiques.js';
 import { badge } from '../composants/badge.js';
 import { kpiDuel, kpiSimple } from '../composants/carte-kpi.js';
 import { tableau } from '../composants/tableau-triable.js';
@@ -112,13 +113,10 @@ export function sectionModele(m, match) {
     return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2>${verdict(m)}</section>`;
   }
   const { domicile: d, exterieur: e } = match.equipes;
-  const c = m.confiance.composantes;
-  const aideConfiance = `${EXPLICATIONS.confiance} Ici : qualité ${texte(c.qualite)}, échantillon ${c.echantillon == null ? ND : Math.round(c.echantillon)}, accord ${c.accord == null ? ND : Math.round(c.accord)}.`;
   const kpis = [
     kpiDuel({ titre: 'Buts attendus', dom: nombre(m.buts_attendus.domicile), ext: nombre(m.buts_attendus.exterieur), aide: EXPLICATIONS.buts_attendus, nomDom: d.nom, nomExt: e.nom }),
     kpiSimple({ titre: 'Total attendu', valeurHtml: esc(nombre(m.buts_attendus.total)), sous: 'buts dans le match', aide: EXPLICATIONS.buts_attendus }),
     kpiSimple({ titre: 'Plus de 2,5 buts', valeurHtml: esc(proba(m.total_buts.over_2_5)), sous: `Moins de 2,5 : ${proba(m.total_buts.under_2_5)}`, aide: EXPLICATIONS.proba_total }),
-    kpiSimple({ titre: 'Indice de confiance', valeurHtml: `${esc(texte(m.confiance.indice))}<span class="kpi__sur">/100</span>`, sous: m.confiance.indice != null && m.confiance.indice < m.reglages.confiance_min ? `Sous ${m.reglages.confiance_min} : pas de pari` : '', aide: aideConfiance }),
   ];
   const scores = `<div class="scores"><h3 class="sous-titre">Scores les plus probables${ib(EXPLICATIONS.scores_probables)}</h3>
     <p class="pastilles">${m.scores_probables.map((s) => `<span class="score-proba"><strong>${esc(s.score)}</strong> ${esc(proba(s.proba))}</span>`).join('')}</p></div>`;
@@ -127,7 +125,8 @@ export function sectionModele(m, match) {
     <h2 class="section__titre" id="t-modele">Modèle : probabilités estimées</h2>
     <p class="section__sous">Dixon-Coles, calculé à partir des données de la fiche. Probabilités estimées, pas des certitudes.</p>
     ${verdict(m)}
-    <div class="grille-kpi grille-kpi--4">${kpis.join('')}</div>
+    <div class="grille-kpi grille-kpi--3">${kpis.join('')}</div>
+    <div class="grille-graphiques">${blocOverUnder(m, match)}${blocJauge(m)}</div>
     <h3 class="sous-titre">Total de buts</h3>
     ${tableTotal(m)}
     <h3 class="sous-titre">1re mi-temps</h3>

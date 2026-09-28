@@ -984,10 +984,163 @@ th[aria-sort='descending'] .table__tri {
   color: var(--texte-doux);
 }
 
-@media (min-width: 1200px) {
-  .grille-kpi--4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (min-width: 720px) {
+  .grille-kpi--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+}
+
+/* ---- Graphiques (phase 3) ---- */
+.grille-graphiques {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@media (min-width: 960px) {
+  .grille-graphiques {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.graphique {
+  margin: 0 0 12px;
+  padding: 12px;
+  border-radius: var(--rayon-petit);
+  border: 1px solid var(--ligne);
+  background: var(--fond);
+}
+
+.grille-graphiques .graphique {
+  margin: 0;
+}
+
+.graphique__titre {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--texte);
+}
+
+.graphique__zone {
+  position: relative;
+  width: 100%;
+}
+
+.graphique__donnees {
+  margin-top: 8px;
+  font-size: 0.85rem;
+}
+
+.graphique__donnees summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--jaune);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.jauge {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.jauge__valeur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  margin: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.jauge__valeur strong {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--jaune);
+}
+
+.jauge__valeur span {
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+}
+
+.jauge__legende {
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+
+/* ---- Prompt IA ---- */
+.prompt__demo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.prompt__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 4px;
+}
+
+.bouton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.prompt__etat {
+  min-height: 1.5em;
+  margin: 4px 0;
+  font-weight: 600;
+  color: var(--jaune);
+}
+
+.prompt__controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  color: var(--texte-doux);
+}
+
+.controle--ko {
+  color: var(--alerte);
+  font-weight: 700;
+}
+
+.prompt__apercu summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--jaune);
+  cursor: pointer;
+}
+
+.prompt__texte {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--chiffres);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  resize: vertical;
 }
 
 .kpi__sur {

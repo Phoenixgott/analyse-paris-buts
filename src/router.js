@@ -5,6 +5,7 @@
 import { esc } from './format.js';
 import { marquerActif } from './composants/navigation.js';
 import { viderTableaux } from './composants/tableau-triable.js';
+import { toutDetruire } from './graphiques/registre.js';
 import { pageAccueil } from './pages/accueil.js';
 import { pageMatch } from './pages/match.js';
 import { pageAVenir } from './pages/a-venir.js';
@@ -23,6 +24,7 @@ async function afficher() {
   const trouve = ROUTES.map((r) => ({ r, m: hash.match(r.motif) })).find((x) => x.m);
 
   viderTableaux();
+  toutDetruire();
   app.setAttribute('aria-busy', 'true');
   app.innerHTML = '<p class="chargement">Chargement…</p>';
 
