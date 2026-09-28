@@ -1,6 +1,7 @@
 // Info-bulles accessibles : un bouton « ? » à côté de chaque pourcentage ou indicateur.
 // Une seule bulle, en position fixe et bornée à l'écran (jamais de débordement à 360 px).
-// S'ouvre au toucher, au clic ou au clavier ; se ferme par Échap, un clic ailleurs ou un défilement.
+// S'ouvre au toucher, au clic ou au clavier ; se ferme par Échap, un clic ailleurs, un changement
+// de page ou quand son bouton sort de l'écran.
 import { esc } from '../format.js';
 
 let bulle = null;
@@ -27,7 +28,20 @@ function ouvrir(bouton) {
   bouton.setAttribute('aria-expanded', 'true');
   bouton.setAttribute('aria-describedby', 'bulle-aide');
   boutonActif = bouton;
+  positionner();
+}
 
+// Au défilement, la bulle suit son bouton ; elle ne se ferme que si le bouton sort de l'écran
+// (un léger défilement juste après le toucher ne doit pas la refermer).
+function suivre() {
+  if (!boutonActif || bulle.hidden) return;
+  const r = boutonActif.getBoundingClientRect();
+  if (r.bottom < 0 || r.top > window.innerHeight) fermer();
+  else positionner();
+}
+
+function positionner() {
+  const bouton = boutonActif;
   const marge = 8;
   const r = bouton.getBoundingClientRect();
   const largeur = bulle.offsetWidth;
@@ -68,7 +82,7 @@ export function installerInfoBulles() {
       b?.focus();
     }
   });
-  window.addEventListener('scroll', fermer, { passive: true, capture: true });
-  window.addEventListener('resize', fermer);
+  window.addEventListener('scroll', suivre, { passive: true, capture: true });
+  window.addEventListener('resize', suivre);
   window.addEventListener('hashchange', fermer);
 }
