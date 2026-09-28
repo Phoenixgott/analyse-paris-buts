@@ -1,0 +1,28 @@
+/* Couleurs FC Sochaux-Montbéliard (sans blason). Thème sombre par défaut.
+   Jaune : KPI, boutons, courbes principales. Vert/rouge : uniquement gains/pertes et value +/-. */
+:root {
+  --jaune: #ffd500;
+  --jaune-doux: rgba(255, 213, 0, 0.14);
+  --bleu: #0a2a66;
+  --bleu-clair: #1a3d80;
+  --fond: #061433;
+  --carte: #0d2350;
+  --carte-haute: #12306a;
+  --texte: #f4f1e8;
+  --texte-doux: #b9c3d9;
+  --ligne: rgba(244, 241, 232, 0.14);
+  --gain: #2ecc71;
+  --perte: #ff5a5f;
+  --alerte: #ffb35c;
+  --alerte-fond: rgba(255, 159, 28, 0.14);
+
+  --rayon: 12px;
+  --rayon-petit: 8px;
+  --gouttiere: 16px;
+  --barre-h: 56px;
+  --sidebar-l: 232px;
+  --sidebar-repliee-l: 68px;
+  --police: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --chiffres: ui-monospace, 'SF Mono', 'Roboto Mono', 'Cascadia Mono', Menlo, monospace;
+  color-scheme: dark;
+}
