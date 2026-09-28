@@ -13,6 +13,7 @@
     "preview": "vite preview",
     "icones": "node scripts/generer-icones.js",
     "demo": "node scripts/demo/generer-demo.js",
+    "modeles": "node scripts/calculer-modeles.js",
     "test": "vitest run"
   },
   "dependencies": {
