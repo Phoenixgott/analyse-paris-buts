@@ -78,25 +78,48 @@ function liste(matchs, dossier, tri) {
     .join('');
 }
 
+const CLE_JOUR = 'apb.jour';
+
+function lireJour() {
+  try {
+    return sessionStorage.getItem(CLE_JOUR);
+  } catch {
+    return null;
+  }
+}
+
+function selecteurJour(jour, aujourdhui, jours) {
+  const options = [...new Set([aujourdhui, ...jours])].sort();
+  const libelle = (j) => `${j === aujourdhui ? 'Aujourd’hui — ' : ''}${dateLongue(j)}`;
+  return `<label class="champ champ--jour">Jour
+    <select id="choix-jour">
+      ${options.map((j) => `<option value="${j}"${j === jour ? ' selected' : ''}>${esc(libelle(j))}</option>`).join('')}
+      <option value="demo"${jour === 'demo' ? ' selected' : ''}>Démonstration (matchs fictifs)</option>
+    </select></label>`;
+}
+
 export async function pageAccueil(app) {
   document.title = 'Matchs du jour — Analyse Paris Buts';
-  const { dossier, aujourdhui, index, reel } = await chargerJournee();
+  const { dossier, jour, aujourdhui, jours, index, reel } = await chargerJournee(lireJour());
   const tous = index.matchs;
   const opts = optionsFiltres(tous);
   const reglages = lireReglages();
+  const collecte = '<a href="#/collecte">Récupérer les matchs</a>';
 
   app.innerHTML = `
-    <header class="page-tete">
-      <h1 class="page-titre">Matchs du jour</h1>
-      <p class="page-sous">${esc(dateLongue(reel ? aujourdhui : index.date))}</p>
+    <header class="page-tete page-tete--ligne">
+      <div>
+        <h1 class="page-titre">Matchs du jour</h1>
+        <p class="page-sous">${esc(dateLongue(reel ? jour : index.date))}</p>
+      </div>
+      ${selecteurJour(jour, aujourdhui, jours)}
     </header>
     ${
       reel
         ? ''
-        : bandeauDemo(
-            `Aucune donnée réelle n'est encore publiée pour aujourd'hui (la collecte automatique arrive en phase 4). Ces ${tous.length} matchs sont fictifs — équipes, joueurs et chiffres inventés — et servent uniquement à montrer l'interface.`,
-          )
+        : `<div class="bandeau-demo" role="note">${badgeDemo()}<p>Aucun match importé pour aujourd'hui : ces ${tous.length} matchs sont <strong>fictifs</strong> (équipes, joueurs et chiffres inventés) et montrent seulement l'interface. Pour les vrais matchs : ${collecte}.</p></div>`
     }
+    ${reel && !tous.length ? `<section class="carte"><p>Aucun match importé pour ce jour. Va dans ${collecte} : le site prépare la demande à coller dans Claude.</p></section>` : ''}
     <details class="carte filtres-bloc" id="bloc-filtres">
     <summary class="filtres-bloc__titre">Filtres et tri <span class="filtres-bloc__nb" id="nb-filtres"></span></summary>
     <form class="filtres" id="filtres" aria-label="Filtres">
@@ -137,6 +160,15 @@ export async function pageAccueil(app) {
     rafraichir();
   });
   rafraichir();
+
+  app.querySelector('#choix-jour').addEventListener('change', (e) => {
+    try {
+      sessionStorage.setItem(CLE_JOUR, e.target.value);
+    } catch {
+      /* non mémorisé */
+    }
+    pageAccueil(app);
+  });
 
   prechargerFiches(dossier, tous);
 }

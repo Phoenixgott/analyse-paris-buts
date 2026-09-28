@@ -1,6 +1,7 @@
 // Routes en « # » (compatibles GitHub Pages, sans serveur) :
 //   #/                         matchs du jour
-//   #/match/<dossier>/<id>     fiche match (dossier = AAAA-MM-JJ ou « demo »)
+//   #/collecte                 récupérer les matchs (prompts de collecte)
+//   #/match/<dossier>/<id>     fiche match (dossier = « local », « demo » ou AAAA-MM-JJ)
 //   #/top-picks, #/journal, #/fiabilite
 import { esc } from './format.js';
 import { marquerActif } from './composants/navigation.js';
@@ -9,9 +10,11 @@ import { toutDetruire } from './graphiques/registre.js';
 import { pageAccueil } from './pages/accueil.js';
 import { pageMatch } from './pages/match.js';
 import { pageAVenir } from './pages/a-venir.js';
+import { pageCollecte } from './pages/collecte.js';
 
 const ROUTES = [
   { motif: /^#?\/?$/, route: 'accueil', page: (app) => pageAccueil(app) },
+  { motif: /^#\/collecte$/, route: 'collecte', page: (app) => pageCollecte(app) },
   { motif: /^#\/match\/([a-z0-9-]+)\/([a-z0-9-]+)$/, route: 'accueil', page: (app, m) => pageMatch(app, m[1], m[2]) },
   { motif: /^#\/(top-picks|journal|fiabilite)$/, route: null, page: (app, m) => pageAVenir(app, m[1]) },
 ];

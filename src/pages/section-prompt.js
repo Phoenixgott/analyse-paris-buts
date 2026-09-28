@@ -2,6 +2,7 @@
 import { esc } from '../format.js';
 import { contenuExport, genererPrompt, nomFichierExport } from '../prompt/generateur.js';
 import { badgeDemo } from '../composants/badge.js';
+import { copier, telecharger } from '../composants/presse-papier.js';
 
 export function sectionPrompt(match, modele) {
   const { texte, controles } = genererPrompt(match, modele);
@@ -29,32 +30,6 @@ export function sectionPrompt(match, modele) {
       <textarea class="prompt__texte" id="texte-prompt" readonly rows="12" aria-label="Prompt d’analyse">${esc(texte)}</textarea>
     </details>
   </section>`;
-}
-
-async function copier(texte, zone) {
-  try {
-    await navigator.clipboard.writeText(texte);
-    return true;
-  } catch {
-    // Repli : sélection du texte puis commande de copie du navigateur.
-    zone.closest('details').open = true;
-    zone.focus();
-    zone.select();
-    try {
-      return document.execCommand('copy');
-    } catch {
-      return false;
-    }
-  }
-}
-
-function telecharger(nom, contenu) {
-  const url = URL.createObjectURL(new Blob([contenu], { type: 'application/json' }));
-  const lien = Object.assign(document.createElement('a'), { href: url, download: nom });
-  document.body.append(lien);
-  lien.click();
-  lien.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 export function activerPrompt(racine, match, modele) {

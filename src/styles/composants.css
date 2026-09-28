@@ -12,7 +12,11 @@
 .page-sous {
   margin: 0;
   color: var(--texte-doux);
-  text-transform: capitalize;
+}
+
+/* « lundi 28 septembre » → « Lundi 28 septembre », sans toucher aux autres mots. */
+.page-sous::first-letter {
+  text-transform: uppercase;
 }
 
 .chargement {
@@ -1076,6 +1080,275 @@ th[aria-sort='descending'] .table__tri {
   text-align: center;
   font-size: 0.8rem;
   color: var(--texte-doux);
+}
+
+/* ---- Accueil : choix du jour ---- */
+.page-tete--ligne {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.champ {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--texte-doux);
+}
+
+.champ select,
+.champ input,
+.champ textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+  color: var(--texte);
+  font-size: 0.95rem;
+}
+
+.champ textarea {
+  font-family: var(--chiffres);
+  font-size: 0.8rem;
+  resize: vertical;
+}
+
+.champ--jour {
+  min-width: 220px;
+}
+
+.champ--date {
+  max-width: 260px;
+}
+
+/* ---- Récupérer les matchs ---- */
+.etape {
+  display: grid;
+  gap: 12px;
+}
+
+.etape__titre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--jaune);
+}
+
+.etape__num {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--jaune);
+  color: var(--fond);
+  font-weight: 800;
+}
+
+.aide {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--texte-doux);
+}
+
+.etat {
+  min-height: 1.4em;
+  margin: 0;
+  font-weight: 600;
+  color: var(--jaune);
+}
+
+.volet {
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+  padding: 0 12px;
+}
+
+.volet[open] {
+  padding-bottom: 12px;
+}
+
+.volet summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  min-height: 48px;
+  font-weight: 700;
+  color: var(--jaune);
+  cursor: pointer;
+}
+
+.volet__resume {
+  font-weight: 600;
+  color: var(--texte);
+}
+
+.volet .grille-cases {
+  margin-bottom: 10px;
+}
+
+.grille-cases {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 720px) {
+  .grille-cases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.groupe-cases {
+  margin: 0;
+  padding: 8px 12px 10px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+}
+
+.groupe-cases legend {
+  padding: 0 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--texte-doux);
+}
+
+.case {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.case input,
+.choix input {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  accent-color: var(--jaune);
+}
+
+.actions-ligne {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.bouton--petit {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+}
+
+.bouton--large {
+  width: 100%;
+  min-height: 52px;
+  font-size: 1rem;
+}
+
+.bouton--fichier {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.liste-choix {
+  display: grid;
+  gap: 6px;
+}
+
+.choix {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 6px 10px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+  cursor: pointer;
+}
+
+.choix__heure {
+  font-family: var(--chiffres);
+  font-weight: 800;
+  color: var(--jaune);
+}
+
+.choix__texte {
+  display: grid;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.choix__texte .discret {
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.choix__statut {
+  font-size: 0.75rem;
+  color: var(--texte-doux);
+  text-align: right;
+}
+
+.choix__statut.ok {
+  color: var(--jaune);
+  font-weight: 700;
+}
+
+.rapport__liste {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.rapport__liste .ok {
+  color: var(--texte);
+}
+
+.rapport__liste .attention {
+  color: var(--alerte);
+}
+
+.rapport__liste .ecarte {
+  color: var(--texte-doux);
+}
+
+.apercu-demande summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 700;
+  color: var(--jaune);
+  cursor: pointer;
+}
+
+.apercu-demande textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  border: 1px solid var(--ligne);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--chiffres);
+  font-size: 0.75rem;
 }
 
 /* ---- Prompt IA ---- */
