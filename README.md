@@ -24,6 +24,13 @@ npm run modeles -- AAAA-MM-JJ   # calcule le modèle des matchs d'un jour collec
 Schéma des données d'un match : [docs/SCHEMA.md](docs/SCHEMA.md). Le modèle expliqué pas à pas :
 [docs/MODELE.md](docs/MODELE.md).
 
+## Prompt d'analyse IA
+
+Sur chaque fiche match, « Copier le prompt » met dans le presse-papier le modèle de prompt du cahier
+des charges (`src/prompt/modele-prompt.js`) rempli avec le JSON du match et celui des calculs du site ;
+« Exporter .json » télécharge le tout (match, calculs, prompt). Le site vérifie avant d'activer les
+boutons qu'aucun `{{…}}` ne reste et que les deux JSON sont valides et fidèles aux données.
+
 Le déploiement sur GitHub Pages se fait automatiquement à chaque push sur `main`
 (`.github/workflows/deploy.yml`). Dans les réglages du repo : **Settings → Pages → Source :
 GitHub Actions**.

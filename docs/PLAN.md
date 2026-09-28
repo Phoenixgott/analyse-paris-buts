@@ -85,8 +85,20 @@ tests/       Vitest
 
 - Phase 0 : validée le 28/09/2026 (site en ligne, installé sur Android).
 - Phase 1 : validée le 28/09/2026.
-- Phase 2 : livrée le 28/09/2026, en attente de validation. Point ouvert : demi-vie de 60 jours
+- Phase 2 : validée le 28/09/2026. Demi-vie gardée à 60 jours jusqu'au backtest (phase 6)
   (voir docs/MODELE.md, « Limite connue »).
+- Phase 3 : livrée le 28/09/2026, en attente de validation.
+
+### Écarts de la phase 3
+
+- Schéma du match v1.1.0 : `stats.buts_par_tranche` ajouté, faute de quoi le graphique « buts par
+  tranche de 15 min » aurait été inventé (source prévue : stats d'équipe d'API-Football).
+- Calculs du modèle v1.1.0 : champ `unites` (le prompt mélange des % 0-100 et des probabilités 0-1).
+- Prompt : texte exact du cahier des charges ; pour une démo, `{{COMPETITION}}` reçoit la mention
+  « (DÉMO : données fictives, ne pas parier) » (règle 3), sans toucher au texte du modèle.
+- Couleurs des graphiques : jaune #FFD500 (domicile / modèle) et bleu ciel #5AB0FF (extérieur /
+  marché), validés pour le daltonisme (ΔE 30) et le contraste ; le jaune est plus clair que la plage
+  recommandée pour des séries, mais imposé par le design.
 
 ## Décisions en attente (avant la phase 4)
 

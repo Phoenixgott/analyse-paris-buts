@@ -1,4 +1,6 @@
-# Schéma JSON d'un match (v1.0.0)
+# Schéma JSON d'un match (v1.1.0)
+
+v1.1.0 (phase 3) : ajout de `stats.buts_par_tranche` (graphique « buts par tranche de 15 min »).
 
 Contrat unique entre la collecte, le modèle, les graphiques et le prompt IA.
 Définition formelle : [`schema/match.schema.json`](../schema/match.schema.json), vérifiée par
@@ -42,7 +44,8 @@ Définition formelle : [`schema/match.schema.json`](../schema/match.schema.json)
 | `id`, `nom`, `elo` | | |
 | `classement` | `{ rang, points, joues, bp, bc }` ou null | |
 | `forme[≤10]` | `{ date, adversaire, lieu (D/E), score, score_mt }` | le plus récent d'abord ; score **du point de vue de l'équipe** (pour - contre) |
-| `stats` | `{ buts_marques_moy, buts_encaisses_moy, buts_mt_marques_moy, buts_mt_encaisses_moy, xg_moy, tirs_cadres_moy, pct_over15, pct_over25, pct_over35, pct_but_avant_30 }` ou null | moyennes par match sur la saison ; `pct_over25` = part des matchs à 3 buts ou plus (les deux équipes) |
+| `stats` | `{ buts_marques_moy, buts_encaisses_moy, buts_mt_marques_moy, buts_mt_encaisses_moy, xg_moy, tirs_cadres_moy, pct_over15, pct_over25, pct_over35, pct_but_avant_30, buts_par_tranche }` ou null | moyennes par match sur la saison ; `pct_over25` = part des matchs à 3 buts ou plus (les deux équipes) |
+| `stats.buts_par_tranche` | `{ matchs, marques[6], encaisses[6] }` ou null | buts de la saison par tranche 0-15, 16-30, 31-45, 46-60, 61-75, 76-90 (temps additionnel dans la tranche précédente) ; fourni par les stats d'équipe d'API-Football |
 | `jours_repos` | entier ou null | |
 | `absents[]` | `{ nom, raison }` ou null | |
 | `compo_probable[]` | liste de noms ou null | |
