@@ -1,0 +1,696 @@
+{
+  "schema_version": "1.0.0",
+  "match_id": "demo-l1-valmont-rivebelle",
+  "demo": true,
+  "calcule_le": "2026-09-28T05:30:00Z",
+  "calculable": true,
+  "fiable": true,
+  "reglages": {
+    "demi_vie_jours": 60,
+    "seuil_shrinkage": 8,
+    "buts_max": 10,
+    "plafond_ajustements": 0.1,
+    "seuil_value": 0.05,
+    "value_suspecte": 0.3,
+    "proba_min": 0.2,
+    "fraction_kelly": 0.25,
+    "mise_max": 0.02,
+    "confiance_min": 50
+  },
+  "methode": {
+    "date_reference": "2026-09-28",
+    "historique": {
+      "matchs_ligue": 675,
+      "matchs_forme": 0,
+      "matchs_utilises": 675
+    },
+    "domicile": {
+      "n_matchs": 75,
+      "facteur_shrinkage": 1,
+      "attaque": 0.253,
+      "defense": -0.313
+    },
+    "exterieur": {
+      "n_matchs": 75,
+      "facteur_shrinkage": 1,
+      "attaque": 0.338,
+      "defense": -0.387
+    },
+    "avantage_domicile": 1.564,
+    "moyenne_buts_equipe": 1.131,
+    "rho": -0.1438,
+    "iterations": 36
+  },
+  "buts_attendus": {
+    "domicile": 1.501,
+    "exterieur": 1.159,
+    "total": 2.66,
+    "domicile_avant_ajustements": 1.547,
+    "exterieur_avant_ajustements": 1.159
+  },
+  "ajustements": {
+    "liste": [
+      {
+        "type": "repos",
+        "equipe": "D",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Olympique de Valmont : 9 jours de repos"
+      },
+      {
+        "type": "repos",
+        "equipe": "E",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "FC Rivebelle : 9 jours de repos"
+      },
+      {
+        "type": "voyage",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "N/D",
+        "raison": "Distance de déplacement non fournie par les sources"
+      },
+      {
+        "type": "derby",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Pas de derby signalé"
+      },
+      {
+        "type": "enjeu",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "non évalué",
+        "raison": "Texte libre : non traduit en effet chiffré (à lire dans la fiche)"
+      },
+      {
+        "type": "arbitre",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Arbitre : 0,31 penalty/match"
+      },
+      {
+        "type": "pluie",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Pluie 0 mm/h"
+      },
+      {
+        "type": "vent",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Vent 12 km/h"
+      },
+      {
+        "type": "absents",
+        "equipe": "D",
+        "effet": -0.03,
+        "statut": "appliqué",
+        "raison": "Olympique de Valmont : 2 absent(s) (−1,5 % chacun, max −6 %)"
+      },
+      {
+        "type": "absents",
+        "equipe": "E",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "FC Rivebelle : aucun absent signalé"
+      }
+    ],
+    "brut": {
+      "D": -0.03,
+      "E": 0
+    },
+    "total": {
+      "D": -0.03,
+      "E": 0
+    }
+  },
+  "grille": [
+    [
+      0.087477,
+      0.063586,
+      0.046988,
+      0.018151,
+      0.005259,
+      0.001219,
+      0.000235,
+      0.000039,
+      0.000006,
+      0.000001,
+      0
+    ],
+    [
+      0.087507,
+      0.139202,
+      0.070517,
+      0.027241,
+      0.007892,
+      0.001829,
+      0.000353,
+      0.000058,
+      0.000008,
+      0.000001,
+      0
+    ],
+    [
+      0.078799,
+      0.091319,
+      0.052915,
+      0.020441,
+      0.005922,
+      0.001373,
+      0.000265,
+      0.000044,
+      0.000006,
+      0.000001,
+      0
+    ],
+    [
+      0.039419,
+      0.045683,
+      0.026471,
+      0.010226,
+      0.002963,
+      0.000687,
+      0.000133,
+      0.000022,
+      0.000003,
+      0,
+      0
+    ],
+    [
+      0.01479,
+      0.01714,
+      0.009932,
+      0.003837,
+      0.001112,
+      0.000258,
+      0.00005,
+      0.000008,
+      0.000001,
+      0,
+      0
+    ],
+    [
+      0.004439,
+      0.005144,
+      0.002981,
+      0.001152,
+      0.000334,
+      0.000077,
+      0.000015,
+      0.000002,
+      0,
+      0,
+      0
+    ],
+    [
+      0.00111,
+      0.001287,
+      0.000746,
+      0.000288,
+      0.000083,
+      0.000019,
+      0.000004,
+      0.000001,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000238,
+      0.000276,
+      0.00016,
+      0.000062,
+      0.000018,
+      0.000004,
+      0.000001,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000045,
+      0.000052,
+      0.00003,
+      0.000012,
+      0.000003,
+      0.000001,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000007,
+      0.000009,
+      0.000005,
+      0.000002,
+      0.000001,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000001,
+      0.000001,
+      0.000001,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "scores_probables": [
+    {
+      "score": "1-1",
+      "proba": 0.1392
+    },
+    {
+      "score": "2-1",
+      "proba": 0.0913
+    },
+    {
+      "score": "1-0",
+      "proba": 0.0875
+    },
+    {
+      "score": "0-0",
+      "proba": 0.0875
+    },
+    {
+      "score": "2-0",
+      "proba": 0.0788
+    }
+  ],
+  "total_buts": {
+    "over_0_5": 0.9125,
+    "over_1_5": 0.7614,
+    "over_2_5": 0.4964,
+    "over_3_5": 0.277,
+    "over_4_5": 0.1311,
+    "over_5_5": 0.0535,
+    "under_0_5": 0.0875,
+    "under_1_5": 0.2386,
+    "under_2_5": 0.5036,
+    "under_3_5": 0.723,
+    "under_4_5": 0.8689,
+    "under_5_5": 0.9465
+  },
+  "mi_temps": {
+    "part_buts_mt": 0.44,
+    "source": "historique",
+    "buts_attendus": {
+      "domicile": 0.66,
+      "exterieur": 0.51
+    },
+    "over_0_5": 0.6746,
+    "over_1_5": 0.3416,
+    "under_0_5": 0.3254,
+    "under_1_5": 0.6584
+  },
+  "buteurs": [
+    {
+      "nom": "V. Weber",
+      "equipe": "D",
+      "taux_90": 0.601,
+      "minutes_prevues": 85,
+      "tireur_penalty": true,
+      "part": 0.2919,
+      "lambda": 0.4381,
+      "proba": 0.3547,
+      "statut": "calculé"
+    },
+    {
+      "nom": "K. Mendes",
+      "equipe": "D",
+      "taux_90": 0.293,
+      "minutes_prevues": 75,
+      "tireur_penalty": false,
+      "part": 0.1143,
+      "lambda": 0.1715,
+      "proba": 0.1576,
+      "statut": "calculé"
+    },
+    {
+      "nom": "F. Solberg",
+      "equipe": "D",
+      "taux_90": 0.195,
+      "minutes_prevues": 88,
+      "tireur_penalty": false,
+      "part": 0.0892,
+      "lambda": 0.1339,
+      "proba": 0.1253,
+      "statut": "calculé"
+    },
+    {
+      "nom": "N. Vasseur",
+      "equipe": "E",
+      "taux_90": 0.447,
+      "minutes_prevues": 85,
+      "tireur_penalty": true,
+      "part": 0.1805,
+      "lambda": 0.2092,
+      "proba": 0.1888,
+      "statut": "calculé"
+    },
+    {
+      "nom": "M. Maalouf",
+      "equipe": "E",
+      "taux_90": 0.301,
+      "minutes_prevues": 75,
+      "tireur_penalty": false,
+      "part": 0.0976,
+      "lambda": 0.1132,
+      "proba": 0.107,
+      "statut": "calculé"
+    },
+    {
+      "nom": "N. Hoarau",
+      "equipe": "E",
+      "taux_90": 0.182,
+      "minutes_prevues": 88,
+      "tireur_penalty": false,
+      "part": 0.0693,
+      "lambda": 0.0803,
+      "proba": 0.0772,
+      "statut": "calculé"
+    }
+  ],
+  "marches": [
+    {
+      "marche": "over_0_5",
+      "libelle": "Plus de 0,5 but",
+      "groupe": "total",
+      "proba": 0.9125,
+      "cote": 1.01,
+      "bookmaker": "Book C",
+      "value": -0.0784,
+      "kelly": -7.8352,
+      "mise_pct": 0,
+      "cote_min": 1.15,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_0_5",
+      "libelle": "Moins de 0,5 but",
+      "groupe": "total",
+      "proba": 0.0875,
+      "cote": 20.27,
+      "bookmaker": "Book A",
+      "value": 0.7732,
+      "kelly": 0.0401,
+      "mise_pct": 0,
+      "cote_min": 12,
+      "suggere": false,
+      "raison": "Value suspecte (> 30 %) : écart trop grand avec le marché, erreur de modèle probable"
+    },
+    {
+      "marche": "over_1_5",
+      "libelle": "Plus de 1,5 but",
+      "groupe": "total",
+      "proba": 0.7614,
+      "cote": 1.2,
+      "bookmaker": "Book C",
+      "value": -0.0863,
+      "kelly": -0.4314,
+      "mise_pct": 0,
+      "cote_min": 1.38,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_1_5",
+      "libelle": "Moins de 1,5 but",
+      "groupe": "total",
+      "proba": 0.2386,
+      "cote": 5.01,
+      "bookmaker": "Book A",
+      "value": 0.1952,
+      "kelly": 0.0487,
+      "mise_pct": 0.0122,
+      "cote_min": 4.4,
+      "suggere": true,
+      "raison": "Value au-dessus du seuil"
+    },
+    {
+      "marche": "over_2_5",
+      "libelle": "Plus de 2,5 buts",
+      "groupe": "total",
+      "proba": 0.4964,
+      "cote": 1.65,
+      "bookmaker": "Book C",
+      "value": -0.1809,
+      "kelly": -0.2783,
+      "mise_pct": 0,
+      "cote_min": 2.12,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_2_5",
+      "libelle": "Moins de 2,5 buts",
+      "groupe": "total",
+      "proba": 0.5036,
+      "cote": 2.34,
+      "bookmaker": "Book B",
+      "value": 0.1783,
+      "kelly": 0.1331,
+      "mise_pct": 0.02,
+      "cote_min": 2.09,
+      "suggere": true,
+      "raison": "Value au-dessus du seuil"
+    },
+    {
+      "marche": "over_3_5",
+      "libelle": "Plus de 3,5 buts",
+      "groupe": "total",
+      "proba": 0.277,
+      "cote": 2.67,
+      "bookmaker": "Book C",
+      "value": -0.2603,
+      "kelly": -0.1559,
+      "mise_pct": 0,
+      "cote_min": 3.79,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_3_5",
+      "libelle": "Moins de 3,5 buts",
+      "groupe": "total",
+      "proba": 0.723,
+      "cote": 1.52,
+      "bookmaker": "Book B",
+      "value": 0.0989,
+      "kelly": 0.1902,
+      "mise_pct": 0.02,
+      "cote_min": 1.45,
+      "suggere": true,
+      "raison": "Value au-dessus du seuil"
+    },
+    {
+      "marche": "over_4_5",
+      "libelle": "Plus de 4,5 buts",
+      "groupe": "total",
+      "proba": 0.1311,
+      "cote": 5.03,
+      "bookmaker": "Book C",
+      "value": -0.3403,
+      "kelly": -0.0845,
+      "mise_pct": 0,
+      "cote_min": 8.01,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_4_5",
+      "libelle": "Moins de 4,5 buts",
+      "groupe": "total",
+      "proba": 0.8689,
+      "cote": 1.2,
+      "bookmaker": "Book C",
+      "value": 0.0426,
+      "kelly": 0.2131,
+      "mise_pct": 0,
+      "cote_min": 1.21,
+      "suggere": false,
+      "raison": "Value insuffisante (seuil 5 %)"
+    },
+    {
+      "marche": "over_5_5",
+      "libelle": "Plus de 5,5 buts",
+      "groupe": "total",
+      "proba": 0.0535,
+      "cote": 10.93,
+      "bookmaker": "Book B",
+      "value": -0.4148,
+      "kelly": -0.0418,
+      "mise_pct": 0,
+      "cote_min": 19.61,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_5_5",
+      "libelle": "Moins de 5,5 buts",
+      "groupe": "total",
+      "proba": 0.9465,
+      "cote": 1.06,
+      "bookmaker": "Book C",
+      "value": 0.0032,
+      "kelly": 0.0541,
+      "mise_pct": 0,
+      "cote_min": 1.11,
+      "suggere": false,
+      "raison": "Value insuffisante (seuil 5 %)"
+    },
+    {
+      "marche": "mt_over_0_5",
+      "libelle": "Plus de 0,5 but en 1re MT",
+      "groupe": "mi_temps",
+      "proba": 0.6746,
+      "cote": 1.28,
+      "bookmaker": "Book B",
+      "value": -0.1365,
+      "kelly": -0.4873,
+      "mise_pct": 0,
+      "cote_min": 1.56,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "mt_over_1_5",
+      "libelle": "Plus de 1,5 but en 1re MT",
+      "groupe": "mi_temps",
+      "proba": 0.3416,
+      "cote": 2.4,
+      "bookmaker": "Book A",
+      "value": -0.1802,
+      "kelly": -0.1287,
+      "mise_pct": 0,
+      "cote_min": 3.07,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:V. Weber",
+      "libelle": "Buteur : V. Weber",
+      "groupe": "buteur",
+      "proba": 0.3547,
+      "cote": 1.94,
+      "bookmaker": "Book C",
+      "value": -0.3118,
+      "kelly": -0.3318,
+      "mise_pct": 0,
+      "cote_min": 2.96,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:K. Mendes",
+      "libelle": "Buteur : K. Mendes",
+      "groupe": "buteur",
+      "proba": 0.1576,
+      "cote": 4.32,
+      "bookmaker": "Book C",
+      "value": -0.3191,
+      "kelly": -0.0961,
+      "mise_pct": 0,
+      "cote_min": 6.66,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:F. Solberg",
+      "libelle": "Buteur : F. Solberg",
+      "groupe": "buteur",
+      "proba": 0.1253,
+      "cote": 5.13,
+      "bookmaker": "Book A",
+      "value": -0.3572,
+      "kelly": -0.0865,
+      "mise_pct": 0,
+      "cote_min": 8.38,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:N. Vasseur",
+      "libelle": "Buteur : N. Vasseur",
+      "groupe": "buteur",
+      "proba": 0.1888,
+      "cote": 2.51,
+      "bookmaker": "Book C",
+      "value": -0.5261,
+      "kelly": -0.3484,
+      "mise_pct": 0,
+      "cote_min": 5.56,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:M. Maalouf",
+      "libelle": "Buteur : M. Maalouf",
+      "groupe": "buteur",
+      "proba": 0.107,
+      "cote": 3.82,
+      "bookmaker": "Book C",
+      "value": -0.5913,
+      "kelly": -0.2097,
+      "mise_pct": 0,
+      "cote_min": 9.81,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:N. Hoarau",
+      "libelle": "Buteur : N. Hoarau",
+      "groupe": "buteur",
+      "proba": 0.0772,
+      "cote": 5.68,
+      "bookmaker": "Book C",
+      "value": -0.5615,
+      "kelly": -0.12,
+      "mise_pct": 0,
+      "cote_min": 13.6,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    }
+  ],
+  "confiance": {
+    "indice": 85,
+    "composantes": {
+      "qualite": 99,
+      "echantillon": 100,
+      "accord": 50.9
+    }
+  },
+  "verdict": {
+    "decision": "PARIER",
+    "marche": "under_1_5",
+    "libelle": "Moins de 1,5 but",
+    "proba": 0.2386,
+    "cote": 5.01,
+    "cote_min": 4.4,
+    "value": 0.1952,
+    "mise_pct": 0.0122,
+    "raison": "Value de 19.5 % au-dessus du seuil"
+  },
+  "avertissement": "Probabilités estimées, pas des certitudes."
+}

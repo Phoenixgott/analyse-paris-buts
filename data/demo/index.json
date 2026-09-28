@@ -17,7 +17,18 @@
       },
       "domicile": "Fjellby IL",
       "exterieur": "Havnstad FK",
-      "qualite_donnees": 17
+      "qualite_donnees": 17,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 3.043,
+        "over_2_5": 0.5863,
+        "confiance": 18,
+        "decision": "PASSER",
+        "libelle": null,
+        "value": null,
+        "value_max": null,
+        "nb_suggeres": 0
+      }
     },
     {
       "match_id": "demo-d1f-montaval-clairefont",
@@ -33,7 +44,18 @@
       },
       "domicile": "Stade Montaval",
       "exterieur": "AS Clairefont",
-      "qualite_donnees": 79
+      "qualite_donnees": 78,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 2.802,
+        "over_2_5": 0.531,
+        "confiance": 77,
+        "decision": "PARIER",
+        "libelle": "Plus de 3,5 buts",
+        "value": 0.2277,
+        "value_max": 0.4985,
+        "nb_suggeres": 3
+      }
     },
     {
       "match_id": "demo-sa-montecolle-valdoro",
@@ -49,7 +71,18 @@
       },
       "domicile": "AC Montecolle",
       "exterieur": "Sporting Valdoro",
-      "qualite_donnees": 87
+      "qualite_donnees": 86,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 2.573,
+        "over_2_5": 0.4747,
+        "confiance": 85,
+        "decision": "PARIER",
+        "libelle": "Plus de 1,5 but en 1re MT",
+        "value": 0.1453,
+        "value_max": 0.2671,
+        "nb_suggeres": 3
+      }
     },
     {
       "match_id": "demo-int-nordalie-valdoranie",
@@ -65,7 +98,18 @@
       },
       "domicile": "Nordalie",
       "exterieur": "Valdoranie",
-      "qualite_donnees": 57
+      "qualite_donnees": 57,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 1.795,
+        "over_2_5": 0.2679,
+        "confiance": 44,
+        "decision": "PASSER",
+        "libelle": null,
+        "value": null,
+        "value_max": 1.2391,
+        "nb_suggeres": 0
+      }
     },
     {
       "match_id": "demo-l1-valmont-rivebelle",
@@ -81,7 +125,18 @@
       },
       "domicile": "Olympique de Valmont",
       "exterieur": "FC Rivebelle",
-      "qualite_donnees": 100
+      "qualite_donnees": 99,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 2.66,
+        "over_2_5": 0.4964,
+        "confiance": 85,
+        "decision": "PARIER",
+        "libelle": "Moins de 1,5 but",
+        "value": 0.1952,
+        "value_max": 0.7732,
+        "nb_suggeres": 3
+      }
     },
     {
       "match_id": "demo-pl-ashford-kingsbridge",
@@ -97,7 +152,18 @@
       },
       "domicile": "Ashford Rovers",
       "exterieur": "Kingsbridge United",
-      "qualite_donnees": 95
+      "qualite_donnees": 94,
+      "modele": {
+        "calculable": true,
+        "buts_attendus": 3.177,
+        "over_2_5": 0.6153,
+        "confiance": 87,
+        "decision": "PARIER",
+        "libelle": "Moins de 2,5 buts",
+        "value": 0.1387,
+        "value_max": 0.4102,
+        "nb_suggeres": 2
+      }
     }
   ]
 }

@@ -1,0 +1,696 @@
+{
+  "schema_version": "1.0.0",
+  "match_id": "demo-pl-ashford-kingsbridge",
+  "demo": true,
+  "calcule_le": "2026-09-28T05:30:00Z",
+  "calculable": true,
+  "fiable": true,
+  "reglages": {
+    "demi_vie_jours": 60,
+    "seuil_shrinkage": 8,
+    "buts_max": 10,
+    "plafond_ajustements": 0.1,
+    "seuil_value": 0.05,
+    "value_suspecte": 0.3,
+    "proba_min": 0.2,
+    "fraction_kelly": 0.25,
+    "mise_max": 0.02,
+    "confiance_min": 50
+  },
+  "methode": {
+    "date_reference": "2026-09-28",
+    "historique": {
+      "matchs_ligue": 666,
+      "matchs_forme": 0,
+      "matchs_utilises": 666
+    },
+    "domicile": {
+      "n_matchs": 74,
+      "facteur_shrinkage": 1,
+      "attaque": 0.14,
+      "defense": -0.655
+    },
+    "exterieur": {
+      "n_matchs": 74,
+      "facteur_shrinkage": 1,
+      "attaque": 0.471,
+      "defense": -0.142
+    },
+    "avantage_domicile": 1.259,
+    "moyenne_buts_equipe": 1.549,
+    "rho": -0.0355,
+    "iterations": 31
+  },
+  "buts_attendus": {
+    "domicile": 1.887,
+    "exterieur": 1.29,
+    "total": 3.177,
+    "domicile_avant_ajustements": 1.945,
+    "exterieur_avant_ajustements": 1.29
+  },
+  "ajustements": {
+    "liste": [
+      {
+        "type": "repos",
+        "equipe": "D",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Ashford Rovers : 9 jours de repos"
+      },
+      {
+        "type": "repos",
+        "equipe": "E",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Kingsbridge United : 9 jours de repos"
+      },
+      {
+        "type": "voyage",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "N/D",
+        "raison": "Distance de déplacement non fournie par les sources"
+      },
+      {
+        "type": "derby",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Pas de derby signalé"
+      },
+      {
+        "type": "enjeu",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "non évalué",
+        "raison": "Texte libre : non traduit en effet chiffré (à lire dans la fiche)"
+      },
+      {
+        "type": "arbitre",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Arbitre : 0,27 penalty/match"
+      },
+      {
+        "type": "pluie",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "N/D",
+        "raison": "Pluie inconnue"
+      },
+      {
+        "type": "vent",
+        "equipe": "DE",
+        "effet": 0,
+        "statut": "N/D",
+        "raison": "Vent inconnu"
+      },
+      {
+        "type": "absents",
+        "equipe": "D",
+        "effet": -0.03,
+        "statut": "appliqué",
+        "raison": "Ashford Rovers : 2 absent(s) (−1,5 % chacun, max −6 %)"
+      },
+      {
+        "type": "absents",
+        "equipe": "E",
+        "effet": 0,
+        "statut": "aucun",
+        "raison": "Kingsbridge United : aucun absent signalé"
+      }
+    ],
+    "brut": {
+      "D": -0.03,
+      "E": 0
+    },
+    "total": {
+      "D": -0.03,
+      "E": 0
+    }
+  },
+  "grille": [
+    [
+      0.045314,
+      0.050196,
+      0.034702,
+      0.014921,
+      0.004812,
+      0.001241,
+      0.000267,
+      0.000049,
+      0.000008,
+      0.000001,
+      0
+    ],
+    [
+      0.075101,
+      0.105136,
+      0.065486,
+      0.028158,
+      0.009081,
+      0.002343,
+      0.000504,
+      0.000093,
+      0.000015,
+      0.000002,
+      0
+    ],
+    [
+      0.074264,
+      0.095798,
+      0.061789,
+      0.026569,
+      0.008568,
+      0.002211,
+      0.000475,
+      0.000088,
+      0.000014,
+      0.000002,
+      0
+    ],
+    [
+      0.046714,
+      0.06026,
+      0.038867,
+      0.016712,
+      0.00539,
+      0.001391,
+      0.000299,
+      0.000055,
+      0.000009,
+      0.000001,
+      0
+    ],
+    [
+      0.022038,
+      0.028429,
+      0.018336,
+      0.007884,
+      0.002543,
+      0.000656,
+      0.000141,
+      0.000026,
+      0.000004,
+      0.000001,
+      0
+    ],
+    [
+      0.008318,
+      0.01073,
+      0.00692,
+      0.002976,
+      0.00096,
+      0.000248,
+      0.000053,
+      0.00001,
+      0.000002,
+      0,
+      0
+    ],
+    [
+      0.002616,
+      0.003375,
+      0.002177,
+      0.000936,
+      0.000302,
+      0.000078,
+      0.000017,
+      0.000003,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000705,
+      0.00091,
+      0.000587,
+      0.000252,
+      0.000081,
+      0.000021,
+      0.000005,
+      0.000001,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000166,
+      0.000215,
+      0.000138,
+      0.00006,
+      0.000019,
+      0.000005,
+      0.000001,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000035,
+      0.000045,
+      0.000029,
+      0.000012,
+      0.000004,
+      0.000001,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0.000007,
+      0.000008,
+      0.000005,
+      0.000002,
+      0.000001,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "scores_probables": [
+    {
+      "score": "1-1",
+      "proba": 0.1051
+    },
+    {
+      "score": "2-1",
+      "proba": 0.0958
+    },
+    {
+      "score": "1-0",
+      "proba": 0.0751
+    },
+    {
+      "score": "2-0",
+      "proba": 0.0743
+    },
+    {
+      "score": "1-2",
+      "proba": 0.0655
+    }
+  ],
+  "total_buts": {
+    "over_0_5": 0.9547,
+    "over_1_5": 0.8294,
+    "over_2_5": 0.6153,
+    "over_3_5": 0.3924,
+    "over_4_5": 0.2153,
+    "over_5_5": 0.1028,
+    "under_0_5": 0.0453,
+    "under_1_5": 0.1706,
+    "under_2_5": 0.3847,
+    "under_3_5": 0.6076,
+    "under_4_5": 0.7847,
+    "under_5_5": 0.8972
+  },
+  "mi_temps": {
+    "part_buts_mt": 0.3957,
+    "source": "historique",
+    "buts_attendus": {
+      "domicile": 0.747,
+      "exterieur": 0.51
+    },
+    "over_0_5": 0.7117,
+    "over_1_5": 0.3618,
+    "under_0_5": 0.2883,
+    "under_1_5": 0.6382
+  },
+  "buteurs": [
+    {
+      "nom": "D. Lindqvist",
+      "equipe": "D",
+      "taux_90": 0.598,
+      "minutes_prevues": 85,
+      "tireur_penalty": true,
+      "part": 0.2484,
+      "lambda": 0.4688,
+      "proba": 0.3742,
+      "statut": "calculé"
+    },
+    {
+      "nom": "A. Laurent",
+      "equipe": "D",
+      "taux_90": 0.326,
+      "minutes_prevues": 75,
+      "tireur_penalty": false,
+      "part": 0.1086,
+      "lambda": 0.2049,
+      "proba": 0.1853,
+      "statut": "calculé"
+    },
+    {
+      "nom": "V. Delacroix",
+      "equipe": "D",
+      "taux_90": 0.157,
+      "minutes_prevues": 88,
+      "tireur_penalty": false,
+      "part": 0.0612,
+      "lambda": 0.1155,
+      "proba": 0.1091,
+      "statut": "calculé"
+    },
+    {
+      "nom": "R. Esposti",
+      "equipe": "E",
+      "taux_90": 0.546,
+      "minutes_prevues": 85,
+      "tireur_penalty": true,
+      "part": 0.1481,
+      "lambda": 0.191,
+      "proba": 0.1739,
+      "statut": "calculé"
+    },
+    {
+      "nom": "E. Barreto",
+      "equipe": "E",
+      "taux_90": 0.378,
+      "minutes_prevues": 75,
+      "tireur_penalty": false,
+      "part": 0.0823,
+      "lambda": 0.1062,
+      "proba": 0.1007,
+      "statut": "calculé"
+    },
+    {
+      "nom": "Y. Barreto",
+      "equipe": "E",
+      "taux_90": 0.166,
+      "minutes_prevues": 88,
+      "tireur_penalty": false,
+      "part": 0.0423,
+      "lambda": 0.0546,
+      "proba": 0.0531,
+      "statut": "calculé"
+    }
+  ],
+  "marches": [
+    {
+      "marche": "over_0_5",
+      "libelle": "Plus de 0,5 but",
+      "groupe": "total",
+      "proba": 0.9547,
+      "cote": 1.01,
+      "bookmaker": "Book B",
+      "value": -0.0358,
+      "kelly": -3.5767,
+      "mise_pct": 0,
+      "cote_min": 1.1,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_0_5",
+      "libelle": "Moins de 0,5 but",
+      "groupe": "total",
+      "proba": 0.0453,
+      "cote": 31.12,
+      "bookmaker": "Book B",
+      "value": 0.4102,
+      "kelly": 0.0136,
+      "mise_pct": 0,
+      "cote_min": 23.17,
+      "suggere": false,
+      "raison": "Value suspecte (> 30 %) : écart trop grand avec le marché, erreur de modèle probable"
+    },
+    {
+      "marche": "over_1_5",
+      "libelle": "Plus de 1,5 but",
+      "groupe": "total",
+      "proba": 0.8294,
+      "cote": 1.12,
+      "bookmaker": "Book B",
+      "value": -0.0711,
+      "kelly": -0.5924,
+      "mise_pct": 0,
+      "cote_min": 1.27,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_1_5",
+      "libelle": "Moins de 1,5 but",
+      "groupe": "total",
+      "proba": 0.1706,
+      "cote": 6.96,
+      "bookmaker": "Book B",
+      "value": 0.1875,
+      "kelly": 0.0315,
+      "mise_pct": 0,
+      "cote_min": 6.15,
+      "suggere": false,
+      "raison": "Probabilité trop faible (< 20 %)"
+    },
+    {
+      "marche": "over_2_5",
+      "libelle": "Plus de 2,5 buts",
+      "groupe": "total",
+      "proba": 0.6153,
+      "cote": 1.43,
+      "bookmaker": "Book A",
+      "value": -0.1201,
+      "kelly": -0.2794,
+      "mise_pct": 0,
+      "cote_min": 1.71,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_2_5",
+      "libelle": "Moins de 2,5 buts",
+      "groupe": "total",
+      "proba": 0.3847,
+      "cote": 2.96,
+      "bookmaker": "Book C",
+      "value": 0.1387,
+      "kelly": 0.0708,
+      "mise_pct": 0.0177,
+      "cote_min": 2.73,
+      "suggere": true,
+      "raison": "Value au-dessus du seuil"
+    },
+    {
+      "marche": "over_3_5",
+      "libelle": "Plus de 3,5 buts",
+      "groupe": "total",
+      "proba": 0.3924,
+      "cote": 2.11,
+      "bookmaker": "Book C",
+      "value": -0.1721,
+      "kelly": -0.155,
+      "mise_pct": 0,
+      "cote_min": 2.68,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_3_5",
+      "libelle": "Moins de 3,5 buts",
+      "groupe": "total",
+      "proba": 0.6076,
+      "cote": 1.78,
+      "bookmaker": "Book B",
+      "value": 0.0816,
+      "kelly": 0.1046,
+      "mise_pct": 0.02,
+      "cote_min": 1.73,
+      "suggere": true,
+      "raison": "Value au-dessus du seuil"
+    },
+    {
+      "marche": "over_4_5",
+      "libelle": "Plus de 4,5 buts",
+      "groupe": "total",
+      "proba": 0.2153,
+      "cote": 3.59,
+      "bookmaker": "Book A",
+      "value": -0.227,
+      "kelly": -0.0877,
+      "mise_pct": 0,
+      "cote_min": 4.88,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_4_5",
+      "libelle": "Moins de 4,5 buts",
+      "groupe": "total",
+      "proba": 0.7847,
+      "cote": 1.32,
+      "bookmaker": "Book B",
+      "value": 0.0358,
+      "kelly": 0.1118,
+      "mise_pct": 0,
+      "cote_min": 1.34,
+      "suggere": false,
+      "raison": "Value insuffisante (seuil 5 %)"
+    },
+    {
+      "marche": "over_5_5",
+      "libelle": "Plus de 5,5 buts",
+      "groupe": "total",
+      "proba": 0.1028,
+      "cote": 6.96,
+      "bookmaker": "Book B",
+      "value": -0.2845,
+      "kelly": -0.0477,
+      "mise_pct": 0,
+      "cote_min": 10.21,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "under_5_5",
+      "libelle": "Moins de 5,5 buts",
+      "groupe": "total",
+      "proba": 0.8972,
+      "cote": 1.12,
+      "bookmaker": "Book A",
+      "value": 0.0049,
+      "kelly": 0.0405,
+      "mise_pct": 0,
+      "cote_min": 1.17,
+      "suggere": false,
+      "raison": "Value insuffisante (seuil 5 %)"
+    },
+    {
+      "marche": "mt_over_0_5",
+      "libelle": "Plus de 0,5 but en 1re MT",
+      "groupe": "mi_temps",
+      "proba": 0.7117,
+      "cote": 1.2,
+      "bookmaker": "Book C",
+      "value": -0.146,
+      "kelly": -0.7299,
+      "mise_pct": 0,
+      "cote_min": 1.48,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "mt_over_1_5",
+      "libelle": "Plus de 1,5 but en 1re MT",
+      "groupe": "mi_temps",
+      "proba": 0.3618,
+      "cote": 2.06,
+      "bookmaker": "Book A",
+      "value": -0.2547,
+      "kelly": -0.2403,
+      "mise_pct": 0,
+      "cote_min": 2.9,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:D. Lindqvist",
+      "libelle": "Buteur : D. Lindqvist",
+      "groupe": "buteur",
+      "proba": 0.3742,
+      "cote": 1.92,
+      "bookmaker": "Book A",
+      "value": -0.2815,
+      "kelly": -0.306,
+      "mise_pct": 0,
+      "cote_min": 2.81,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:A. Laurent",
+      "libelle": "Buteur : A. Laurent",
+      "groupe": "buteur",
+      "proba": 0.1853,
+      "cote": 3.93,
+      "bookmaker": "Book C",
+      "value": -0.272,
+      "kelly": -0.0928,
+      "mise_pct": 0,
+      "cote_min": 5.67,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:V. Delacroix",
+      "libelle": "Buteur : V. Delacroix",
+      "groupe": "buteur",
+      "proba": 0.1091,
+      "cote": 6.8,
+      "bookmaker": "Book A",
+      "value": -0.258,
+      "kelly": -0.0445,
+      "mise_pct": 0,
+      "cote_min": 9.62,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:R. Esposti",
+      "libelle": "Buteur : R. Esposti",
+      "groupe": "buteur",
+      "proba": 0.1739,
+      "cote": 2.15,
+      "bookmaker": "Book A",
+      "value": -0.6261,
+      "kelly": -0.5445,
+      "mise_pct": 0,
+      "cote_min": 6.04,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:E. Barreto",
+      "libelle": "Buteur : E. Barreto",
+      "groupe": "buteur",
+      "proba": 0.1007,
+      "cote": 3.13,
+      "bookmaker": "Book A",
+      "value": -0.6847,
+      "kelly": -0.3215,
+      "mise_pct": 0,
+      "cote_min": 10.42,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    },
+    {
+      "marche": "buteur:Y. Barreto",
+      "libelle": "Buteur : Y. Barreto",
+      "groupe": "buteur",
+      "proba": 0.0531,
+      "cote": 6.37,
+      "bookmaker": "Book C",
+      "value": -0.6615,
+      "kelly": -0.1232,
+      "mise_pct": 0,
+      "cote_min": 19.76,
+      "suggere": false,
+      "raison": "Value négative (seuil 5 %)"
+    }
+  ],
+  "confiance": {
+    "indice": 87,
+    "composantes": {
+      "qualite": 94,
+      "echantillon": 100,
+      "accord": 65.3
+    }
+  },
+  "verdict": {
+    "decision": "PARIER",
+    "marche": "under_2_5",
+    "libelle": "Moins de 2,5 buts",
+    "proba": 0.3847,
+    "cote": 2.96,
+    "cote_min": 2.73,
+    "value": 0.1387,
+    "mise_pct": 0.0177,
+    "raison": "Value de 13.9 % au-dessus du seuil"
+  },
+  "avertissement": "Probabilités estimées, pas des certitudes."
+}

@@ -23,31 +23,31 @@
       "elo": null,
       "classement": {
         "rang": 8,
-        "points": 29,
+        "points": 31,
         "joues": 22,
-        "bp": 29,
-        "bc": 37
+        "bp": 38,
+        "bc": 36
       },
       "forme": [
         {
           "date": "2026-09-21",
-          "adversaire": "Adversaire fictif J",
+          "adversaire": "Adversaire fictif H",
           "lieu": "D",
           "score": "3-2",
           "score_mt": null
         },
         {
-          "date": "2026-09-14",
-          "adversaire": "Adversaire fictif H",
+          "date": "2026-08-22",
+          "adversaire": "Adversaire fictif G",
           "lieu": "E",
-          "score": "0-2",
+          "score": "1-1",
           "score_mt": null
         },
         {
-          "date": "2026-09-07",
-          "adversaire": "Adversaire fictif K",
+          "date": "2026-07-23",
+          "adversaire": "Adversaire fictif B",
           "lieu": "D",
-          "score": "1-1",
+          "score": "0-1",
           "score_mt": null
         }
       ],
@@ -62,31 +62,31 @@
       "elo": null,
       "classement": {
         "rang": 11,
-        "points": 0,
+        "points": 26,
         "joues": 22,
-        "bp": 15,
-        "bc": 44
+        "bp": 31,
+        "bc": 39
       },
       "forme": [
         {
           "date": "2026-09-21",
-          "adversaire": "Adversaire fictif J",
-          "lieu": "D",
-          "score": "0-1",
-          "score_mt": null
-        },
-        {
-          "date": "2026-09-14",
-          "adversaire": "Adversaire fictif L",
-          "lieu": "E",
-          "score": "0-1",
-          "score_mt": null
-        },
-        {
-          "date": "2026-09-07",
           "adversaire": "Adversaire fictif C",
           "lieu": "D",
-          "score": "2-4",
+          "score": "2-1",
+          "score_mt": null
+        },
+        {
+          "date": "2026-08-22",
+          "adversaire": "Adversaire fictif B",
+          "lieu": "E",
+          "score": "4-0",
+          "score_mt": null
+        },
+        {
+          "date": "2026-07-23",
+          "adversaire": "Adversaire fictif G",
+          "lieu": "D",
+          "score": "0-1",
           "score_mt": null
         }
       ],

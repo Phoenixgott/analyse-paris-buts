@@ -15,126 +15,126 @@
     "nom": "Riverside Park",
     "ville": "Ashford"
   },
-  "enjeu": "Milieu de tableau, deux équipes à 2 points d’écart.",
+  "enjeu": "Haut de tableau : le 1er reçoit le 3e.",
   "equipes": {
     "domicile": {
       "id": "demo-pl-ashford-kingsbridge-d",
       "nom": "Ashford Rovers",
       "elo": 1745,
       "classement": {
-        "rang": 9,
-        "points": 5,
+        "rang": 1,
+        "points": 18,
         "joues": 6,
-        "bp": 7,
-        "bc": 13
+        "bp": 15,
+        "bc": 3
       },
       "forme": [
         {
-          "date": "2026-09-21",
-          "adversaire": "Adversaire fictif H",
-          "lieu": "D",
-          "score": "0-0",
-          "score_mt": "0-0"
-        },
-        {
-          "date": "2026-09-14",
-          "adversaire": "Adversaire fictif L",
+          "date": "2026-09-19",
+          "adversaire": "Leyton Vale",
           "lieu": "E",
-          "score": "1-0",
-          "score_mt": "0-0"
+          "score": "3-2",
+          "score_mt": "1-1"
         },
         {
-          "date": "2026-09-07",
-          "adversaire": "Adversaire fictif K",
+          "date": "2026-09-12",
+          "adversaire": "Burnside Rovers",
           "lieu": "D",
-          "score": "1-1",
+          "score": "2-1",
           "score_mt": "1-0"
         },
         {
-          "date": "2026-08-31",
-          "adversaire": "Adversaire fictif B",
+          "date": "2026-09-05",
+          "adversaire": "Holloway Athletic",
           "lieu": "E",
-          "score": "1-3",
-          "score_mt": "0-2"
-        },
-        {
-          "date": "2026-08-24",
-          "adversaire": "Adversaire fictif K",
-          "lieu": "D",
-          "score": "2-6",
-          "score_mt": "2-1"
-        },
-        {
-          "date": "2026-08-17",
-          "adversaire": "Adversaire fictif A",
-          "lieu": "E",
-          "score": "2-3",
-          "score_mt": "0-2"
-        },
-        {
-          "date": "2026-08-10",
-          "adversaire": "Adversaire fictif H",
-          "lieu": "D",
-          "score": "0-0",
+          "score": "2-0",
           "score_mt": "0-0"
         },
         {
-          "date": "2026-08-03",
-          "adversaire": "Adversaire fictif D",
-          "lieu": "E",
-          "score": "0-3",
-          "score_mt": "0-1"
-        },
-        {
-          "date": "2026-07-27",
-          "adversaire": "Adversaire fictif E",
+          "date": "2026-08-29",
+          "adversaire": "Pembridge County",
           "lieu": "D",
-          "score": "0-4",
-          "score_mt": "0-2"
+          "score": "3-0",
+          "score_mt": "1-0"
         },
         {
-          "date": "2026-07-20",
-          "adversaire": "Adversaire fictif L",
+          "date": "2026-08-22",
+          "adversaire": "Southcote Albion",
           "lieu": "E",
-          "score": "1-2",
+          "score": "1-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-08-15",
+          "adversaire": "Marlow Heath",
+          "lieu": "D",
+          "score": "4-0",
+          "score_mt": "1-0"
+        },
+        {
+          "date": "2026-04-04",
+          "adversaire": "Kingsbridge United",
+          "lieu": "E",
+          "score": "0-2",
           "score_mt": "0-1"
+        },
+        {
+          "date": "2026-03-28",
+          "adversaire": "Harrowgate Athletic",
+          "lieu": "D",
+          "score": "3-4",
+          "score_mt": "1-2"
+        },
+        {
+          "date": "2026-03-21",
+          "adversaire": "Millbrook City",
+          "lieu": "E",
+          "score": "2-0",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-03-14",
+          "adversaire": "Stanford Albion",
+          "lieu": "D",
+          "score": "3-2",
+          "score_mt": "1-0"
         }
       ],
       "stats": {
-        "buts_marques_moy": 1.17,
-        "buts_encaisses_moy": 2.17,
-        "buts_mt_marques_moy": 0.5,
-        "buts_mt_encaisses_moy": 0.83,
+        "buts_marques_moy": 2.5,
+        "buts_encaisses_moy": 0.5,
+        "buts_mt_marques_moy": 0.83,
+        "buts_mt_encaisses_moy": 0.17,
         "xg_moy": null,
-        "tirs_cadres_moy": 5.72,
-        "pct_over15": 67,
-        "pct_over25": 50,
-        "pct_over35": 50,
+        "tirs_cadres_moy": 7.67,
+        "pct_over15": 83,
+        "pct_over25": 67,
+        "pct_over35": 33,
         "pct_but_avant_30": 33
       },
-      "jours_repos": 7,
+      "jours_repos": 9,
       "absents": [
         {
-          "nom": "Y. Hoarau",
-          "raison": null
+          "nom": "L. Fontaine",
+          "raison": "Blessure (cuisse)"
         },
         {
-          "nom": "D. Ferrand",
-          "raison": "Incertain"
+          "nom": "H. Colombo",
+          "raison": null
         }
       ],
       "compo_probable": [
-        "M. Petrov",
-        "P. Brennan",
-        "M. Petrov",
-        "E. Iglesias",
-        "D. Sousa",
-        "P. Okonkwo",
-        "C. Renard",
-        "C. Ndiaye",
-        "B. Mendes",
-        "A. Vidal",
-        "L. Kowalczyk"
+        "B. Giraud",
+        "C. Duval",
+        "L. Renard",
+        "J. Barreto",
+        "N. Haddad",
+        "L. Keller",
+        "L. Solberg",
+        "B. Almeida",
+        "M. Vidal",
+        "C. Colombo",
+        "H. Iglesias"
       ]
     },
     "exterieur": {
@@ -142,152 +142,133 @@
       "nom": "Kingsbridge United",
       "elo": 1760,
       "classement": {
-        "rang": 7,
-        "points": 9,
+        "rang": 3,
+        "points": 14,
         "joues": 6,
-        "bp": 9,
-        "bc": 8
+        "bp": 23,
+        "bc": 10
       },
       "forme": [
         {
-          "date": "2026-09-24",
-          "adversaire": "Adversaire fictif F",
-          "lieu": "D",
-          "score": "2-0",
-          "score_mt": "1-0"
-        },
-        {
-          "date": "2026-09-17",
-          "adversaire": "Adversaire fictif F",
+          "date": "2026-09-19",
+          "adversaire": "Eastmoor Wanderers",
           "lieu": "E",
-          "score": "2-0",
-          "score_mt": "1-0"
-        },
-        {
-          "date": "2026-09-10",
-          "adversaire": "Adversaire fictif E",
-          "lieu": "D",
-          "score": "0-2",
+          "score": "4-0",
           "score_mt": "0-0"
         },
         {
-          "date": "2026-09-03",
-          "adversaire": "Adversaire fictif D",
-          "lieu": "E",
-          "score": "1-2",
-          "score_mt": "1-1"
-        },
-        {
-          "date": "2026-08-27",
-          "adversaire": "Adversaire fictif H",
+          "date": "2026-09-12",
+          "adversaire": "Redcliffe United",
           "lieu": "D",
-          "score": "2-4",
-          "score_mt": "1-1"
+          "score": "5-3",
+          "score_mt": "2-1"
         },
         {
-          "date": "2026-08-20",
-          "adversaire": "Adversaire fictif L",
+          "date": "2026-09-05",
+          "adversaire": "Bramwell City",
           "lieu": "E",
-          "score": "2-0",
-          "score_mt": "0-0"
-        },
-        {
-          "date": "2026-08-13",
-          "adversaire": "Adversaire fictif H",
-          "lieu": "D",
-          "score": "1-1",
-          "score_mt": "1-1"
-        },
-        {
-          "date": "2026-08-06",
-          "adversaire": "Adversaire fictif B",
-          "lieu": "E",
-          "score": "3-0",
-          "score_mt": "1-0"
-        },
-        {
-          "date": "2026-07-30",
-          "adversaire": "Adversaire fictif F",
-          "lieu": "D",
-          "score": "1-2",
+          "score": "2-2",
           "score_mt": "0-1"
         },
         {
-          "date": "2026-07-23",
-          "adversaire": "Adversaire fictif C",
+          "date": "2026-08-29",
+          "adversaire": "Leyton Vale",
+          "lieu": "D",
+          "score": "5-3",
+          "score_mt": "2-1"
+        },
+        {
+          "date": "2026-08-22",
+          "adversaire": "Holloway Athletic",
           "lieu": "E",
-          "score": "2-1",
+          "score": "1-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-08-15",
+          "adversaire": "Southcote Albion",
+          "lieu": "D",
+          "score": "6-1",
+          "score_mt": "2-0"
+        },
+        {
+          "date": "2026-04-04",
+          "adversaire": "Ashford Rovers",
+          "lieu": "D",
+          "score": "2-0",
           "score_mt": "1-0"
+        },
+        {
+          "date": "2026-03-28",
+          "adversaire": "Millbrook City",
+          "lieu": "E",
+          "score": "1-0",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-03-21",
+          "adversaire": "Wexley Town",
+          "lieu": "D",
+          "score": "3-2",
+          "score_mt": "1-2"
+        },
+        {
+          "date": "2026-03-14",
+          "adversaire": "Castleford Park",
+          "lieu": "E",
+          "score": "1-1",
+          "score_mt": "1-1"
         }
       ],
       "stats": {
-        "buts_marques_moy": 1.5,
-        "buts_encaisses_moy": 1.33,
-        "buts_mt_marques_moy": 0.67,
-        "buts_mt_encaisses_moy": 0.33,
+        "buts_marques_moy": 3.83,
+        "buts_encaisses_moy": 1.67,
+        "buts_mt_marques_moy": 1,
+        "buts_mt_encaisses_moy": 0.5,
         "xg_moy": null,
-        "tirs_cadres_moy": 5.44,
+        "tirs_cadres_moy": 10.09,
         "pct_over15": 100,
-        "pct_over25": 33,
-        "pct_over35": 17,
-        "pct_but_avant_30": 33
+        "pct_over25": 83,
+        "pct_over35": 83,
+        "pct_but_avant_30": 17
       },
-      "jours_repos": 4,
-      "absents": [
-        {
-          "nom": "H. Oyelaran",
-          "raison": "Incertain"
-        },
-        {
-          "nom": "V. Haddad",
-          "raison": null
-        }
-      ],
+      "jours_repos": 9,
+      "absents": [],
       "compo_probable": [
-        "H. Ferrand",
-        "H. Aubert",
-        "A. Morvan",
-        "D. Almeida",
-        "R. Renard",
-        "D. Hoarau",
-        "Y. Esposti",
-        "K. Colombo",
-        "R. Fontaine",
-        "E. Castellan",
-        "R. Laurent"
+        "Y. Iglesias",
+        "G. Hoarau",
+        "F. Oyelaran",
+        "E. Marchetti",
+        "V. Aubert",
+        "N. Kowalczyk",
+        "V. Roussel",
+        "D. Lindqvist",
+        "H. Ndiaye",
+        "A. Ndiaye",
+        "S. Okonkwo"
       ]
     }
   },
   "h2h": [
     {
-      "date": "2026-04-27",
-      "score": "1-2",
-      "score_mt": "1-0"
-    },
-    {
-      "date": "2025-10-17",
-      "score": "4-1",
-      "score_mt": "1-0"
-    },
-    {
-      "date": "2025-04-10",
-      "score": "0-2",
-      "score_mt": "0-2"
-    },
-    {
-      "date": "2024-09-19",
-      "score": "1-0",
-      "score_mt": "0-0"
-    },
-    {
-      "date": "2024-03-22",
+      "date": "2026-04-04",
       "score": "0-2",
       "score_mt": "0-1"
     },
     {
-      "date": "2023-09-20",
+      "date": "2025-12-06",
       "score": "2-0",
-      "score_mt": "0-0"
+      "score_mt": "2-0"
+    },
+    {
+      "date": "2025-04-05",
+      "score": "1-4",
+      "score_mt": "1-2"
+    },
+    {
+      "date": "2024-12-07",
+      "score": "1-2",
+      "score_mt": "1-2"
     }
   ],
   "arbitre": {
@@ -298,55 +279,55 @@
   "meteo": null,
   "buteurs": [
     {
-      "nom": "F. Delacroix",
+      "nom": "D. Lindqvist",
       "equipe": "D",
-      "buts_par_90": 0.58,
-      "tirs_par_90": 2.94,
+      "buts_par_90": 0.64,
+      "tirs_par_90": 2.97,
       "tireur_penalty": true,
       "coups_de_pied_arretes": false,
       "minutes_prevues": 85
     },
     {
-      "nom": "K. Delacroix",
+      "nom": "A. Laurent",
       "equipe": "D",
-      "buts_par_90": 0.39,
-      "tirs_par_90": 2.33,
+      "buts_par_90": 0.3,
+      "tirs_par_90": 2.54,
       "tireur_penalty": false,
       "coups_de_pied_arretes": false,
       "minutes_prevues": 75
     },
     {
-      "nom": "J. Iglesias",
+      "nom": "V. Delacroix",
       "equipe": "D",
-      "buts_par_90": 0.21,
-      "tirs_par_90": 1.43,
+      "buts_par_90": 0.14,
+      "tirs_par_90": 1.3,
       "tireur_penalty": false,
       "coups_de_pied_arretes": true,
       "minutes_prevues": 88
     },
     {
-      "nom": "P. Tanaka",
+      "nom": "R. Esposti",
       "equipe": "E",
-      "buts_par_90": 0.48,
-      "tirs_par_90": 2.81,
+      "buts_par_90": 0.55,
+      "tirs_par_90": 3.58,
       "tireur_penalty": true,
       "coups_de_pied_arretes": false,
       "minutes_prevues": 85
     },
     {
-      "nom": "D. Marchetti",
+      "nom": "E. Barreto",
       "equipe": "E",
-      "buts_par_90": 0.34,
-      "tirs_par_90": 1.85,
+      "buts_par_90": 0.39,
+      "tirs_par_90": 2.3,
       "tireur_penalty": false,
       "coups_de_pied_arretes": false,
       "minutes_prevues": 75
     },
     {
-      "nom": "G. Aubert",
+      "nom": "Y. Barreto",
       "equipe": "E",
-      "buts_par_90": 0.21,
-      "tirs_par_90": 1.27,
+      "buts_par_90": 0.15,
+      "tirs_par_90": 1.43,
       "tireur_penalty": false,
       "coups_de_pied_arretes": true,
       "minutes_prevues": 88
@@ -355,154 +336,154 @@
   "cotes": {
     "total_buts": {
       "over_0_5": {
-        "meilleure": 1.02,
-        "bookmaker": "Book A",
-        "ouverture": 1.06,
-        "mouvement": -0.04
+        "meilleure": 1.01,
+        "bookmaker": "Book B",
+        "ouverture": 1.01,
+        "mouvement": 0
       },
       "over_1_5": {
-        "meilleure": 1.21,
+        "meilleure": 1.12,
         "bookmaker": "Book B",
-        "ouverture": 1.27,
-        "mouvement": -0.06
-      },
-      "over_2_5": {
-        "meilleure": 1.68,
-        "bookmaker": "Book B",
-        "ouverture": 1.61,
-        "mouvement": 0.07
-      },
-      "over_3_5": {
-        "meilleure": 2.74,
-        "bookmaker": "Book A",
-        "ouverture": 2.65,
-        "mouvement": 0.09
-      },
-      "over_4_5": {
-        "meilleure": 5.23,
-        "bookmaker": "Book C",
-        "ouverture": 5.33,
-        "mouvement": -0.1
-      },
-      "over_5_5": {
-        "meilleure": 11.51,
-        "bookmaker": "Book C",
-        "ouverture": 11.32,
-        "mouvement": 0.19
-      },
-      "under_0_5": {
-        "meilleure": 19.41,
-        "bookmaker": "Book B",
-        "ouverture": 18.95,
-        "mouvement": 0.46
-      },
-      "under_1_5": {
-        "meilleure": 4.85,
-        "bookmaker": "Book C",
-        "ouverture": 4.64,
-        "mouvement": 0.21
-      },
-      "under_2_5": {
-        "meilleure": 2.28,
-        "bookmaker": "Book B",
-        "ouverture": 2.26,
+        "ouverture": 1.1,
         "mouvement": 0.02
       },
-      "under_3_5": {
-        "meilleure": 1.49,
-        "bookmaker": "Book B",
-        "ouverture": 1.56,
-        "mouvement": -0.07
-      },
-      "under_4_5": {
-        "meilleure": 1.19,
+      "over_2_5": {
+        "meilleure": 1.43,
         "bookmaker": "Book A",
-        "ouverture": 1.24,
+        "ouverture": 1.41,
+        "mouvement": 0.02
+      },
+      "over_3_5": {
+        "meilleure": 2.11,
+        "bookmaker": "Book C",
+        "ouverture": 2.07,
+        "mouvement": 0.04
+      },
+      "over_4_5": {
+        "meilleure": 3.59,
+        "bookmaker": "Book A",
+        "ouverture": 3.52,
+        "mouvement": 0.07
+      },
+      "over_5_5": {
+        "meilleure": 6.96,
+        "bookmaker": "Book B",
+        "ouverture": 6.97,
+        "mouvement": -0.01
+      },
+      "under_0_5": {
+        "meilleure": 31.12,
+        "bookmaker": "Book B",
+        "ouverture": 32.1,
+        "mouvement": -0.98
+      },
+      "under_1_5": {
+        "meilleure": 6.96,
+        "bookmaker": "Book B",
+        "ouverture": 7.01,
         "mouvement": -0.05
       },
+      "under_2_5": {
+        "meilleure": 2.96,
+        "bookmaker": "Book C",
+        "ouverture": 3.05,
+        "mouvement": -0.09
+      },
+      "under_3_5": {
+        "meilleure": 1.78,
+        "bookmaker": "Book B",
+        "ouverture": 1.87,
+        "mouvement": -0.09
+      },
+      "under_4_5": {
+        "meilleure": 1.32,
+        "bookmaker": "Book B",
+        "ouverture": 1.35,
+        "mouvement": -0.03
+      },
       "under_5_5": {
-        "meilleure": 1.05,
+        "meilleure": 1.12,
         "bookmaker": "Book A",
         "ouverture": 1.08,
-        "mouvement": -0.03
+        "mouvement": 0.04
       }
     },
     "mt_over_0_5": {
-      "meilleure": 1.3,
+      "meilleure": 1.2,
       "bookmaker": "Book C",
-      "ouverture": 1.29,
-      "mouvement": 0.01
+      "ouverture": 1.25,
+      "mouvement": -0.05
     },
     "mt_over_1_5": {
-      "meilleure": 2.5,
+      "meilleure": 2.06,
       "bookmaker": "Book A",
-      "ouverture": 2.46,
-      "mouvement": 0.04
+      "ouverture": 2.1,
+      "mouvement": -0.04
     },
     "buteur": [
       {
-        "nom": "F. Delacroix",
+        "nom": "D. Lindqvist",
         "equipe": "D",
         "cote": {
-          "meilleure": 2.06,
-          "bookmaker": "Book C",
-          "ouverture": 2.01,
-          "mouvement": 0.05
+          "meilleure": 1.92,
+          "bookmaker": "Book A",
+          "ouverture": 1.84,
+          "mouvement": 0.08
         }
       },
       {
-        "nom": "K. Delacroix",
+        "nom": "A. Laurent",
         "equipe": "D",
+        "cote": {
+          "meilleure": 3.93,
+          "bookmaker": "Book C",
+          "ouverture": 3.74,
+          "mouvement": 0.19
+        }
+      },
+      {
+        "nom": "V. Delacroix",
+        "equipe": "D",
+        "cote": {
+          "meilleure": 6.8,
+          "bookmaker": "Book A",
+          "ouverture": 6.89,
+          "mouvement": -0.09
+        }
+      },
+      {
+        "nom": "R. Esposti",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 2.15,
+          "bookmaker": "Book A",
+          "ouverture": 2.24,
+          "mouvement": -0.09
+        }
+      },
+      {
+        "nom": "E. Barreto",
+        "equipe": "E",
         "cote": {
           "meilleure": 3.13,
-          "bookmaker": "Book C",
-          "ouverture": 3.17,
-          "mouvement": -0.04
-        }
-      },
-      {
-        "nom": "J. Iglesias",
-        "equipe": "D",
-        "cote": {
-          "meilleure": 4.68,
           "bookmaker": "Book A",
-          "ouverture": 4.67,
-          "mouvement": 0.01
+          "ouverture": 3.03,
+          "mouvement": 0.1
         }
       },
       {
-        "nom": "P. Tanaka",
+        "nom": "Y. Barreto",
         "equipe": "E",
         "cote": {
-          "meilleure": 2.39,
-          "bookmaker": "Book A",
-          "ouverture": 2.37,
-          "mouvement": 0.02
-        }
-      },
-      {
-        "nom": "D. Marchetti",
-        "equipe": "E",
-        "cote": {
-          "meilleure": 3.52,
-          "bookmaker": "Book B",
-          "ouverture": 3.55,
-          "mouvement": -0.03
-        }
-      },
-      {
-        "nom": "G. Aubert",
-        "equipe": "E",
-        "cote": {
-          "meilleure": 4.68,
+          "meilleure": 6.37,
           "bookmaker": "Book C",
-          "ouverture": 4.7,
-          "mouvement": -0.02
+          "ouverture": 6.47,
+          "mouvement": -0.1
         }
       }
     ]
   },
-  "qualite_donnees": 95,
+  "qualite_donnees": 94,
   "sources": [
     {
       "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",
