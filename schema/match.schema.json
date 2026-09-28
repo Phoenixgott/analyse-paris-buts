@@ -10,7 +10,7 @@
     "equipes", "h2h", "arbitre", "meteo", "buteurs", "cotes", "qualite_donnees", "sources"
   ],
   "properties": {
-    "schema_version": { "type": "string", "enum": ["1.0.0"] },
+    "schema_version": { "type": "string", "enum": ["1.1.0"], "description": "1.1.0 : ajout de stats.buts_par_tranche." },
     "demo": { "type": "boolean", "description": "true = données de démonstration fictives, toujours marquées DÉMO à l'écran." },
     "match_id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
     "generated_at": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$" },
@@ -161,6 +161,12 @@
     "pct_ou_null": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
     "date_ou_null": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
     "score_ou_null": { "type": ["string", "null"], "pattern": "^\\d{1,2}-\\d{1,2}$" },
+    "six_tranches": {
+      "type": ["array", "null"],
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "type": ["integer", "null"], "minimum": 0 }
+    },
     "cote": {
       "type": ["object", "null"],
       "additionalProperties": false,
@@ -214,7 +220,7 @@
           "additionalProperties": false,
           "required": [
             "buts_marques_moy", "buts_encaisses_moy", "buts_mt_marques_moy", "buts_mt_encaisses_moy",
-            "xg_moy", "tirs_cadres_moy", "pct_over15", "pct_over25", "pct_over35", "pct_but_avant_30"
+            "xg_moy", "tirs_cadres_moy", "pct_over15", "pct_over25", "pct_over35", "pct_but_avant_30", "buts_par_tranche"
           ],
           "properties": {
             "buts_marques_moy": { "$ref": "#/$defs/positif_ou_null" },
@@ -226,7 +232,18 @@
             "pct_over15": { "$ref": "#/$defs/pct_ou_null" },
             "pct_over25": { "$ref": "#/$defs/pct_ou_null" },
             "pct_over35": { "$ref": "#/$defs/pct_ou_null" },
-            "pct_but_avant_30": { "$ref": "#/$defs/pct_ou_null" }
+            "pct_but_avant_30": { "$ref": "#/$defs/pct_ou_null" },
+            "buts_par_tranche": {
+              "type": ["object", "null"],
+              "description": "Buts de la saison par tranche de 15 minutes : 0-15, 16-30, 31-45, 46-60, 61-75, 76-90 (temps additionnel inclus dans la tranche qui précède).",
+              "additionalProperties": false,
+              "required": ["matchs", "marques", "encaisses"],
+              "properties": {
+                "matchs": { "type": ["integer", "null"], "minimum": 1 },
+                "marques": { "$ref": "#/$defs/six_tranches" },
+                "encaisses": { "$ref": "#/$defs/six_tranches" }
+              }
+            }
           }
         },
         "jours_repos": { "type": ["integer", "null"], "minimum": 0 },

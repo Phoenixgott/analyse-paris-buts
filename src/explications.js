@@ -23,6 +23,8 @@ export const EXPLICATIONS = {
   buts_mt_encaisses_moy: 'Buts encaissés en 1re mi-temps par match : total des buts encaissés avant la pause ÷ matchs joués.',
   xg_moy: 'Buts attendus (xG) par match fournis par la source : qualité des occasions créées. N/D si la source ne les donne pas.',
   tirs_cadres_moy: 'Tirs cadrés par match cette saison : total des tirs cadrés ÷ matchs joués.',
+  buts_par_tranche:
+    'Buts de la saison par tranche de 15 minutes (temps additionnel compris dans la tranche précédente). Graphique : buts marqués + encaissés dans la tranche ÷ matchs joués, pour chaque équipe.',
   elo: 'Classement Elo : note de force de l’équipe (plus elle est haute, plus l’équipe est forte). N/D si aucune source ne le fournit.',
   jours_repos: 'Jours écoulés depuis le dernier match officiel de l’équipe.',
   mouvement: 'Mouvement de cote : meilleure cote actuelle − première cote relevée (« ouverture »). ↑ la cote monte, ↓ elle baisse.',

@@ -20,8 +20,8 @@
       "qualite_donnees": 17,
       "modele": {
         "calculable": true,
-        "buts_attendus": 3.043,
-        "over_2_5": 0.5863,
+        "buts_attendus": 3.511,
+        "over_2_5": 0.6811,
         "confiance": 18,
         "decision": "PASSER",
         "libelle": null,
@@ -44,17 +44,17 @@
       },
       "domicile": "Stade Montaval",
       "exterieur": "AS Clairefont",
-      "qualite_donnees": 78,
+      "qualite_donnees": 79,
       "modele": {
         "calculable": true,
-        "buts_attendus": 2.802,
-        "over_2_5": 0.531,
-        "confiance": 77,
+        "buts_attendus": 3.105,
+        "over_2_5": 0.6,
+        "confiance": 68,
         "decision": "PARIER",
-        "libelle": "Plus de 3,5 buts",
-        "value": 0.2277,
-        "value_max": 0.4985,
-        "nb_suggeres": 3
+        "libelle": "Plus de 2,5 buts",
+        "value": 0.236,
+        "value_max": 1.0279,
+        "nb_suggeres": 2
       }
     },
     {
@@ -71,17 +71,17 @@
       },
       "domicile": "AC Montecolle",
       "exterieur": "Sporting Valdoro",
-      "qualite_donnees": 86,
+      "qualite_donnees": 87,
       "modele": {
         "calculable": true,
-        "buts_attendus": 2.573,
-        "over_2_5": 0.4747,
-        "confiance": 85,
+        "buts_attendus": 1.601,
+        "over_2_5": 0.2169,
+        "confiance": 66,
         "decision": "PARIER",
-        "libelle": "Plus de 1,5 but en 1re MT",
-        "value": 0.1453,
-        "value_max": 0.2671,
-        "nb_suggeres": 3
+        "libelle": "Moins de 2,5 buts",
+        "value": 0.2921,
+        "value_max": 0.919,
+        "nb_suggeres": 2
       }
     },
     {
@@ -98,16 +98,16 @@
       },
       "domicile": "Nordalie",
       "exterieur": "Valdoranie",
-      "qualite_donnees": 57,
+      "qualite_donnees": 55,
       "modele": {
         "calculable": true,
-        "buts_attendus": 1.795,
-        "over_2_5": 0.2679,
-        "confiance": 44,
+        "buts_attendus": 1.689,
+        "over_2_5": 0.2399,
+        "confiance": 43,
         "decision": "PASSER",
         "libelle": null,
         "value": null,
-        "value_max": 1.2391,
+        "value_max": 0.6824,
         "nb_suggeres": 0
       }
     },
@@ -128,13 +128,13 @@
       "qualite_donnees": 99,
       "modele": {
         "calculable": true,
-        "buts_attendus": 2.66,
-        "over_2_5": 0.4964,
-        "confiance": 85,
+        "buts_attendus": 2.685,
+        "over_2_5": 0.5027,
+        "confiance": 83,
         "decision": "PARIER",
         "libelle": "Moins de 1,5 but",
-        "value": 0.1952,
-        "value_max": 0.7732,
+        "value": 0.2318,
+        "value_max": 0.8476,
         "nb_suggeres": 3
       }
     },
@@ -155,13 +155,13 @@
       "qualite_donnees": 94,
       "modele": {
         "calculable": true,
-        "buts_attendus": 3.177,
-        "over_2_5": 0.6153,
-        "confiance": 87,
+        "buts_attendus": 2.472,
+        "over_2_5": 0.449,
+        "confiance": 70,
         "decision": "PARIER",
-        "libelle": "Moins de 2,5 buts",
-        "value": 0.1387,
-        "value_max": 0.4102,
+        "libelle": "Moins de 4,5 buts",
+        "value": 0.1544,
+        "value_max": 2.0421,
         "nb_suggeres": 2
       }
     }

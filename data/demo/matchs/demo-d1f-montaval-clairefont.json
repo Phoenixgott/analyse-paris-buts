@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "demo": true,
   "match_id": "demo-d1f-montaval-clairefont",
   "generated_at": "2026-09-28T05:30:00Z",
@@ -15,7 +15,7 @@
     "nom": "Stade Jean-Brunet",
     "ville": "Montaval"
   },
-  "enjeu": "Choc en tête : le 1er reçoit le 2e.",
+  "enjeu": "Haut de tableau : le 1er reçoit le 4e.",
   "equipes": {
     "domicile": {
       "id": "demo-d1f-montaval-clairefont-d",
@@ -23,9 +23,9 @@
       "elo": null,
       "classement": {
         "rang": 1,
-        "points": 10,
+        "points": 12,
         "joues": 4,
-        "bp": 13,
+        "bp": 8,
         "bc": 2
       },
       "forme": [
@@ -33,90 +33,109 @@
           "date": "2026-09-19",
           "adversaire": "AS Belmontais",
           "lieu": "E",
-          "score": "1-1",
-          "score_mt": "1-0"
+          "score": "2-1",
+          "score_mt": "1-1"
         },
         {
           "date": "2026-09-12",
           "adversaire": "Racing Vauclair",
           "lieu": "D",
-          "score": "4-0",
-          "score_mt": "1-0"
+          "score": "3-0",
+          "score_mt": "2-0"
         },
         {
           "date": "2026-09-05",
           "adversaire": "Stade Corbières",
           "lieu": "E",
-          "score": "4-0",
-          "score_mt": "1-0"
+          "score": "1-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-08-29",
           "adversaire": "US Aigueblanche",
           "lieu": "D",
-          "score": "4-1",
-          "score_mt": "3-1"
+          "score": "2-1",
+          "score_mt": "1-0"
         },
         {
           "date": "2026-01-31",
           "adversaire": "AS Clairefont",
           "lieu": "E",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "1-3",
+          "score_mt": "1-3"
         },
         {
           "date": "2026-01-24",
           "adversaire": "FC Lunéville-Est",
           "lieu": "D",
           "score": "4-1",
-          "score_mt": "3-0"
+          "score_mt": "3-1"
         },
         {
           "date": "2026-01-17",
           "adversaire": "AS Brocéliande",
           "lieu": "E",
-          "score": "2-1",
-          "score_mt": "1-0"
+          "score": "0-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-01-10",
           "adversaire": "Stade Valbonne",
           "lieu": "D",
-          "score": "1-0",
-          "score_mt": "0-0"
+          "score": "2-1",
+          "score_mt": "1-1"
         },
         {
           "date": "2026-01-03",
           "adversaire": "US Mireval",
           "lieu": "E",
-          "score": "5-1",
-          "score_mt": "4-0"
+          "score": "0-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2025-12-27",
           "adversaire": "Olympique Tarnais",
           "lieu": "D",
-          "score": "3-1",
-          "score_mt": "1-0"
+          "score": "0-0",
+          "score_mt": "0-0"
         }
       ],
       "stats": {
-        "buts_marques_moy": 3.25,
+        "buts_marques_moy": 2,
         "buts_encaisses_moy": 0.5,
-        "buts_mt_marques_moy": 1.5,
+        "buts_mt_marques_moy": 1,
         "buts_mt_encaisses_moy": 0.25,
         "xg_moy": null,
-        "tirs_cadres_moy": 9.18,
-        "pct_over15": 100,
+        "tirs_cadres_moy": 6.61,
+        "pct_over15": 75,
         "pct_over25": 75,
-        "pct_over35": 75,
-        "pct_but_avant_30": 75
+        "pct_over35": 0,
+        "pct_but_avant_30": 75,
+        "buts_par_tranche": {
+          "matchs": 4,
+          "marques": [
+            0,
+            3,
+            1,
+            2,
+            0,
+            2
+          ],
+          "encaisses": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ]
+        }
       },
       "jours_repos": 9,
       "absents": [
         {
-          "nom": "T. Roussel",
-          "raison": "Incertain"
+          "nom": "Y. Duval",
+          "raison": null
         }
       ],
       "compo_probable": null
@@ -126,33 +145,33 @@
       "nom": "AS Clairefont",
       "elo": null,
       "classement": {
-        "rang": 2,
-        "points": 8,
+        "rang": 4,
+        "points": 7,
         "joues": 4,
-        "bp": 8,
-        "bc": 3
+        "bp": 7,
+        "bc": 4
       },
       "forme": [
         {
           "date": "2026-09-19",
           "adversaire": "Stade Valbonne",
           "lieu": "E",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "2-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-09-12",
           "adversaire": "Olympique Tarnais",
           "lieu": "D",
-          "score": "3-1",
-          "score_mt": "2-0"
+          "score": "2-3",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-09-05",
           "adversaire": "AS Belmontais",
           "lieu": "E",
-          "score": "2-2",
-          "score_mt": "0-2"
+          "score": "0-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-08-29",
@@ -165,66 +184,85 @@
           "date": "2026-01-31",
           "adversaire": "Stade Montaval",
           "lieu": "D",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "3-1",
+          "score_mt": "3-1"
         },
         {
           "date": "2026-01-24",
           "adversaire": "AS Brocéliande",
           "lieu": "E",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "1-1",
+          "score_mt": "1-1"
         },
         {
           "date": "2026-01-17",
           "adversaire": "US Mireval",
           "lieu": "D",
-          "score": "0-0",
+          "score": "1-0",
           "score_mt": "0-0"
         },
         {
           "date": "2026-01-10",
           "adversaire": "FC Rochebrune",
           "lieu": "E",
-          "score": "3-0",
+          "score": "2-1",
           "score_mt": "1-0"
         },
         {
           "date": "2026-01-03",
           "adversaire": "Racing Vauclair",
           "lieu": "D",
-          "score": "3-0",
-          "score_mt": "1-0"
+          "score": "1-2",
+          "score_mt": "0-1"
         },
         {
           "date": "2025-12-27",
           "adversaire": "US Aigueblanche",
           "lieu": "E",
-          "score": "1-1",
-          "score_mt": "0-0"
+          "score": "3-0",
+          "score_mt": "2-0"
         }
       ],
       "stats": {
-        "buts_marques_moy": 2,
-        "buts_encaisses_moy": 0.75,
-        "buts_mt_marques_moy": 1,
+        "buts_marques_moy": 1.75,
+        "buts_encaisses_moy": 1,
+        "buts_mt_marques_moy": 0.5,
         "buts_mt_encaisses_moy": 0.5,
         "xg_moy": null,
-        "tirs_cadres_moy": 6.33,
+        "tirs_cadres_moy": 5.86,
         "pct_over15": 75,
         "pct_over25": 75,
-        "pct_over35": 50,
-        "pct_but_avant_30": 50
+        "pct_over35": 25,
+        "pct_but_avant_30": 25,
+        "buts_par_tranche": {
+          "matchs": 4,
+          "marques": [
+            0,
+            1,
+            1,
+            1,
+            2,
+            2
+          ],
+          "encaisses": [
+            1,
+            1,
+            0,
+            1,
+            1,
+            0
+          ]
+        }
       },
       "jours_repos": 9,
       "absents": [
         {
-          "nom": "V. Strand",
-          "raison": "Blessure (cuisse)"
+          "nom": "J. Tanaka",
+          "raison": "Incertain"
         },
         {
-          "nom": "P. Morvan",
-          "raison": "Incertain"
+          "nom": "E. Sousa",
+          "raison": null
         }
       ],
       "compo_probable": null
@@ -233,23 +271,23 @@
   "h2h": [
     {
       "date": "2026-01-31",
-      "score": "0-0",
-      "score_mt": "0-0"
+      "score": "1-3",
+      "score_mt": "1-3"
     },
     {
       "date": "2025-11-15",
-      "score": "1-1",
-      "score_mt": "0-0"
+      "score": "2-2",
+      "score_mt": "0-1"
     },
     {
       "date": "2025-02-01",
-      "score": "1-1",
+      "score": "0-2",
       "score_mt": "0-1"
     },
     {
       "date": "2024-11-16",
       "score": "1-0",
-      "score_mt": "0-0"
+      "score_mt": "1-0"
     }
   ],
   "arbitre": {
@@ -260,55 +298,55 @@
   "meteo": null,
   "buteurs": [
     {
-      "nom": "P. Weber",
+      "nom": "D. Renard",
       "equipe": "D",
-      "buts_par_90": 0.58,
-      "tirs_par_90": 3.08,
+      "buts_par_90": 0.47,
+      "tirs_par_90": 3.29,
       "tireur_penalty": true,
       "coups_de_pied_arretes": false,
       "minutes_prevues": null
     },
     {
-      "nom": "C. Haddad",
+      "nom": "J. Vidal",
       "equipe": "D",
-      "buts_par_90": 0.29,
-      "tirs_par_90": 1.94,
+      "buts_par_90": 0.31,
+      "tirs_par_90": 2.46,
       "tireur_penalty": false,
       "coups_de_pied_arretes": false,
       "minutes_prevues": null
     },
     {
-      "nom": "T. Mendes",
+      "nom": "D. Hoarau",
       "equipe": "D",
-      "buts_par_90": 0.14,
-      "tirs_par_90": 1.62,
+      "buts_par_90": 0.12,
+      "tirs_par_90": 1.48,
       "tireur_penalty": false,
       "coups_de_pied_arretes": true,
       "minutes_prevues": null
     },
     {
-      "nom": "Y. Mendes",
+      "nom": "E. Marchetti",
       "equipe": "E",
-      "buts_par_90": 0.61,
-      "tirs_par_90": 3.12,
+      "buts_par_90": 0.46,
+      "tirs_par_90": 3.2,
       "tireur_penalty": true,
       "coups_de_pied_arretes": false,
       "minutes_prevues": null
     },
     {
-      "nom": "H. Giraud",
+      "nom": "S. Renard",
       "equipe": "E",
-      "buts_par_90": 0.35,
-      "tirs_par_90": 1.81,
+      "buts_par_90": 0.3,
+      "tirs_par_90": 2.35,
       "tireur_penalty": false,
       "coups_de_pied_arretes": false,
       "minutes_prevues": null
     },
     {
-      "nom": "B. Lindqvist",
+      "nom": "E. Strand",
       "equipe": "E",
-      "buts_par_90": 0.15,
-      "tirs_par_90": 1.35,
+      "buts_par_90": 0.19,
+      "tirs_par_90": 1.56,
       "tireur_penalty": false,
       "coups_de_pied_arretes": true,
       "minutes_prevues": null
@@ -318,82 +356,82 @@
     "total_buts": {
       "over_0_5": {
         "meilleure": 1.05,
-        "bookmaker": "Book A",
-        "ouverture": 1.08,
-        "mouvement": -0.03
+        "bookmaker": "Book C",
+        "ouverture": 1.01,
+        "mouvement": 0.04
       },
       "over_1_5": {
-        "meilleure": 1.36,
-        "bookmaker": "Book C",
-        "ouverture": 1.29,
-        "mouvement": 0.07
+        "meilleure": 1.34,
+        "bookmaker": "Book A",
+        "ouverture": 1.38,
+        "mouvement": -0.04
       },
       "over_2_5": {
-        "meilleure": 2.12,
-        "bookmaker": "Book B",
-        "ouverture": 2.09,
-        "mouvement": 0.03
+        "meilleure": 2.06,
+        "bookmaker": "Book C",
+        "ouverture": 2.11,
+        "mouvement": -0.05
       },
       "over_3_5": {
-        "meilleure": 3.98,
-        "bookmaker": "Book B",
-        "ouverture": 3.92,
-        "mouvement": 0.06
+        "meilleure": 3.83,
+        "bookmaker": "Book A",
+        "ouverture": 4.01,
+        "mouvement": -0.18
       },
       "over_4_5": {
-        "meilleure": 8.87,
-        "bookmaker": "Book B",
-        "ouverture": 8.78,
-        "mouvement": 0.09
+        "meilleure": 8.39,
+        "bookmaker": "Book A",
+        "ouverture": 8.7,
+        "mouvement": -0.31
       },
       "over_5_5": {
-        "meilleure": 22.96,
+        "meilleure": 21.37,
         "bookmaker": "Book B",
-        "ouverture": 23.18,
-        "mouvement": -0.22
+        "ouverture": 22.02,
+        "mouvement": -0.65
       },
       "under_0_5": {
-        "meilleure": 11.78,
+        "meilleure": 12.33,
         "bookmaker": "Book A",
-        "ouverture": 11.72,
-        "mouvement": 0.06
+        "ouverture": 12.18,
+        "mouvement": 0.15
       },
       "under_1_5": {
-        "meilleure": 3.36,
-        "bookmaker": "Book B",
-        "ouverture": 3.29,
-        "mouvement": 0.07
+        "meilleure": 3.48,
+        "bookmaker": "Book A",
+        "ouverture": 3.4,
+        "mouvement": 0.08
       },
       "under_2_5": {
-        "meilleure": 1.78,
-        "bookmaker": "Book A",
-        "ouverture": 1.77,
-        "mouvement": 0.01
+        "meilleure": 1.82,
+        "bookmaker": "Book C",
+        "ouverture": 1.73,
+        "mouvement": 0.09
       },
       "under_3_5": {
-        "meilleure": 1.28,
-        "bookmaker": "Book C",
-        "ouverture": 1.34,
-        "mouvement": -0.06
+        "meilleure": 1.29,
+        "bookmaker": "Book B",
+        "ouverture": 1.31,
+        "mouvement": -0.02
       },
       "under_4_5": {
-        "meilleure": 1.08,
-        "bookmaker": "Book C",
-        "ouverture": 1.12,
-        "mouvement": -0.04
+        "meilleure": 1.09,
+        "bookmaker": "Book B",
+        "ouverture": 1.06,
+        "mouvement": 0.03
       },
       "under_5_5": {
         "meilleure": 1.01,
         "bookmaker": "Book B",
-        "ouverture": 1.04,
-        "mouvement": -0.03
+        "ouverture": 1.01,
+        "mouvement": 0
       }
     },
     "mt_over_0_5": null,
     "mt_over_1_5": null,
     "buteur": null
   },
-  "qualite_donnees": 78,
+  "qualite_donnees": 79,
   "sources": [
     {
       "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",

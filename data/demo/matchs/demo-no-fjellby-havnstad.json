@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "demo": true,
   "match_id": "demo-no-fjellby-havnstad",
   "generated_at": "2026-09-28T05:30:00Z",
@@ -31,23 +31,23 @@
       "forme": [
         {
           "date": "2026-09-21",
-          "adversaire": "Adversaire fictif H",
+          "adversaire": "Adversaire fictif A",
           "lieu": "D",
           "score": "3-2",
           "score_mt": null
         },
         {
           "date": "2026-08-22",
-          "adversaire": "Adversaire fictif G",
+          "adversaire": "Adversaire fictif A",
           "lieu": "E",
-          "score": "1-1",
+          "score": "1-2",
           "score_mt": null
         },
         {
           "date": "2026-07-23",
-          "adversaire": "Adversaire fictif B",
+          "adversaire": "Adversaire fictif A",
           "lieu": "D",
-          "score": "0-1",
+          "score": "1-2",
           "score_mt": null
         }
       ],
@@ -70,23 +70,23 @@
       "forme": [
         {
           "date": "2026-09-21",
-          "adversaire": "Adversaire fictif C",
+          "adversaire": "Adversaire fictif I",
           "lieu": "D",
-          "score": "2-1",
-          "score_mt": null
-        },
-        {
-          "date": "2026-08-22",
-          "adversaire": "Adversaire fictif B",
-          "lieu": "E",
           "score": "4-0",
           "score_mt": null
         },
         {
-          "date": "2026-07-23",
+          "date": "2026-08-22",
           "adversaire": "Adversaire fictif G",
+          "lieu": "E",
+          "score": "2-1",
+          "score_mt": null
+        },
+        {
+          "date": "2026-07-23",
+          "adversaire": "Adversaire fictif A",
           "lieu": "D",
-          "score": "0-1",
+          "score": "2-3",
           "score_mt": null
         }
       ],

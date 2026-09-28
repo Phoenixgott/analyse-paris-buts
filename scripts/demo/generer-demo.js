@@ -99,7 +99,7 @@ const MATCHS = [
     classement: null,
     arbitre: null,
     meteo: { temperature: 9, vent: 24, pluie: 1.2 },
-    sans: ['xg', 'compo', 'arbitre', 'cotes_buteur', 'cotes_mt', 'enjeu', 'h2h', 'absents', 'buteurs'],
+    sans: ['xg', 'compo', 'arbitre', 'cotes_buteur', 'cotes_mt', 'enjeu', 'h2h', 'absents', 'buteurs', 'tranches'],
   },
   {
     // Palier 2, presque sans données : match non fiable.
@@ -176,6 +176,21 @@ function decalerDate(iso, jours) {
   return d.toISOString().slice(0, 10);
 }
 
+/** Minutes des buts : ceux de 1re MT tirés entre 1 et 45, les autres entre 46 et 90. */
+function minutesButs(alea, mt, total) {
+  return [
+    ...Array.from({ length: mt }, () => 1 + Math.floor(alea() * 45)),
+    ...Array.from({ length: total - mt }, () => 46 + Math.floor(alea() * 45)),
+  ];
+}
+
+/** Comptage par tranche de 15 min (0-15, 16-30, 31-45, 46-60, 61-75, 76-90). */
+function parTranche(minutes) {
+  const t = [0, 0, 0, 0, 0, 0];
+  for (const min of minutes) t[Math.min(5, Math.floor((min - 1) / 15))]++;
+  return t;
+}
+
 const joursEntre = (a, b) => Math.round((Date.parse(`${b}T12:00:00Z`) - Date.parse(`${a}T12:00:00Z`)) / 86400000);
 
 // --- Ligue fictive --------------------------------------------------------------------------
@@ -208,9 +223,9 @@ function simulerLigue(cfg, alea) {
     const [x, y] = tirerScore(alea, grilleScores(lambda, mu, -0.08, 10));
     const xm = binomiale(alea, x, 0.45);
     const ym = binomiale(alea, y, 0.45);
-    // Minute des buts de 1re MT (uniforme 1-45) : sert au « but avant la 30e ».
-    const avant30 = (k) => Array.from({ length: k }, () => 1 + Math.floor(alea() * 45)).some((min) => min < 30);
-    matchs.push({ date, i, j, x, y, xm, ym, a30d: avant30(xm), a30e: avant30(ym) });
+    const md = minutesButs(alea, xm, x);
+    const me = minutesButs(alea, ym, y);
+    matchs.push({ date, i, j, x, y, xm, ym, md, me, a30d: md.some((min) => min < 30), a30e: me.some((min) => min < 30) });
   };
 
   ligue.debuts.forEach((debut, s) => {
@@ -293,6 +308,9 @@ function construire(cfg) {
       pct_over25: pct((m) => m.pour + m.contre > 2),
       pct_over35: pct((m) => m.pour + m.contre > 3),
       pct_but_avant_30: pct((m) => m.avant30),
+      buts_par_tranche: sans.has('tranches')
+        ? null
+        : { matchs: n, marques: parTranche(saison.flatMap((m) => m.minutesPour)), encaisses: parTranche(saison.flatMap((m) => m.minutesContre)) },
     };
   }
 
@@ -324,6 +342,8 @@ function construire(cfg) {
           pourMt: dom ? m.xm : m.ym,
           contreMt: dom ? m.ym : m.xm,
           avant30: dom ? m.a30d : m.a30e,
+          minutesPour: dom ? m.md : m.me,
+          minutesContre: dom ? m.me : m.md,
         };
       })
       .sort((a, b) => b.date.localeCompare(a.date));
@@ -351,7 +371,10 @@ function construire(cfg) {
       const pour = poissonTirage(alea, eq.att);
       const contre = poissonTirage(alea, eq.def);
       const pourMt = binomiale(alea, pour, 0.45);
-      vus.push({ date, adversaire: `Adversaire fictif ${String.fromCharCode(65 + Math.floor(alea() * 12))}`, lieu: i % 2 === 0 ? 'D' : 'E', pour, contre, pourMt, contreMt: binomiale(alea, contre, 0.45), avant30: pourMt > 0 && alea() < 1 - (1 / 3) ** pourMt });
+      const contreMt = binomiale(alea, contre, 0.45);
+      const minutesPour = minutesButs(alea, pourMt, pour);
+      const minutesContre = minutesButs(alea, contreMt, contre);
+      vus.push({ date, adversaire: `Adversaire fictif ${String.fromCharCode(65 + Math.floor(alea() * 12))}`, lieu: i % 2 === 0 ? 'D' : 'E', pour, contre, pourMt, contreMt, minutesPour, minutesContre, avant30: minutesPour.some((min) => min < 30) });
       date = decalerDate(date, -30);
     }
     const ac = absentsEtCompo(eq);
@@ -437,7 +460,7 @@ function construire(cfg) {
   }
 
   const match = {
-    schema_version: '1.0.0',
+    schema_version: '1.1.0',
     demo: true,
     match_id: cfg.id,
     generated_at: GENERE_LE,

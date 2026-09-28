@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "demo": true,
   "match_id": "demo-int-nordalie-valdoranie",
   "generated_at": "2026-09-28T05:30:00Z",
@@ -25,86 +25,87 @@
       "forme": [
         {
           "date": "2026-09-25",
-          "adversaire": "Adversaire fictif L",
-          "lieu": "D",
-          "score": "0-1",
-          "score_mt": "0-1"
-        },
-        {
-          "date": "2026-08-26",
-          "adversaire": "Adversaire fictif I",
-          "lieu": "E",
-          "score": "1-3",
-          "score_mt": "0-0"
-        },
-        {
-          "date": "2026-07-27",
           "adversaire": "Adversaire fictif G",
           "lieu": "D",
           "score": "0-1",
           "score_mt": "0-0"
         },
         {
-          "date": "2026-06-27",
-          "adversaire": "Adversaire fictif C",
+          "date": "2026-08-26",
+          "adversaire": "Adversaire fictif J",
           "lieu": "E",
-          "score": "3-1",
-          "score_mt": "2-1"
+          "score": "0-3",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-07-27",
+          "adversaire": "Adversaire fictif J",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-0"
+        },
+        {
+          "date": "2026-06-27",
+          "adversaire": "Adversaire fictif H",
+          "lieu": "E",
+          "score": "0-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-05-28",
-          "adversaire": "Adversaire fictif L",
+          "adversaire": "Adversaire fictif J",
           "lieu": "D",
-          "score": "1-1",
+          "score": "0-0",
           "score_mt": "0-0"
         },
         {
           "date": "2026-04-28",
-          "adversaire": "Adversaire fictif D",
+          "adversaire": "Adversaire fictif C",
           "lieu": "E",
-          "score": "0-0",
+          "score": "1-1",
           "score_mt": "0-0"
         },
         {
           "date": "2026-03-29",
-          "adversaire": "Adversaire fictif L",
+          "adversaire": "Adversaire fictif K",
           "lieu": "D",
-          "score": "1-3",
-          "score_mt": "1-0"
-        },
-        {
-          "date": "2026-02-27",
-          "adversaire": "Adversaire fictif F",
-          "lieu": "E",
-          "score": "3-0",
-          "score_mt": "1-0"
-        },
-        {
-          "date": "2026-01-28",
-          "adversaire": "Adversaire fictif F",
-          "lieu": "D",
-          "score": "0-0",
+          "score": "1-0",
           "score_mt": "0-0"
         },
         {
-          "date": "2025-12-29",
-          "adversaire": "Adversaire fictif F",
+          "date": "2026-02-27",
+          "adversaire": "Adversaire fictif C",
           "lieu": "E",
-          "score": "1-0",
+          "score": "1-4",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2026-01-28",
+          "adversaire": "Adversaire fictif C",
+          "lieu": "D",
+          "score": "0-1",
+          "score_mt": "0-1"
+        },
+        {
+          "date": "2025-12-29",
+          "adversaire": "Adversaire fictif D",
+          "lieu": "E",
+          "score": "1-1",
           "score_mt": "1-0"
         }
       ],
       "stats": {
-        "buts_marques_moy": 1,
-        "buts_encaisses_moy": 1,
-        "buts_mt_marques_moy": 0.5,
-        "buts_mt_encaisses_moy": 0.2,
+        "buts_marques_moy": 0.4,
+        "buts_encaisses_moy": 1.3,
+        "buts_mt_marques_moy": 0.1,
+        "buts_mt_encaisses_moy": 0.3,
         "xg_moy": null,
-        "tirs_cadres_moy": 4.8,
-        "pct_over15": 50,
-        "pct_over25": 40,
-        "pct_over35": 30,
-        "pct_but_avant_30": 30
+        "tirs_cadres_moy": 3.55,
+        "pct_over15": 40,
+        "pct_over25": 20,
+        "pct_over35": 10,
+        "pct_but_avant_30": 10,
+        "buts_par_tranche": null
       },
       "jours_repos": 3,
       "absents": null,
@@ -118,86 +119,87 @@
       "forme": [
         {
           "date": "2026-09-25",
-          "adversaire": "Adversaire fictif I",
+          "adversaire": "Adversaire fictif C",
           "lieu": "D",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "2-3",
+          "score_mt": "0-2"
         },
         {
           "date": "2026-08-26",
-          "adversaire": "Adversaire fictif F",
+          "adversaire": "Adversaire fictif L",
           "lieu": "E",
-          "score": "1-1",
+          "score": "0-1",
           "score_mt": "0-1"
         },
         {
           "date": "2026-07-27",
-          "adversaire": "Adversaire fictif L",
+          "adversaire": "Adversaire fictif F",
           "lieu": "D",
-          "score": "3-2",
-          "score_mt": "3-1"
+          "score": "2-1",
+          "score_mt": "1-1"
         },
         {
           "date": "2026-06-27",
           "adversaire": "Adversaire fictif E",
           "lieu": "E",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "0-2",
+          "score_mt": "0-2"
         },
         {
           "date": "2026-05-28",
-          "adversaire": "Adversaire fictif B",
+          "adversaire": "Adversaire fictif E",
           "lieu": "D",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "0-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-04-28",
-          "adversaire": "Adversaire fictif F",
+          "adversaire": "Adversaire fictif D",
           "lieu": "E",
-          "score": "3-1",
+          "score": "3-0",
           "score_mt": "2-0"
         },
         {
           "date": "2026-03-29",
-          "adversaire": "Adversaire fictif C",
+          "adversaire": "Adversaire fictif B",
           "lieu": "D",
-          "score": "1-2",
-          "score_mt": "1-1"
+          "score": "1-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-02-27",
-          "adversaire": "Adversaire fictif E",
+          "adversaire": "Adversaire fictif D",
           "lieu": "E",
-          "score": "0-1",
-          "score_mt": "0-0"
+          "score": "3-2",
+          "score_mt": "1-2"
         },
         {
           "date": "2026-01-28",
           "adversaire": "Adversaire fictif D",
           "lieu": "D",
-          "score": "1-2",
-          "score_mt": "1-1"
+          "score": "1-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2025-12-29",
-          "adversaire": "Adversaire fictif E",
+          "adversaire": "Adversaire fictif H",
           "lieu": "E",
-          "score": "0-1",
-          "score_mt": "0-1"
+          "score": "0-0",
+          "score_mt": "0-0"
         }
       ],
       "stats": {
-        "buts_marques_moy": 0.9,
+        "buts_marques_moy": 1.2,
         "buts_encaisses_moy": 1,
-        "buts_mt_marques_moy": 0.7,
-        "buts_mt_encaisses_moy": 0.5,
+        "buts_mt_marques_moy": 0.4,
+        "buts_mt_encaisses_moy": 0.9,
         "xg_moy": null,
-        "tirs_cadres_moy": 3.96,
+        "tirs_cadres_moy": 4.49,
         "pct_over15": 50,
         "pct_over25": 40,
         "pct_over35": 20,
-        "pct_but_avant_30": 40
+        "pct_but_avant_30": 30,
+        "buts_par_tranche": null
       },
       "jours_repos": 3,
       "absents": null,
@@ -215,83 +217,83 @@
   "cotes": {
     "total_buts": {
       "over_0_5": {
-        "meilleure": 1.05,
-        "bookmaker": "Book C",
-        "ouverture": 1.1,
-        "mouvement": -0.05
+        "meilleure": 1.06,
+        "bookmaker": "Book B",
+        "ouverture": 1.05,
+        "mouvement": 0.01
       },
       "over_1_5": {
-        "meilleure": 1.36,
-        "bookmaker": "Book C",
-        "ouverture": 1.31,
-        "mouvement": 0.05
+        "meilleure": 1.4,
+        "bookmaker": "Book A",
+        "ouverture": 1.33,
+        "mouvement": 0.07
       },
       "over_2_5": {
-        "meilleure": 2.12,
-        "bookmaker": "Book A",
-        "ouverture": 2.2,
-        "mouvement": -0.08
+        "meilleure": 2.25,
+        "bookmaker": "Book C",
+        "ouverture": 2.35,
+        "mouvement": -0.1
       },
       "over_3_5": {
-        "meilleure": 3.98,
-        "bookmaker": "Book C",
-        "ouverture": 3.86,
-        "mouvement": 0.12
+        "meilleure": 4.39,
+        "bookmaker": "Book A",
+        "ouverture": 4.24,
+        "mouvement": 0.15
       },
       "over_4_5": {
-        "meilleure": 8.86,
-        "bookmaker": "Book A",
-        "ouverture": 9.18,
-        "mouvement": -0.32
+        "meilleure": 10.14,
+        "bookmaker": "Book C",
+        "ouverture": 9.76,
+        "mouvement": 0.38
       },
       "over_5_5": {
-        "meilleure": 22.94,
+        "meilleure": 27.31,
         "bookmaker": "Book A",
-        "ouverture": 22.81,
-        "mouvement": 0.13
+        "ouverture": 28.23,
+        "mouvement": -0.92
       },
       "under_0_5": {
-        "meilleure": 11.79,
-        "bookmaker": "Book A",
-        "ouverture": 11.91,
-        "mouvement": -0.12
+        "meilleure": 10.6,
+        "bookmaker": "Book C",
+        "ouverture": 10.07,
+        "mouvement": 0.53
       },
       "under_1_5": {
-        "meilleure": 3.37,
-        "bookmaker": "Book C",
-        "ouverture": 3.53,
-        "mouvement": -0.16
+        "meilleure": 3.12,
+        "bookmaker": "Book B",
+        "ouverture": 3.02,
+        "mouvement": 0.1
       },
       "under_2_5": {
-        "meilleure": 1.78,
-        "bookmaker": "Book B",
-        "ouverture": 1.75,
-        "mouvement": 0.03
+        "meilleure": 1.69,
+        "bookmaker": "Book A",
+        "ouverture": 1.7,
+        "mouvement": -0.01
       },
       "under_3_5": {
-        "meilleure": 1.28,
+        "meilleure": 1.24,
         "bookmaker": "Book A",
-        "ouverture": 1.24,
-        "mouvement": 0.04
+        "ouverture": 1.18,
+        "mouvement": 0.06
       },
       "under_4_5": {
-        "meilleure": 1.08,
+        "meilleure": 1.07,
         "bookmaker": "Book C",
-        "ouverture": 1.12,
-        "mouvement": -0.04
+        "ouverture": 1.03,
+        "mouvement": 0.04
       },
       "under_5_5": {
         "meilleure": 1.01,
-        "bookmaker": "Book A",
-        "ouverture": 1.01,
-        "mouvement": 0
+        "bookmaker": "Book C",
+        "ouverture": 1.05,
+        "mouvement": -0.04
       }
     },
     "mt_over_0_5": null,
     "mt_over_1_5": null,
     "buteur": null
   },
-  "qualite_donnees": 57,
+  "qualite_donnees": 55,
   "sources": [
     {
       "nom": "DÉMO — données fictives (scripts/demo/generer-demo.js)",

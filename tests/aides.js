@@ -28,7 +28,7 @@ const equipeVide = (nom) => ({
 /** Match minimal valide où toutes les données facultatives sont absentes (null). */
 export function matchVide() {
   return {
-    schema_version: '1.0.0',
+    schema_version: '1.1.0',
     demo: false,
     match_id: 'test-vide',
     generated_at: '2026-09-28T05:30:00Z',

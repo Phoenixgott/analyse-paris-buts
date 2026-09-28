@@ -10,7 +10,10 @@ import { evaluerPari } from './value-kelly.js';
 import { accordMarche, indiceConfiance, probaMarche } from './confiance.js';
 import { estFiable } from '../schema/qualite.js';
 
-export const VERSION_MODELE = '1.0.0';
+export const VERSION_MODELE = '1.1.0';
+// Rappel des unités, utile quand ces calculs sont lus par une IA (les pourcentages du match, eux, vont de 0 à 100).
+export const UNITES =
+  'Probabilités de 0 à 1 (0,25 = 25 %). value et mise_pct en fraction (0,05 = +5 % ; 0,02 = 2 % de la bankroll). Buts attendus en buts par match.';
 
 const arrondi = (x, d = 4) => (x == null || !Number.isFinite(x) ? null : Math.round(x * 10 ** d) / 10 ** d);
 // « 0,5 but », « 1,5 but », puis « 2,5 buts » (singulier en dessous de 2).
@@ -61,6 +64,7 @@ function resultatNonCalculable(match, r, calculeLe, raison) {
     marches: [],
     confiance: { indice: null, composantes: { qualite: match.qualite_donnees, echantillon: null, accord: null } },
     verdict: { decision: 'PASSER', marche: null, libelle: null, proba: null, cote: null, cote_min: null, value: null, mise_pct: 0, raison },
+    unites: UNITES,
     avertissement: 'Probabilités estimées, pas des certitudes.',
   };
 }
@@ -215,6 +219,7 @@ export function analyserMatch(match, historiqueLigue = [], options = {}) {
       },
     },
     verdict,
+    unites: UNITES,
     avertissement: 'Probabilités estimées, pas des certitudes.',
   };
 }

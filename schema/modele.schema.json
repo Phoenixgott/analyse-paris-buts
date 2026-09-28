@@ -7,10 +7,11 @@
   "additionalProperties": false,
   "required": [
     "schema_version", "match_id", "demo", "calcule_le", "calculable", "fiable", "reglages", "methode", "buts_attendus",
-    "ajustements", "grille", "scores_probables", "total_buts", "mi_temps", "buteurs", "marches", "confiance", "verdict", "avertissement"
+    "ajustements", "grille", "scores_probables", "total_buts", "mi_temps", "buteurs", "marches", "confiance", "verdict", "unites", "avertissement"
   ],
   "properties": {
-    "schema_version": { "type": "string", "enum": ["1.0.0"] },
+    "schema_version": { "type": "string", "enum": ["1.1.0"], "description": "1.1.0 : ajout de « unites »." },
+    "unites": { "type": "string" },
     "match_id": { "type": "string" },
     "demo": { "type": "boolean" },
     "calcule_le": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$" },

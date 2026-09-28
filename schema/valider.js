@@ -1,5 +1,5 @@
 // Validateur JSON Schema minimal, sans dépendance : couvre exactement les mots-clés utilisés par
-// match.schema.json (type, enum, pattern, minimum, maximum, maxItems, required, properties,
+// match.schema.json (type, enum, pattern, minimum, maximum, minItems, maxItems, required, properties,
 // additionalProperties: false, items, $ref local). Utilisé par les tests et par la collecte.
 
 function typeDe(valeur) {
@@ -56,6 +56,9 @@ function verifier(valeur, schema, chemin, racine, erreurs) {
   if (Array.isArray(valeur)) {
     if (schema.maxItems !== undefined && valeur.length > schema.maxItems) {
       erreurs.push(`${chemin} : ${valeur.length} éléments (max ${schema.maxItems})`);
+    }
+    if (schema.minItems !== undefined && valeur.length < schema.minItems) {
+      erreurs.push(`${chemin} : ${valeur.length} éléments (min ${schema.minItems})`);
     }
     if (schema.items) valeur.forEach((v, i) => verifier(v, schema.items, `${chemin}[${i}]`, racine, erreurs));
     return;

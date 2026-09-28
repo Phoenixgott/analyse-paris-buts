@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "demo": true,
   "match_id": "demo-l1-valmont-rivebelle",
   "generated_at": "2026-09-28T05:30:00Z",
@@ -15,126 +15,141 @@
     "nom": "Stade des Forges",
     "ville": "Valmont"
   },
-  "enjeu": "Haut de tableau : le 5e reçoit le 3e.",
+  "enjeu": "Milieu de tableau : le 6e reçoit le 12e.",
   "equipes": {
     "domicile": {
       "id": "demo-l1-valmont-rivebelle-d",
       "nom": "Olympique de Valmont",
       "elo": 1712,
       "classement": {
-        "rang": 5,
-        "points": 14,
+        "rang": 6,
+        "points": 12,
         "joues": 7,
-        "bp": 15,
-        "bc": 7
+        "bp": 13,
+        "bc": 4
       },
       "forme": [
         {
           "date": "2026-09-19",
           "adversaire": "Stade Mérignol",
           "lieu": "D",
-          "score": "1-1",
-          "score_mt": "0-0"
+          "score": "2-0",
+          "score_mt": "1-0"
         },
         {
           "date": "2026-09-12",
           "adversaire": "US Carmaux-Vallée",
           "lieu": "E",
-          "score": "1-1",
+          "score": "2-2",
           "score_mt": "0-0"
         },
         {
           "date": "2026-09-05",
           "adversaire": "AS Durandeau",
           "lieu": "D",
-          "score": "2-0",
+          "score": "4-0",
           "score_mt": "1-0"
         },
         {
           "date": "2026-08-29",
           "adversaire": "FC Saint-Aubrin",
           "lieu": "E",
-          "score": "2-1",
-          "score_mt": "0-1"
+          "score": "0-1",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-08-22",
           "adversaire": "Sporting Lanvaux",
           "lieu": "D",
-          "score": "2-1",
-          "score_mt": "2-0"
+          "score": "1-1",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-08-15",
           "adversaire": "Stade Orbelin",
           "lieu": "E",
-          "score": "2-3",
-          "score_mt": "1-2"
+          "score": "0-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-08-08",
           "adversaire": "RC Chabeuil",
           "lieu": "D",
-          "score": "5-0",
-          "score_mt": "2-0"
+          "score": "4-0",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-03-28",
           "adversaire": "FC Rivebelle",
           "lieu": "E",
-          "score": "2-2",
-          "score_mt": "0-1"
+          "score": "1-1",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-03-21",
           "adversaire": "AS Castelnau",
           "lieu": "D",
-          "score": "2-1",
-          "score_mt": "0-1"
+          "score": "2-2",
+          "score_mt": "0-2"
         },
         {
           "date": "2026-03-14",
           "adversaire": "Stade Brévannes",
           "lieu": "E",
-          "score": "1-0",
-          "score_mt": "1-0"
+          "score": "2-2",
+          "score_mt": "1-1"
         }
       ],
       "stats": {
-        "buts_marques_moy": 2.14,
-        "buts_encaisses_moy": 1,
-        "buts_mt_marques_moy": 0.86,
-        "buts_mt_encaisses_moy": 0.43,
-        "xg_moy": 2.41,
-        "tirs_cadres_moy": 7,
-        "pct_over15": 100,
-        "pct_over25": 57,
-        "pct_over35": 29,
-        "pct_but_avant_30": 57
+        "buts_marques_moy": 1.86,
+        "buts_encaisses_moy": 0.57,
+        "buts_mt_marques_moy": 0.29,
+        "buts_mt_encaisses_moy": 0,
+        "xg_moy": 2.06,
+        "tirs_cadres_moy": 6.3,
+        "pct_over15": 71,
+        "pct_over25": 43,
+        "pct_over35": 43,
+        "pct_but_avant_30": 14,
+        "buts_par_tranche": {
+          "matchs": 7,
+          "marques": [
+            1,
+            0,
+            1,
+            3,
+            5,
+            3
+          ],
+          "encaisses": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            2
+          ]
+        }
       },
       "jours_repos": 9,
       "absents": [
         {
-          "nom": "Y. Almeida",
-          "raison": null
-        },
-        {
-          "nom": "J. Barreto",
+          "nom": "G. Ndiaye",
           "raison": "Blessure (cuisse)"
         }
       ],
       "compo_probable": [
-        "S. Keller",
-        "M. Okonkwo",
-        "R. Varga",
-        "B. Kowalczyk",
-        "B. Barreto",
-        "A. Sousa",
-        "G. Weber",
-        "D. Weber",
-        "F. Vidal",
-        "R. Fontaine",
-        "Y. Kowalczyk"
+        "B. Almeida",
+        "K. Ferrand",
+        "R. Esposti",
+        "J. Colombo",
+        "S. Solberg",
+        "G. Brennan",
+        "V. Vasseur",
+        "L. Iglesias",
+        "M. Delacroix",
+        "P. Solberg",
+        "H. Varga"
       ]
     },
     "exterieur": {
@@ -142,75 +157,75 @@
       "nom": "FC Rivebelle",
       "elo": 1668,
       "classement": {
-        "rang": 3,
-        "points": 14,
+        "rang": 12,
+        "points": 7,
         "joues": 7,
-        "bp": 18,
-        "bc": 5
+        "bp": 7,
+        "bc": 10
       },
       "forme": [
         {
           "date": "2026-09-19",
           "adversaire": "FC Montreval",
           "lieu": "D",
-          "score": "3-0",
-          "score_mt": "0-0"
+          "score": "1-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-09-12",
           "adversaire": "Racing Sarlande",
           "lieu": "E",
-          "score": "2-2",
-          "score_mt": "1-2"
+          "score": "1-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-09-05",
           "adversaire": "Olympique Lorvilliers",
           "lieu": "D",
-          "score": "4-0",
-          "score_mt": "2-0"
+          "score": "0-2",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-08-29",
           "adversaire": "FC Vireuil",
           "lieu": "E",
-          "score": "0-0",
-          "score_mt": "0-0"
+          "score": "1-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-08-22",
           "adversaire": "US Carmaux-Vallée",
           "lieu": "D",
-          "score": "2-0",
-          "score_mt": "0-0"
+          "score": "1-1",
+          "score_mt": "1-0"
         },
         {
           "date": "2026-08-15",
           "adversaire": "FC Saint-Aubrin",
           "lieu": "E",
-          "score": "1-2",
+          "score": "1-3",
           "score_mt": "1-2"
         },
         {
           "date": "2026-08-08",
           "adversaire": "Stade Orbelin",
           "lieu": "D",
-          "score": "6-1",
-          "score_mt": "2-1"
+          "score": "2-1",
+          "score_mt": "0-1"
         },
         {
           "date": "2026-03-28",
           "adversaire": "Olympique de Valmont",
           "lieu": "D",
-          "score": "2-2",
-          "score_mt": "1-0"
+          "score": "1-1",
+          "score_mt": "0-0"
         },
         {
           "date": "2026-03-21",
           "adversaire": "Stade Brévannes",
           "lieu": "E",
           "score": "1-1",
-          "score_mt": "1-1"
+          "score_mt": "1-0"
         },
         {
           "date": "2026-03-14",
@@ -221,54 +236,82 @@
         }
       ],
       "stats": {
-        "buts_marques_moy": 2.57,
-        "buts_encaisses_moy": 0.71,
-        "buts_mt_marques_moy": 0.86,
-        "buts_mt_encaisses_moy": 0.71,
-        "xg_moy": 2.56,
-        "tirs_cadres_moy": 7.3,
-        "pct_over15": 86,
-        "pct_over25": 71,
-        "pct_over35": 43,
-        "pct_but_avant_30": 14
+        "buts_marques_moy": 1,
+        "buts_encaisses_moy": 1.43,
+        "buts_mt_marques_moy": 0.29,
+        "buts_mt_encaisses_moy": 1,
+        "xg_moy": 1.04,
+        "tirs_cadres_moy": 4.86,
+        "pct_over15": 100,
+        "pct_over25": 29,
+        "pct_over35": 14,
+        "pct_but_avant_30": 0,
+        "buts_par_tranche": {
+          "matchs": 7,
+          "marques": [
+            0,
+            0,
+            2,
+            1,
+            0,
+            4
+          ],
+          "encaisses": [
+            3,
+            1,
+            3,
+            0,
+            2,
+            1
+          ]
+        }
       },
       "jours_repos": 9,
-      "absents": [],
+      "absents": [
+        {
+          "nom": "R. Hoarau",
+          "raison": "Blessure (genou)"
+        },
+        {
+          "nom": "B. Roussel",
+          "raison": "Suspension"
+        }
+      ],
       "compo_probable": [
-        "H. Delacroix",
-        "F. Morvan",
-        "H. Diallo",
-        "J. Varga",
-        "M. Fontaine",
-        "T. Okonkwo",
-        "Y. Haddad",
-        "R. Oyelaran",
-        "B. Giraud",
-        "C. Varga",
-        "D. Iglesias"
+        "E. Marchetti",
+        "A. Hoarau",
+        "E. Renard",
+        "S. Ndiaye",
+        "K. Sousa",
+        "C. Barreto",
+        "M. Aubert",
+        "E. Ndiaye",
+        "V. Marchetti",
+        "S. Diallo",
+        "T. Maalouf"
       ]
     }
   },
   "h2h": [
     {
       "date": "2026-03-28",
-      "score": "2-2",
-      "score_mt": "0-1"
+      "score": "1-1",
+      "score_mt": "0-0"
     },
     {
       "date": "2025-11-29",
-      "score": "3-1",
-      "score_mt": "0-0"
+      "score": "2-0",
+      "score_mt": "1-0"
     },
     {
       "date": "2025-03-29",
-      "score": "2-3",
-      "score_mt": "0-1"
+      "score": "1-1",
+      "score_mt": "1-0"
     },
     {
       "date": "2024-11-30",
-      "score": "3-0",
-      "score_mt": "0-0"
+      "score": "4-0",
+      "score_mt": "2-0"
     }
   ],
   "arbitre": {
@@ -283,45 +326,18 @@
   },
   "buteurs": [
     {
-      "nom": "V. Weber",
+      "nom": "B. Kowalczyk",
       "equipe": "D",
-      "buts_par_90": 0.63,
-      "tirs_par_90": 2.93,
+      "buts_par_90": 0.53,
+      "tirs_par_90": 3.06,
       "tireur_penalty": true,
       "coups_de_pied_arretes": false,
       "minutes_prevues": 85
     },
     {
-      "nom": "K. Mendes",
+      "nom": "T. Castellan",
       "equipe": "D",
-      "buts_par_90": 0.27,
-      "tirs_par_90": 2.07,
-      "tireur_penalty": false,
-      "coups_de_pied_arretes": false,
-      "minutes_prevues": 75
-    },
-    {
-      "nom": "F. Solberg",
-      "equipe": "D",
-      "buts_par_90": 0.19,
-      "tirs_par_90": 1.2,
-      "tireur_penalty": false,
-      "coups_de_pied_arretes": true,
-      "minutes_prevues": 88
-    },
-    {
-      "nom": "N. Vasseur",
-      "equipe": "E",
-      "buts_par_90": 0.45,
-      "tirs_par_90": 3.37,
-      "tireur_penalty": true,
-      "coups_de_pied_arretes": false,
-      "minutes_prevues": 85
-    },
-    {
-      "nom": "M. Maalouf",
-      "equipe": "E",
-      "buts_par_90": 0.31,
+      "buts_par_90": 0.38,
       "tirs_par_90": 2.12,
       "tireur_penalty": false,
       "coups_de_pied_arretes": false,
@@ -329,9 +345,36 @@
     },
     {
       "nom": "N. Hoarau",
+      "equipe": "D",
+      "buts_par_90": 0.18,
+      "tirs_par_90": 1.44,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": true,
+      "minutes_prevues": 88
+    },
+    {
+      "nom": "V. Strand",
       "equipe": "E",
-      "buts_par_90": 0.17,
-      "tirs_par_90": 1.69,
+      "buts_par_90": 0.51,
+      "tirs_par_90": 3.5,
+      "tireur_penalty": true,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 85
+    },
+    {
+      "nom": "P. Strand",
+      "equipe": "E",
+      "buts_par_90": 0.35,
+      "tirs_par_90": 2.58,
+      "tireur_penalty": false,
+      "coups_de_pied_arretes": false,
+      "minutes_prevues": 75
+    },
+    {
+      "nom": "V. Hoarau",
+      "equipe": "E",
+      "buts_par_90": 0.24,
+      "tirs_par_90": 1.11,
       "tireur_penalty": false,
       "coups_de_pied_arretes": true,
       "minutes_prevues": 88
@@ -346,143 +389,143 @@
         "mouvement": -0.01
       },
       "over_1_5": {
-        "meilleure": 1.2,
+        "meilleure": 1.18,
         "bookmaker": "Book C",
-        "ouverture": 1.21,
-        "mouvement": -0.01
+        "ouverture": 1.15,
+        "mouvement": 0.03
       },
       "over_2_5": {
-        "meilleure": 1.65,
-        "bookmaker": "Book C",
-        "ouverture": 1.63,
-        "mouvement": 0.02
+        "meilleure": 1.61,
+        "bookmaker": "Book B",
+        "ouverture": 1.61,
+        "mouvement": 0
       },
       "over_3_5": {
-        "meilleure": 2.67,
-        "bookmaker": "Book C",
-        "ouverture": 2.69,
-        "mouvement": -0.02
+        "meilleure": 2.56,
+        "bookmaker": "Book B",
+        "ouverture": 2.63,
+        "mouvement": -0.07
       },
       "over_4_5": {
-        "meilleure": 5.03,
-        "bookmaker": "Book C",
-        "ouverture": 5.02,
-        "mouvement": 0.01
+        "meilleure": 4.75,
+        "bookmaker": "Book B",
+        "ouverture": 4.62,
+        "mouvement": 0.13
       },
       "over_5_5": {
-        "meilleure": 10.93,
-        "bookmaker": "Book B",
-        "ouverture": 11.48,
-        "mouvement": -0.55
+        "meilleure": 10.14,
+        "bookmaker": "Book C",
+        "ouverture": 9.96,
+        "mouvement": 0.18
       },
       "under_0_5": {
-        "meilleure": 20.27,
-        "bookmaker": "Book A",
-        "ouverture": 21.06,
-        "mouvement": -0.79
+        "meilleure": 21.63,
+        "bookmaker": "Book C",
+        "ouverture": 22.22,
+        "mouvement": -0.59
       },
       "under_1_5": {
-        "meilleure": 5.01,
-        "bookmaker": "Book A",
-        "ouverture": 4.87,
-        "mouvement": 0.14
+        "meilleure": 5.26,
+        "bookmaker": "Book C",
+        "ouverture": 5.46,
+        "mouvement": -0.2
       },
       "under_2_5": {
-        "meilleure": 2.34,
-        "bookmaker": "Book B",
-        "ouverture": 2.32,
-        "mouvement": 0.02
+        "meilleure": 2.42,
+        "bookmaker": "Book A",
+        "ouverture": 2.33,
+        "mouvement": 0.09
       },
       "under_3_5": {
-        "meilleure": 1.52,
-        "bookmaker": "Book B",
+        "meilleure": 1.55,
+        "bookmaker": "Book A",
         "ouverture": 1.53,
-        "mouvement": -0.01
+        "mouvement": 0.02
       },
       "under_4_5": {
-        "meilleure": 1.2,
-        "bookmaker": "Book C",
-        "ouverture": 1.21,
-        "mouvement": -0.01
+        "meilleure": 1.21,
+        "bookmaker": "Book B",
+        "ouverture": 1.26,
+        "mouvement": -0.05
       },
       "under_5_5": {
-        "meilleure": 1.06,
+        "meilleure": 1.07,
         "bookmaker": "Book C",
-        "ouverture": 1.09,
-        "mouvement": -0.03
+        "ouverture": 1.02,
+        "mouvement": 0.05
       }
     },
     "mt_over_0_5": {
-      "meilleure": 1.28,
-      "bookmaker": "Book B",
-      "ouverture": 1.32,
+      "meilleure": 1.26,
+      "bookmaker": "Book A",
+      "ouverture": 1.3,
       "mouvement": -0.04
     },
     "mt_over_1_5": {
-      "meilleure": 2.4,
+      "meilleure": 2.34,
       "bookmaker": "Book A",
-      "ouverture": 2.34,
-      "mouvement": 0.06
+      "ouverture": 2.45,
+      "mouvement": -0.11
     },
     "buteur": [
       {
-        "nom": "V. Weber",
+        "nom": "B. Kowalczyk",
         "equipe": "D",
         "cote": {
-          "meilleure": 1.94,
-          "bookmaker": "Book C",
-          "ouverture": 1.9,
-          "mouvement": 0.04
-        }
-      },
-      {
-        "nom": "K. Mendes",
-        "equipe": "D",
-        "cote": {
-          "meilleure": 4.32,
-          "bookmaker": "Book C",
-          "ouverture": 4.27,
-          "mouvement": 0.05
-        }
-      },
-      {
-        "nom": "F. Solberg",
-        "equipe": "D",
-        "cote": {
-          "meilleure": 5.13,
+          "meilleure": 2.21,
           "bookmaker": "Book A",
-          "ouverture": 5.02,
-          "mouvement": 0.11
+          "ouverture": 2.32,
+          "mouvement": -0.11
         }
       },
       {
-        "nom": "N. Vasseur",
-        "equipe": "E",
+        "nom": "T. Castellan",
+        "equipe": "D",
         "cote": {
-          "meilleure": 2.51,
-          "bookmaker": "Book C",
-          "ouverture": 2.39,
-          "mouvement": 0.12
-        }
-      },
-      {
-        "nom": "M. Maalouf",
-        "equipe": "E",
-        "cote": {
-          "meilleure": 3.82,
-          "bookmaker": "Book C",
-          "ouverture": 3.7,
-          "mouvement": 0.12
+          "meilleure": 3.2,
+          "bookmaker": "Book A",
+          "ouverture": 3.28,
+          "mouvement": -0.08
         }
       },
       {
         "nom": "N. Hoarau",
+        "equipe": "D",
+        "cote": {
+          "meilleure": 5.39,
+          "bookmaker": "Book B",
+          "ouverture": 5.35,
+          "mouvement": 0.04
+        }
+      },
+      {
+        "nom": "V. Strand",
         "equipe": "E",
         "cote": {
-          "meilleure": 5.68,
+          "meilleure": 2.27,
           "bookmaker": "Book C",
-          "ouverture": 5.71,
-          "mouvement": -0.03
+          "ouverture": 2.36,
+          "mouvement": -0.09
+        }
+      },
+      {
+        "nom": "P. Strand",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 3.44,
+          "bookmaker": "Book C",
+          "ouverture": 3.54,
+          "mouvement": -0.1
+        }
+      },
+      {
+        "nom": "V. Hoarau",
+        "equipe": "E",
+        "cote": {
+          "meilleure": 4.16,
+          "bookmaker": "Book B",
+          "ouverture": 3.99,
+          "mouvement": 0.17
         }
       }
     ]

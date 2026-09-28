@@ -38,12 +38,14 @@ describe('schéma JSON d’un match', () => {
       pct_over25: null,
       pct_over35: null,
       pct_but_avant_30: null,
+      buts_par_tranche: { matchs: 7, marques: [1, 2, 0, 3, 1], encaisses: [0, 0, 1, 1, 2, 0] },
     };
     m.equipes.domicile.forme = [{ date: '2026-09-01', adversaire: 'X', lieu: 'D', score: '2-1', score_mt: '1:0' }];
     const erreurs = valider(m, schema);
     expect(erreurs).toEqual([
       '$.equipes.domicile.forme[0].score_mt : « 1:0 » ne respecte pas ^\\d{1,2}-\\d{1,2}$',
       '$.equipes.domicile.stats.pct_over15 : 120 > 100',
+      '$.equipes.domicile.stats.buts_par_tranche.marques : 5 éléments (min 6)',
     ]);
   });
 
