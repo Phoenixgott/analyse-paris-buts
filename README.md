@@ -6,29 +6,42 @@ prompt d'analyse IA. **Probabilités estimées, pas des certitudes. Réservé au
 Site : https://phoenixgott.github.io/analyse-paris-buts/ (installable sur Android : Chrome → menu ⋮ →
 « Installer l'application »).
 
+## Le site en bref
+
+Quatre onglets en bas de l'écran (à gauche sur ordinateur) : **Matchs**, **Récupérer**, **Journal**,
+**Fiabilité**.
+
+- **Matchs** : une ligne par match (heure, équipes, verdict, buts attendus). Bouton « Paris suggérés »
+  pour ne voir que les paris qui passent tous les filtres du modèle ; « Filtrer » pour le pays, la
+  compétition, l'heure ou le tri.
+- **Fiche d'un match** : en haut, le verdict (PARIER ou PASSER) et trois chiffres (buts attendus,
+  Plus de 2,5 buts, qualité des données). Ensuite, choisis ta ligne de buts (0,5 à 5,5, Plus ou Moins) :
+  probabilité, cote et value se mettent à jour aussitôt. Le reste est rangé en onglets : Paris, Forme,
+  Stats, Infos, Prompt IA.
+
 ## Récupérer les vrais matchs (sans clé API)
 
-Menu **Récupérer les matchs** :
+Onglet **Récupérer** : quatre étapes, le site propose celle qui est utile maintenant.
 
-1. **Liste du jour** : choisis la date et les compétitions, touche « Copier la demande ». Ouvre une
+1. **Liste** : choisis la date et les compétitions, touche « Copier la demande ». Ouvre une
    nouvelle conversation Claude, **active la recherche web**, colle et envoie. Recolle la réponse
-   dans le site, puis « Importer la réponse ».
+   dans la zone « Colle la réponse de Claude », puis « Importer la réponse ».
 2. **Fiches** : coche 1 à 3 matchs de la liste, copie la demande, même principe.
-3. **Juste avant le match** : demande courte pour les cotes, compositions et absents.
+3. **Mise à jour** (1 à 2 h avant le match) : demande courte pour les cotes, compositions et absents.
+4. **Résultats** : score final à 90 minutes, mi-temps, buteurs. Les paris du journal se résolvent
+   alors tout seuls.
 
-Si Claude écrit « SUITE DISPONIBLE », réponds « continue » et colle aussi la suite. Après chaque import,
-un rapport dit ce qui a été ajouté, rapproché (noms d'équipes) ou écarté, et pourquoi (bloc sans source,
-date impossible, cotes incohérentes…). Les matchs restent **sur ton téléphone** : pense à
-« Sauvegarder (.json) » de temps en temps.
+Une seule zone de collage pour les quatre étapes : le site reconnaît le type de réponse. Si Claude écrit
+« SUITE DISPONIBLE », réponds « continue » et colle aussi la suite. Après chaque import, un rapport dit
+ce qui a été ajouté, rapproché (noms d'équipes) ou écarté, et pourquoi (bloc sans source, date
+impossible, cotes incohérentes…). Les matchs restent **sur ton téléphone** : pense à
+« Sauvegarder (.json) » de temps en temps (Récupérer → Mes données).
 
-4. **Après le match** : demande des résultats (score final à 90 minutes, mi-temps, buteurs). Les
-   paris du journal se résolvent alors tout seuls.
+## Paris suggérés, journal et alertes
 
-## Top picks, journal et alertes
-
-- **Top picks** : les paris qui passent tous les filtres du modèle, par marché, avec la cote minimale et
-  la mise conseillée. Les picks d'un même match sont marqués « lié » : ne les combine pas.
-- **Journal de paris** : « Noter » depuis Top picks ou la fiche d'un match (ou saisie libre), résolution
+- **Paris suggérés** (onglet Matchs) : les paris qui passent tous les filtres du modèle, avec la mise
+  conseillée et le rappel du backtest. Les paris d'un même match sont marqués « lié » : ne les combine pas.
+- **Journal de paris** : « Noter » depuis les paris suggérés ou la fiche d'un match (ou saisie libre), résolution
   automatique avec les résultats importés (ou à la main), bankroll, gains, ROI, taux de réussite,
   courbe de bankroll, export CSV. **Limites** : mise maximale par jour et stop-loss journalier ; le site
   demande confirmation avant de les dépasser.

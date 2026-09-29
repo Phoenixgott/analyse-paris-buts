@@ -40,8 +40,10 @@ docs/        PLAN.md · SCHEMA.md · MODELE.md
 public/      favicon.svg · icons/
 src/         main.js · router.js · format.js · explications.js
   styles/    tokens, base, layout, composants
-  pages/     accueil · collecte · match (+ section-modele, section-prompt, blocs-graphiques) · a-venir
-  composants/ carte-kpi · tableau-triable · badge · info-bulle · navigation · presse-papier
+  pages/     accueil (+ top-picks : vue « Paris suggérés ») · collecte · match (+ section-modele,
+             section-prompt, blocs-graphiques) · journal · fiabilite
+  fiche/     ligne (ligne de buts choisie sur la fiche)
+  composants/ carte-kpi · tableau-triable · badge · info-bulle · onglets · navigation · presse-papier · rappel-backtest
   collecte/  competitions · prompts · import · noms
   donnees/   chargement · local (IndexedDB)
   graphiques/ donnees · fiche (Chart.js) · registre
@@ -63,7 +65,7 @@ tests/       Vitest
 | Données stockées sur un seul appareil | Sauvegarde / restauration en fichier ; demande de stockage persistant au navigateur |
 | Réponse de l'IA coupée si trop longue | 1 à 3 fiches par demande ; protocole « SUITE DISPONIBLE » / « continue » |
 | football-data.co.uk indisponible | Fichier existant conservé, échec visible dans l'Action ; le modèle garde le dernier historique |
-| Modèle moins juste que le marché, values non rentables au backtest | Réglages passés à 240 j / prior 20 (les plus justes testés) ; rappel du backtest sous chaque « PARIER » et sur Top picks ; page Fiabilité |
+| Modèle moins juste que le marché, values non rentables au backtest | Réglages passés à 240 j / prior 20 (les plus justes testés) ; rappel du backtest sous chaque « PARIER » et sur les paris suggérés ; page Fiabilité |
 | Pages gratuit exige un repo public | Seuls la démo et les historiques publics y sont ; les matchs collectés restent sur l'appareil |
 
 ## Écarts assumés au cahier des charges
@@ -105,8 +107,8 @@ tests/       Vitest
   l'appareil (jamais après le coup d'envoi) ; backtest walk-forward sur 7 029 matchs réels, relancé
   chaque nuit. Décidé le 29/09/2026 : réglages 240 j / prior 20, et rappel du résultat du backtest sous
   chaque « PARIER » (fiche match et Top picks).
-- Phase 7 (tout simplifier) : ajoutée au cahier des charges le 29/09/2026, à concevoir (maquette à
-  valider avant de coder).
+- Phase 7 (tout simplifier) : ajoutée au cahier des charges le 29/09/2026 ; maquette validée le même
+  jour ; livrée le 29/09/2026, en attente de validation (voir ci-dessous).
 
 ## Phases
 
@@ -135,4 +137,25 @@ Objectifs :
   coup d'œil sur téléphone.
 - Les règles 1 à 7 restent intactes (N/D, DÉMO, info-bulle sur chaque %, 18+, non fiable, PASSER).
 
-La maquette est présentée et validée avant tout changement de code.
+La maquette est présentée et validée avant tout changement de code (validée le 29/09/2026).
+
+Livré :
+- **Navigation** : 4 onglets en bas de l'écran sur téléphone (Matchs, Récupérer, Journal, Fiabilité),
+  colonne à gauche sur ordinateur. « Top picks » n'est plus une page : c'est la vue « Paris suggérés »
+  de l'accueil (l'ancienne adresse `#/top-picks` y mène toujours). Bouton « Installer » dans la barre du haut.
+- **Accueil** : une ligne par match (heure, équipes, compétition, buts attendus, verdict) au lieu d'une
+  carte à badges ; boutons « Matchs » / « Paris suggérés » ; filtres derrière un seul bouton « Filtrer ».
+- **Fiche match** : en haut, équipes, heure, verdict et 3 chiffres (buts attendus, Plus de 2,5 buts,
+  qualité) ; puis « Choisis ta ligne de buts » (0,5 à 5,5, Plus/Moins) qui met à jour sur place la
+  probabilité du modèle, celle du marché (trait blanc sur la barre), la cote et la value ; puis 5 onglets
+  (Paris, Forme, Stats, Infos, Prompt IA) au lieu de 10 sections empilées. Les 10 cases « Résumé » sont
+  supprimées (leurs chiffres sont dans l'onglet Stats). Les graphiques d'un onglet se dessinent à son
+  ouverture ; l'onglet choisi est gardé d'une fiche à l'autre.
+- **Récupérer** : 4 étapes en onglets (une seule visible, avec l'avancement de la journée sous chacune),
+  étape utile proposée automatiquement, **une seule zone de collage** (le type de réponse est reconnu) ;
+  sauvegarde et effacement repliés dans « Mes données ».
+- **Journal** : bilan en une carte (bankroll, gains, ROI, réussite) au lieu de 4 cases ; paris en une
+  liste « En cours » / « Terminés », actions rares sous « Plus » ; alertes rangées dans les réglages.
+- **Fiabilité** : tableaux détaillés (réglages comparés, par championnat) repliés.
+- Écart à la maquette : l'onglet « Cotes » s'appelle « Paris » et vient en premier (il contient aussi le
+  graphique modèle/marché, la 1re mi-temps, les buteurs, la confiance et la méthode).

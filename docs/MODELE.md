@@ -92,7 +92,7 @@ début 2026/27, 16 championnats), comparés au marché (cotes moyennes Plus/Moin
 - Une demi-vie plus longue et un prior plus fort améliorent nettement la calibration, **sans atteindre
   le marché**.
 - **Aucun réglage testé ne rend les « values » rentables** : ce sont surtout des erreurs du modèle.
-  Le site le rappelle sous chaque « PARIER » (fiche match et Top picks), chiffres du backtest à l'appui.
+  Le site le rappelle sous chaque « PARIER » (fiche match et paris suggérés), chiffres du backtest à l'appui.
 - Réglages retenus : 240 j / prior 20, les plus justes (Brier le plus bas). Leur ROI simulé est plus
   mauvais que celui de 60 j / prior 1, mais tous sont négatifs : la justesse des probabilités compte
   davantage ici que la rentabilité, qu'aucun réglage n'atteint.
