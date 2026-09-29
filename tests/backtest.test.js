@@ -45,10 +45,11 @@ describe('backtest walk-forward', () => {
     expect(v.paris).toBe(pr.filter((p) => p.probas.over_2_5 >= 0.2).length);
   });
 
-  it('compare les réglages actuels à des variantes plus prudentes', () => {
+  it('compare les réglages actuels à ceux du cahier des charges et à des variantes', () => {
     const c = configurations();
-    expect(c.filter((x) => x.actuelle)).toEqual([{ demi_vie: 60, prior: 1, actuelle: true }]);
-    expect(c.length).toBeGreaterThan(3);
+    expect(c.filter((x) => x.actuelle)).toEqual([{ demi_vie: 240, prior: 20, actuelle: true }]);
+    expect(c).toContainEqual({ demi_vie: 60, prior: 1, actuelle: false });
+    expect(new Set(c.map((x) => `${x.demi_vie}-${x.prior}`)).size).toBe(c.length);
   });
 
   it('le résumé publié est cohérent', () => {
@@ -67,7 +68,7 @@ describe('archive des prédictions', () => {
 
   it('archive une prédiction faite avant le coup d’envoi, avec les probabilités du marché', () => {
     const a = instantanePrediction(match, modele); // calculée à 05:30Z, match à 18:45Z
-    expect(a).toMatchObject({ match_id: match.match_id, competition_id: 'demo-fr-l1', demi_vie: 60 });
+    expect(a).toMatchObject({ match_id: match.match_id, competition_id: 'demo-fr-l1', demi_vie: 240 });
     expect(a.probas.over_2_5).toBe(modele.total_buts.over_2_5);
     expect(a.probas.under_2_5).toBeUndefined();
     expect(a.probas.mt_over_0_5).toBe(modele.mi_temps.over_0_5);

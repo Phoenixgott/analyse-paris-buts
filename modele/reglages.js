@@ -1,9 +1,10 @@
 // Réglages du modèle. Ce sont des paramètres de calcul (documentés et modifiables), pas des données :
 // aucune valeur ici ne remplace une donnée absente d'un match.
 export const REGLAGES = {
-  // Dixon-Coles
-  demi_vie_jours: 60, // décroissance temporelle : un match de 60 jours pèse 2 fois moins qu'un match d'aujourd'hui
-  prior_matchs: 1, // pseudo-match « moyen » ajouté à chaque équipe pour éviter les forces infinies (0 but en 2 matchs)
+  // Dixon-Coles. Valeurs retenues d'après le backtest sur 7 029 matchs réels (docs/MODELE.md) : plus justes
+  // que celles du cahier des charges (demi-vie 60 j, prior 1), qui donnaient des probabilités trop tranchées.
+  demi_vie_jours: 240, // décroissance temporelle : un match de 240 jours pèse 2 fois moins qu'un match d'aujourd'hui
+  prior_matchs: 20, // « matchs moyens » ajoutés à chaque équipe : évite des forces extrêmes sur peu de matchs
   seuil_shrinkage: 8, // sous 8 matchs, les forces sont ramenées vers la moyenne de la ligue au prorata (n / 8)
   rho_bornes: [-0.2, 0.2], // correction des scores faibles (0-0, 1-0, 0-1, 1-1)
   buts_max: 10, // grille 0-10 × 0-10

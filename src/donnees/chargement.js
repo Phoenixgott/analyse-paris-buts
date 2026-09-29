@@ -8,6 +8,7 @@ import * as local from './local.js';
 import { analyserMatch, VERSION_MODELE } from '../../modele/analyser.js';
 import { construireIndex } from '../../scripts/lib/index-jour.js';
 import { instantanePrediction } from '../../modele/archive.js';
+import { REGLAGES } from '../../modele/reglages.js';
 
 const BASE_DONNEES = `${import.meta.env.BASE_URL}data/`;
 const memoire = new Map();
@@ -27,6 +28,11 @@ export async function chargerJSON(chemin) {
 export function chargerHistorique(competitionId) {
   if (!competitionId) return Promise.resolve(null);
   return chargerJSON(`ligues/${competitionId}.json`).catch(() => null);
+}
+
+/** Résumé du backtest nocturne (data/backtest/resume.json) ou null s'il n'est pas joignable. */
+export function chargerBacktest() {
+  return chargerJSON('backtest/resume.json').catch(() => null);
 }
 
 /** Noms d'équipes de la saison, par compétition (pour les prompts et l'import). */
@@ -54,7 +60,7 @@ async function archiver(match, modele) {
 /** Calcul du modèle pour un match local, mis en cache tant que ni la fiche ni l'historique ne changent. */
 export async function calculerModeleLocal(match) {
   const historique = await chargerHistorique(match.competition.id);
-  const cle = `${match.generated_at}|${historique?.maj ?? 'sans-historique'}|${VERSION_MODELE}`;
+  const cle = `${match.generated_at}|${historique?.maj ?? 'sans-historique'}|${VERSION_MODELE}|${REGLAGES.demi_vie_jours}-${REGLAGES.prior_matchs}`;
   const cache = await local.lire('modeles', match.match_id);
   if (cache?.cle === cle) {
     await archiver(match, cache.modele);

@@ -98,7 +98,7 @@ describe('estimation Dixon-Coles', () => {
     expect(tout.rho).toBe(avant.rho);
   });
 
-  it('donne plus de poids aux matchs récents (demi-vie de 60 jours)', () => {
+  it('donne plus de poids aux matchs récents (demi-vie de 240 jours)', () => {
     // L'équipe 01 devient bien plus offensive pour la dernière saison.
     const bascule = '2025-07-01';
     const s = simulerLigue({ graine: 11, attaqueDe: (t, date, a) => (t === 0 && date >= bascule ? a + 0.6 : a) });

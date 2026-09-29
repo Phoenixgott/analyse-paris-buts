@@ -133,10 +133,10 @@ async function historiqueBacktest(c, maintenant) {
   return { matchs: parSaison.flat(), debutEvaluation, saisons };
 }
 
-/** Réglages comparés : l'actuel (cahier des charges) et des variantes plus prudentes. */
+/** Réglages comparés : l'actuel, ceux du cahier des charges (60 j, prior 1) et des variantes. */
 export function configurations() {
   const actuelle = { demi_vie: REGLAGES.demi_vie_jours, prior: REGLAGES.prior_matchs };
-  const variantes = [{ demi_vie: 120, prior: 1 }, { demi_vie: 240, prior: 1 }, { demi_vie: 240, prior: 5 }, { demi_vie: 240, prior: 10 }, { demi_vie: 240, prior: 20 }];
+  const variantes = [{ demi_vie: 60, prior: 1 }, { demi_vie: 120, prior: 1 }, { demi_vie: 240, prior: 1 }, { demi_vie: 240, prior: 5 }, { demi_vie: 240, prior: 10 }, { demi_vie: 240, prior: 20 }, { demi_vie: 365, prior: 20 }];
   return [{ ...actuelle, actuelle: true }, ...variantes.filter((v) => v.demi_vie !== actuelle.demi_vie || v.prior !== actuelle.prior).map((v) => ({ ...v, actuelle: false }))];
 }
 

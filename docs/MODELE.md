@@ -17,7 +17,8 @@ mise en cache sur l'appareil. C'est le bloc « CALCULS DU SITE » du prompt IA.
   match de la forme est ignoré si l'historique contient déjà un match de cette équipe ce jour-là.
   Sans historique de ligue (sélections, petites ligues), le modèle ne s'appuie que sur la forme.
 - **Seuls les matchs joués avant le jour du match comptent** (aucune fuite du futur, testé).
-- Poids d'un match = 0,5^(âge en jours / demi-vie). Demi-vie par défaut : 60 jours.
+- Poids d'un match = 0,5^(âge en jours / demi-vie). Demi-vie par défaut : 240 jours (60 jours dans le
+  cahier des charges ; changée d'après le backtest, voir plus bas).
 
 ## 2. Dixon-Coles
 
@@ -26,8 +27,9 @@ mise en cache sur l'appareil. C'est le bloc « CALCULS DU SITE » du prompt IA.
 
 Estimation en deux temps :
 1. m, h, attaques et défenses par maximum de vraisemblance de Poisson pondéré, par mises à jour
-   exactes coordonnée par coordonnée, avec un pseudo-match « moyen » par équipe (évite une force
-   infinie pour une équipe à 0 but) ; moyennes des attaques et des défenses recentrées à 0.
+   exactes coordonnée par coordonnée, avec 20 pseudo-matchs « moyens » par équipe (prior : évite une
+   force infinie pour une équipe à 0 but et des forces extrêmes sur peu de matchs) ; moyennes des
+   attaques et des défenses recentrées à 0.
 2. ρ (correction des scores 0-0, 1-0, 0-1, 1-1) par recherche dorée dans [−0,2 ; 0,2], à forces fixées.
 
 C'est une approximation classique de l'estimation jointe de Dixon et Coles. Sur une ligue simulée
@@ -73,19 +75,26 @@ Heuristiques simples et visibles une par une dans la fiche. Une donnée absente 
 ## Ce que dit le backtest (phase 6, `scripts/backtest/backtest.js`)
 
 Walk-forward hebdomadaire sur l'historique réel football-data.co.uk : chaque semaine, le modèle est
-ajusté sur les seuls matchs antérieurs, puis prédit la semaine. **7 029 matchs** (saison 2025/26 et
+ajusté sur les seuls matchs antérieurs, puis prédit la semaine. **7 030 matchs** (saison 2025/26 et
 début 2026/27, 16 championnats), comparés au marché (cotes moyennes Plus/Moins 2,5, marge retirée) :
 
 | Réglages | Brier moyen 1,5/2,5/3,5 | Brier 2,5 (marché : 0,2418) | ROI des values sur 2,5 (cote max) |
 |---|---|---|---|
-| **60 j, prior 1 (actuels)** | 0,2182 | 0,2563 | −5,8 % (3 490 paris) |
+| 60 j, prior 1 (cahier des charges) | 0,2182 | 0,2563 | −5,7 % (3 491 paris) |
+| 120 j, prior 1 | 0,2148 | 0,2523 | −7,4 % |
 | 240 j, prior 1 | 0,2136 | 0,2509 | −6,2 % |
-| 240 j, prior 20 | 0,2102 | 0,2464 | −9,7 % |
+| 240 j, prior 10 | 0,2109 | 0,2474 | −8,5 % |
+| **240 j, prior 20 (actuels depuis le 29/09/2026)** | 0,2102 | 0,2464 | −9,7 % (2 311 paris) |
+| 365 j, prior 20 | 0,2103 | 0,2465 | −8,6 % |
 
 - Le modèle est **trop dispersé** (probabilités trop tranchées : écart-type ~13 points contre ~6 pour le
   marché) : quand il annonce 20-30 % sur « +2,5 », c'est arrivé ~44 % du temps ; 70-80 % → ~62 %.
 - Une demi-vie plus longue et un prior plus fort améliorent nettement la calibration, **sans atteindre
   le marché**.
 - **Aucun réglage testé ne rend les « values » rentables** : ce sont surtout des erreurs du modèle.
+  Le site le rappelle sous chaque « PARIER » (fiche match et Top picks), chiffres du backtest à l'appui.
+- Réglages retenus : 240 j / prior 20, les plus justes (Brier le plus bas). Leur ROI simulé est plus
+  mauvais que celui de 60 j / prior 1, mais tous sont négatifs : la justesse des probabilités compte
+  davantage ici que la rentabilité, qu'aucun réglage n'atteint.
 
 Le backtest est relancé chaque nuit par la tâche des historiques ; la page « Fiabilité » l'affiche.
