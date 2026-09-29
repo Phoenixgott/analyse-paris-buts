@@ -86,8 +86,10 @@ tests/       Vitest
 - Phase 1 : validée le 28/09/2026.
 - Phase 2 : validée le 28/09/2026. Demi-vie gardée à 60 jours jusqu'au backtest (phase 6).
 - Phase 3 : validée le 28/09/2026.
-- Phase 4 (revue, collecte par prompt) : livrée le 28/09/2026, en attente de validation sur une
-  vraie journée de Ligue 1 importée par l'utilisateur.
+- Phase 4 (revue, collecte par prompt) : validée le 29/09/2026, sur une vraie journée de Ligue des
+  nations (liste de 10 matchs puis 3 fiches importées, 0 bloc écarté). La vérification sur une
+  journée de Ligue 1 (historique football-data.co.uk utilisé en conditions réelles) reste à faire au
+  prochain week-end de championnat.
 
 ## Phases
 
