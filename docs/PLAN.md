@@ -63,7 +63,7 @@ tests/       Vitest
 | Données stockées sur un seul appareil | Sauvegarde / restauration en fichier ; demande de stockage persistant au navigateur |
 | Réponse de l'IA coupée si trop longue | 1 à 3 fiches par demande ; protocole « SUITE DISPONIBLE » / « continue » |
 | football-data.co.uk indisponible | Fichier existant conservé, échec visible dans l'Action ; le modèle garde le dernier historique |
-| Demi-vie de 60 jours : ~13-16 % d'erreur sur les buts attendus (simulation) | À trancher par le backtest (phase 6) |
+| Modèle moins juste que le marché, values non rentables au backtest | Réglages passés à 240 j / prior 20 (les plus justes testés) ; rappel du backtest sous chaque « PARIER » et sur Top picks ; page Fiabilité |
 | Pages gratuit exige un repo public | Seuls la démo et les historiques publics y sont ; les matchs collectés restent sur l'appareil |
 
 ## Écarts assumés au cahier des charges
@@ -79,6 +79,10 @@ tests/       Vitest
 - **Phase 4 : collecte par prompt, stockage local, modèle dans le navigateur ; plus de quotas, de
   crons de collecte, de `/data/AAAA-MM-JJ/` ni de purge à 30 jours.** Les phases 5 (alertes) et 6
   (archivage) seront locales elles aussi (ntfy.sh accepte des envois depuis le navigateur, sans clé).
+- **Réglages du modèle : demi-vie 240 jours et prior de 20 matchs** au lieu de 60 jours / prior 1
+  (décision du 29/09/2026, d'après le backtest sur 7 029 matchs réels : probabilités moins tranchées,
+  plus proches de ce qui arrive vraiment). Les réglages du cahier des charges restent mesurés chaque
+  nuit dans le backtest, pour comparaison.
 
 ## Suivi des phases
 
@@ -99,9 +103,10 @@ tests/       Vitest
 - Phase 6 : livrée le 29/09/2026, en attente de validation (Brier sur une journée réelle : les matchs du
   29/09, prédits avant le coup d'envoi puis leurs résultats importés). Archive des prédictions sur
   l'appareil (jamais après le coup d'envoi) ; backtest walk-forward sur 7 029 matchs réels, relancé
-  chaque nuit. **Décision ouverte** : garder les réglages du cahier des charges (60 j, prior 1) ou passer
-  aux réglages les plus justes (240 j, prior 20) ; et comment présenter les « PARIER » sachant que le
-  backtest ne montre aucune rentabilité des values.
+  chaque nuit. Décidé le 29/09/2026 : réglages 240 j / prior 20, et rappel du résultat du backtest sous
+  chaque « PARIER » (fiche match et Top picks).
+- Phase 7 (tout simplifier) : ajoutée au cahier des charges le 29/09/2026, à concevoir (maquette à
+  valider avant de coder).
 
 ## Phases
 
@@ -114,3 +119,20 @@ tests/       Vitest
 | 4 | Collecte par prompt (Ligue 1 d'abord, puis palier 1, puis palier 2) + historiques football-data.co.uk | Chaque fiche importée respecte le schéma, manquants à null, rapport d'import clair |
 | 5 | Top picks, Journal, alertes ntfy.sh (depuis le navigateur) | Résolution d'un pari test, alerte reçue |
 | 6 | Archivage local des prédictions, backtest, page Fiabilité | Brier sur une journée réelle ; < 100 prédictions : « échantillon insuffisant » |
+| 7 | Tout simplifier : beaucoup moins de cases, un site plus dynamique (le match, les infos) | Tu trouves le site simple à l'usage ; à 360 px, l'essentiel d'un match se lit sans faire défiler ; toutes les règles ci-dessus tiennent toujours |
+
+## Phase 7 — Tout simplifier (demande du 29/09/2026)
+
+> « Tout simplifier, vraiment simplifier. Il y a vraiment trop de cases. Ça doit être plus dynamique :
+> le match, les infos. »
+
+Objectifs :
+- **Moins de cases** : une information n'apparaît qu'une fois, à l'endroit où elle sert. Le détail
+  (tableaux complets, méthode, sources) reste accessible, mais replié.
+- **Plus dynamique** : on explore un match en touchant (choisir une ligne de buts, changer d'onglet),
+  les chiffres se mettent à jour sur place au lieu d'être tous empilés.
+- **L'essentiel d'abord** : pour chaque match, le verdict et deux ou trois chiffres clés, lisibles d'un
+  coup d'œil sur téléphone.
+- Les règles 1 à 7 restent intactes (N/D, DÉMO, info-bulle sur chaque %, 18+, non fiable, PASSER).
+
+La maquette est présentée et validée avant tout changement de code.
