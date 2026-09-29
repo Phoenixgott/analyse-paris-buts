@@ -6,7 +6,6 @@ import { calculerModeleLocal } from '../donnees/chargement.js';
 import { MARCHES, STATUTS, creerPari, resoudreManuellement, statistiques, versCsv } from '../journal/paris.js';
 import { alerterLimites, ecrireReglages, jourDe, lireReglages, listerParis, maintenant, nouvelId, resoudreEnAttente, verifierLimites } from '../journal/service.js';
 import { envoyerAlerte, topicAleatoire, topicValide } from '../alertes/ntfy.js';
-import { kpiSimple } from '../composants/carte-kpi.js';
 import { badge } from '../composants/badge.js';
 import { ib } from '../composants/info-bulle.js';
 import { copier, telecharger } from '../composants/presse-papier.js';
@@ -31,26 +30,24 @@ function libelleOption(m) {
 
 function carteParis(p) {
   const statut = p.statut === 'gagne' ? badge('Gagné', 'gagne') : p.statut === 'perdu' ? badge('Perdu', 'perdu') : badge(STATUTS[p.statut], p.statut === 'en_cours' ? 'categorie' : 'nd');
+  // Les actions rares (rembourser, supprimer, rouvrir) restent rangées sous « Plus ».
+  const plus = (boutons) => `<details class="pari__plus"><summary>Plus</summary><div class="pari__actions">${boutons}</div></details>`;
   const actions =
     p.statut === 'en_cours'
       ? `<div class="pari__actions" data-pari="${esc(p.id)}">
           <button type="button" class="bouton bouton--petit bouton--discret" data-statut="gagne">Gagné</button>
           <button type="button" class="bouton bouton--petit bouton--discret" data-statut="perdu">Perdu</button>
-          <button type="button" class="bouton bouton--petit bouton--discret" data-statut="rembourse">Remboursé</button>
-          <button type="button" class="bouton bouton--petit bouton--discret" data-supprimer>Supprimer</button>
+          ${plus('<button type="button" class="bouton bouton--petit bouton--discret" data-statut="rembourse">Remboursé</button><button type="button" class="bouton bouton--petit bouton--discret" data-supprimer>Supprimer</button>')}
         </div>`
       : `<div class="pari__actions" data-pari="${esc(p.id)}">
-          <button type="button" class="bouton bouton--petit bouton--discret" data-rouvrir>Rouvrir</button>
-          <button type="button" class="bouton bouton--petit bouton--discret" data-supprimer>Supprimer</button>
+          ${plus('<button type="button" class="bouton bouton--petit bouton--discret" data-rouvrir>Rouvrir</button><button type="button" class="bouton bouton--petit bouton--discret" data-supprimer>Supprimer</button>')}
         </div>`;
-  return `<article class="pari pari--${p.statut}">
-    <div class="pari__haut"><span class="discret">${esc(dateLongue(p.date_match))}</span>${statut}</div>
-    <p class="pari__titre">${esc(p.libelle_match)}</p>
+  return `<li class="pari pari--${p.statut}">
+    <div class="pari__haut"><span class="pari__titre">${esc(p.libelle_match)}</span>${statut}</div>
     <p class="pari__detail">${esc(p.libelle_marche)} · cote ${esc(coteTexte(p.cote))} · mise ${esc(euros(p.mise))}${p.gain != null ? ` · <span class="${classeGain(p.gain)}">${esc(signeEuros(p.gain))}</span>` : ''}</p>
-    ${p.resultat?.raison ? `<p class="discret">${esc(p.resultat.raison)}${p.resolution === 'auto' ? ' (résolu automatiquement)' : ''}</p>` : ''}
-    ${p.note ? `<p class="discret">« ${esc(p.note)} »</p>` : ''}
+    <p class="discret">${esc(dateLongue(p.date_match))}${p.resultat?.raison ? ` · ${esc(p.resultat.raison)}${p.resolution === 'auto' ? ' (résolu automatiquement)' : ''}` : ''}${p.note ? ` · « ${esc(p.note)} »` : ''}</p>
     ${actions}
-  </article>`;
+  </li>`;
 }
 
 export async function pageJournal(app, query = new URLSearchParams()) {
@@ -70,12 +67,9 @@ export async function pageJournal(app, query = new URLSearchParams()) {
   if (limites.stop_loss_atteint) alertesLimites.push(`Stop-loss atteint aujourd’hui : ${signeEuros(limites.net_jour)} (limite −${euros(limites.stop_loss)}). Arrête-toi pour aujourd’hui.`);
   if (limites.mise_max_atteinte) alertesLimites.push(`Mise maximale du jour atteinte : ${euros(limites.mises_jour)} misés (limite ${euros(limites.mise_max_jour)}).`);
 
-  const kpis = [
-    kpiSimple({ titre: 'Bankroll', valeurHtml: stats.bankroll == null ? '<a href="#reglages-journal" data-aller="reglages">À régler</a>' : esc(euros(stats.bankroll)), sous: reglages.bankroll_initiale != null ? `Départ ${euros(reglages.bankroll_initiale)}` : '', aide: 'Bankroll de départ (réglages) + gains nets des paris résolus.' }),
-    kpiSimple({ titre: 'Gains nets', valeurHtml: `<span class="${classeGain(stats.gains)}">${esc(signeEuros(stats.gains))}</span>`, sous: `${stats.gagnes} gagné(s), ${stats.perdus} perdu(s)`, aide: 'Somme des gains et pertes des paris résolus (gagné : mise × (cote − 1) ; perdu : − mise ; remboursé : 0).' }),
-    kpiSimple({ titre: 'ROI', valeurHtml: `<span class="${classeGain(stats.roi)}">${esc(stats.roi == null ? 'N/D' : valueTexte(stats.roi))}</span>`, sous: `${euros(stats.mises)} misés`, aide: AIDE_ROI }),
-    kpiSimple({ titre: 'Réussite', valeurHtml: esc(stats.taux_reussite == null ? 'N/D' : pct(stats.taux_reussite * 100, 0)), sous: `${stats.en_cours} en cours`, aide: AIDE_REUSSITE }),
-  ];
+  const enCours = paris.filter((p) => p.statut === 'en_cours');
+  const termines = paris.filter((p) => p.statut !== 'en_cours');
+  const aideBankroll = 'Bankroll de départ (réglages) + gains nets des paris résolus (gagné : mise × (cote − 1) ; perdu : − mise ; remboursé : 0).';
 
   app.innerHTML = `
     <header class="page-tete"><h1 class="page-titre">Journal de paris</h1>
@@ -83,22 +77,25 @@ export async function pageJournal(app, query = new URLSearchParams()) {
     ${resolusAuto.length ? `<div class="bandeau-demo bandeau--info" role="status"><p>✓ ${resolusAuto.length} pari(s) résolu(s) automatiquement avec les derniers résultats importés.</p></div>` : ''}
     ${alertesLimites.length ? `<div class="bandeau-alerte" role="alert"><strong>Limite atteinte.</strong> ${alertesLimites.map(esc).join(' ')} Besoin d’aide : <a href="https://www.joueurs-info-service.fr/" target="_blank" rel="noopener noreferrer">joueurs-info-service.fr</a>.</div>` : ''}
 
-    <section class="carte section">
-      <h2 class="section__titre">Bilan</h2>
-      <div class="grille-kpi grille-kpi--4">${kpis.join('')}</div>
+    <section class="carte bilan" aria-labelledby="t-bilan">
+      <h2 class="sr-only" id="t-bilan">Bilan</h2>
+      <p class="bilan__bankroll"><span class="bilan__lib">Bankroll${ib(aideBankroll)}</span>
+        <span class="bilan__val">${stats.bankroll == null ? '<a href="#reglages-journal" data-aller="reglages">À régler</a>' : esc(euros(stats.bankroll))}</span>
+        ${stats.gagnes + stats.perdus ? `<span class="bilan__gains ${classeGain(stats.gains)}">${esc(signeEuros(stats.gains))}</span>` : ''}</p>
+      <p class="bilan__ligne">ROI <strong class="${classeGain(stats.roi)}">${esc(stats.roi == null ? 'N/D' : valueTexte(stats.roi))}</strong>${ib(AIDE_ROI)} · réussite <strong>${esc(stats.taux_reussite == null ? 'N/D' : pct(stats.taux_reussite * 100, 0))}</strong>${ib(AIDE_REUSSITE)}
+        · ${stats.gagnes} gagné(s), ${stats.perdus} perdu(s), ${stats.en_cours} en cours · ${esc(euros(stats.mises))} misés</p>
       ${
         stats.courbe.length > 1
           ? `<figure class="graphique"><figcaption class="graphique__titre">Courbe de bankroll${ib('Bankroll après chaque pari résolu, dans l’ordre de résolution. Pointillés : bankroll de départ.')}</figcaption>
-             <div class="graphique__zone" style="height:220px"><canvas id="g-bankroll" role="img" aria-label="Courbe de bankroll après chaque pari résolu"></canvas></div>
+             <div class="graphique__zone" style="height:200px"><canvas id="g-bankroll" role="img" aria-label="Courbe de bankroll après chaque pari résolu"></canvas></div>
              <details class="graphique__donnees"><summary>Voir les données</summary><div class="table-cadre"><table class="table"><thead><tr><th scope="col">Étape</th><th scope="col" class="num">Bankroll</th></tr></thead><tbody>
                ${stats.courbe.map((c, i) => `<tr><th scope="row">${i === 0 ? 'Départ' : esc(c.libelle)}</th><td class="num">${esc(euros(c.bankroll))}</td></tr>`).join('')}
              </tbody></table></div></details></figure>`
-          : '<p class="nd-bloc">La courbe apparaîtra après ton premier pari résolu.</p>'
+          : ''
       }
-      <p class="actions-ligne"><button type="button" class="bouton bouton--discret" id="j-csv"${paris.length ? '' : ' disabled'}>Exporter en CSV</button></p>
     </section>
 
-    <details class="carte section" id="bloc-nouveau"${prerempli || !paris.length ? ' open' : ''}>
+    <details class="carte section" id="bloc-nouveau"${prerempli ? ' open' : ''}>
       <summary class="section__titre resume-titre">Noter un pari</summary>
       <form id="j-form" class="formulaire" novalidate>
         <label class="champ">Match
@@ -119,13 +116,16 @@ export async function pageJournal(app, query = new URLSearchParams()) {
       </form>
     </details>
 
-    <section class="carte section">
-      <h2 class="section__titre">Mes paris <span class="discret">(${paris.length})</span></h2>
-      ${paris.length ? `<div class="liste-paris">${paris.map(carteParis).join('')}</div>` : '<p class="nd-bloc">Aucun pari noté pour l’instant.</p>'}
-      <p class="aide">Les paris se résolvent tout seuls quand tu importes les résultats (menu Récupérer les matchs, étape 4). Tu peux aussi les trancher à la main.</p>
+    <section class="carte section" aria-labelledby="t-paris">
+      <h2 class="section__titre" id="t-paris">Mes paris</h2>
+      ${paris.length ? '' : '<p class="nd-bloc">Aucun pari noté pour l’instant.</p>'}
+      ${enCours.length ? `<h3 class="sous-titre">En cours (${enCours.length})</h3><ul class="liste-lignes liste-paris">${enCours.map(carteParis).join('')}</ul>` : ''}
+      ${termines.length ? `<h3 class="sous-titre">Terminés (${termines.length})</h3><ul class="liste-lignes liste-paris">${termines.map(carteParis).join('')}</ul>` : ''}
+      <p class="aide">Les paris se résolvent tout seuls quand tu importes les résultats (Récupérer, étape 4). Tu peux aussi les trancher à la main.</p>
+      ${paris.length ? '<p class="actions-ligne"><button type="button" class="bouton bouton--petit bouton--discret" id="j-csv">Exporter en CSV</button></p>' : ''}
     </section>
 
-    <details class="carte section" id="reglages-journal">
+    <details class="carte section" id="reglages-journal"${topicValide(reglages.ntfy_topic) && reglages.bankroll_initiale != null ? '' : ' open'}>
       <summary class="section__titre resume-titre">Réglages : bankroll, limites, alertes</summary>
       <form id="j-reglages" class="formulaire" novalidate>
         <label class="champ">Bankroll de départ (€)<input id="r-bankroll" inputmode="decimal" value="${esc(reglages.bankroll_initiale ?? '')}"></label>
@@ -140,10 +140,7 @@ export async function pageJournal(app, query = new URLSearchParams()) {
         <p class="actions-ligne"><button type="submit" class="bouton">Enregistrer les réglages</button></p>
         <p class="etat" id="r-etat" role="status" aria-live="polite"></p>
       </form>
-    </details>
-
-    <details class="carte section" id="bloc-alertes"${topicValide(reglages.ntfy_topic) ? '' : ' open'}>
-      <summary class="section__titre resume-titre">Alertes sur ton téléphone ${topicValide(reglages.ntfy_topic) ? '<span class="discret">(activées)</span>' : ''}</summary>
+      <h3 class="sous-titre" id="bloc-alertes">Alertes sur ton téléphone ${topicValide(reglages.ntfy_topic) ? '<span class="discret">(activées)</span>' : ''}</h3>
       <ol class="etapes-alertes">
         <li>
           <p><strong>Crée ton canal secret.</strong></p>
@@ -246,7 +243,7 @@ export async function pageJournal(app, query = new URLSearchParams()) {
   });
 
   // --- Résolution manuelle, rouvrir, supprimer ---
-  app.querySelectorAll('.pari__actions').forEach((bloc) =>
+  app.querySelectorAll('.pari__actions[data-pari]').forEach((bloc) =>
     bloc.addEventListener('click', async (e) => {
       const bouton = e.target.closest('button');
       if (!bouton) return;
@@ -262,7 +259,7 @@ export async function pageJournal(app, query = new URLSearchParams()) {
   );
 
   // --- Export CSV ---
-  $('#j-csv').addEventListener('click', () => telecharger(`journal-paris-${aujourdhui}.csv`, versCsv(paris), 'text/csv;charset=utf-8'));
+  $('#j-csv')?.addEventListener('click', () => telecharger(`journal-paris-${aujourdhui}.csv`, versCsv(paris), 'text/csv;charset=utf-8'));
 
   // --- Réglages ---
   app.querySelector('[data-aller="reglages"]')?.addEventListener('click', (e) => {

@@ -2,7 +2,7 @@
 // (2) le backtest sur l'historique réel (football-data.co.uk). Brier, log-loss, calibration.
 import { esc, pct, valueTexte } from '../format.js';
 import * as local from '../donnees/local.js';
-import { chargerJSON } from '../donnees/chargement.js';
+import { chargerBacktest } from '../donnees/chargement.js';
 import { MARCHES_FIABILITE, SEUIL_ECHANTILLON, calibration, nombreMatchs, paires, resumeParMarche, brier } from '../../modele/fiabilite.js';
 import { ib } from '../composants/info-bulle.js';
 import { kpiSimple } from '../composants/carte-kpi.js';
@@ -85,26 +85,29 @@ function sectionBacktest(bt) {
       ${kpiSimple({ titre: 'Brier 2,5 marché', valeurHtml: esc(n4(actuelle.marche.brier_marche)), sous: `${actuelle.marche.n.toLocaleString('fr-FR')} matchs avec cotes`, aide: `${AIDE_BRIER} ${AIDE_MARCHE}` })}
       ${kpiSimple({ titre: 'ROI des values', valeurHtml: `<span class="${actuelle.value.roi >= 0 ? 'value--pos' : 'value--neg'}">${esc(valueTexte(actuelle.value.roi))}</span>`, sous: `${actuelle.value.paris} paris simulés`, aide: AIDE_ROI })}
     </div>
-    <h3 class="sous-titre">Réglages comparés</h3>
-    <div class="table-cadre"><table class="table table--compacte"><caption class="sr-only">Comparaison des réglages du modèle</caption>
-      <thead><tr><th scope="col">Réglages</th><th scope="col" class="num">Brier 1,5-3,5${ib(`${AIDE_BRIER} Moyenne des lignes Plus de 1,5, 2,5 et 3,5 buts.`)}</th><th scope="col" class="num">Brier 2,5${ib(AIDE_BRIER)}</th><th scope="col" class="num">Log-loss 2,5${ib(AIDE_LOGLOSS)}</th><th scope="col" class="num">ROI values${ib(AIDE_ROI)}</th></tr></thead>
-      <tbody>${lignes}</tbody></table></div>
-    <p class="aide">Demi-vie : ancienneté à laquelle un match pèse deux fois moins. Prior : nombre de « matchs moyens » ajoutés à chaque équipe pour éviter des forces trop tranchées.</p>
     <figure class="graphique"><figcaption class="graphique__titre">Calibration — Plus de 2,5 buts${ib(`${AIDE_CALIBRATION} Tranches d’au moins 20 matchs seulement.`)}</figcaption>
       <div class="graphique__zone" style="height:280px"><canvas id="g-calib-backtest" role="img" aria-label="Courbes de calibration du backtest, réglages actuels et plus justes"></canvas></div>
       <details class="graphique__donnees"><summary>Voir les données (réglages actuels)</summary><div class="table-cadre">${tableCalibration(bt.calibration.actuelle.over_2_5, 'Calibration du backtest')}</div></details>
     </figure>
-    <h3 class="sous-titre">Par championnat (réglages actuels)</h3>
-    <div class="table-cadre"><table class="table table--compacte"><caption class="sr-only">Backtest par championnat</caption>
-      <thead><tr><th scope="col">Championnat</th><th scope="col" class="num">Matchs</th><th scope="col" class="num">Brier modèle${ib(AIDE_BRIER)}</th><th scope="col" class="num">Brier marché${ib(AIDE_MARCHE)}</th><th scope="col" class="num">ROI${ib(AIDE_ROI)}</th></tr></thead>
-      <tbody>${ligues}</tbody></table></div>
-    ${bt.indisponibles?.length ? `<p class="discret">Non évalués : ${esc(bt.indisponibles.join(', '))}.</p>` : ''}
+    <details class="volet-detail">
+      <summary>Voir le détail : réglages comparés, par championnat</summary>
+      <h3 class="sous-titre">Réglages comparés</h3>
+      <div class="table-cadre"><table class="table table--compacte"><caption class="sr-only">Comparaison des réglages du modèle</caption>
+        <thead><tr><th scope="col">Réglages</th><th scope="col" class="num">Brier 1,5-3,5${ib(`${AIDE_BRIER} Moyenne des lignes Plus de 1,5, 2,5 et 3,5 buts.`)}</th><th scope="col" class="num">Brier 2,5${ib(AIDE_BRIER)}</th><th scope="col" class="num">Log-loss 2,5${ib(AIDE_LOGLOSS)}</th><th scope="col" class="num">ROI values${ib(AIDE_ROI)}</th></tr></thead>
+        <tbody>${lignes}</tbody></table></div>
+      <p class="aide">Demi-vie : ancienneté à laquelle un match pèse deux fois moins. Prior : nombre de « matchs moyens » ajoutés à chaque équipe pour éviter des forces trop tranchées.</p>
+      <h3 class="sous-titre">Par championnat (réglages actuels)</h3>
+      <div class="table-cadre"><table class="table table--compacte"><caption class="sr-only">Backtest par championnat</caption>
+        <thead><tr><th scope="col">Championnat</th><th scope="col" class="num">Matchs</th><th scope="col" class="num">Brier modèle${ib(AIDE_BRIER)}</th><th scope="col" class="num">Brier marché${ib(AIDE_MARCHE)}</th><th scope="col" class="num">ROI${ib(AIDE_ROI)}</th></tr></thead>
+        <tbody>${ligues}</tbody></table></div>
+      ${bt.indisponibles?.length ? `<p class="discret">Non évalués : ${esc(bt.indisponibles.join(', '))}.</p>` : ''}
+    </details>
   </section>`;
 }
 
 export async function pageFiabilite(app) {
   document.title = 'Fiabilité du modèle — Analyse Paris Buts';
-  const [predictions, resultats, backtest] = await Promise.all([local.lister('predictions'), local.lister('resultats'), chargerJSON('backtest/resume.json').catch(() => null)]);
+  const [predictions, resultats, backtest] = await Promise.all([local.lister('predictions'), local.lister('resultats'), chargerBacktest()]);
   const liste = paires(predictions, new Map(resultats.map((r) => [r.match_id, r])));
 
   app.innerHTML = `

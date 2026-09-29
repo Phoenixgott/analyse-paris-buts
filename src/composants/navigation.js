@@ -1,4 +1,4 @@
-// Sidebar : tiroir sur mobile (bouton ☰), colonne repliable sur grand écran.
+// Navigation : barre d'onglets en bas de l'écran sur téléphone, colonne repliable sur grand écran.
 const CLE_REPLI = 'apb.sidebarRepliee';
 
 function lire(cle) {
@@ -19,36 +19,7 @@ function ecrire(cle, valeur) {
 
 export function installerNavigation() {
   const corps = document.body;
-  const menu = document.getElementById('bouton-menu');
   const replier = document.getElementById('bouton-replier');
-  const sidebar = document.getElementById('sidebar');
-  const voile = document.getElementById('voile');
-
-  const fermerTiroir = (rendreFocus = true) => {
-    if (!corps.classList.contains('menu-ouvert')) return;
-    corps.classList.remove('menu-ouvert');
-    menu.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-label', 'Ouvrir le menu');
-    voile.hidden = true;
-    if (rendreFocus) menu.focus();
-  };
-
-  menu.addEventListener('click', () => {
-    if (corps.classList.contains('menu-ouvert')) return fermerTiroir();
-    corps.classList.add('menu-ouvert');
-    menu.setAttribute('aria-expanded', 'true');
-    menu.setAttribute('aria-label', 'Fermer le menu');
-    voile.hidden = false;
-    sidebar.querySelector('a')?.focus();
-  });
-  voile.addEventListener('click', () => fermerTiroir());
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') fermerTiroir();
-  });
-  sidebar.addEventListener('click', (e) => {
-    if (e.target.closest('a')) fermerTiroir(false);
-  });
-
   const appliquerRepli = (replie) => {
     corps.classList.toggle('sidebar-repliee', replie);
     replier.setAttribute('aria-pressed', String(replie));

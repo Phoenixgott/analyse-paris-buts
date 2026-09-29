@@ -12,15 +12,25 @@
   border-bottom: 3px solid var(--jaune);
 }
 
-.barre__menu {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 0;
-  border-radius: var(--rayon-petit);
+.barre__installer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  margin-left: auto;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 2px solid var(--jaune);
+  border-radius: 999px;
   background: transparent;
+  color: var(--jaune);
+  font-weight: 700;
   cursor: pointer;
+}
+
+.barre__installer svg {
+  width: 18px;
+  height: 18px;
 }
 
 .barre__marque {
@@ -73,36 +83,16 @@
   outline: none;
 }
 
-/* ---- Sidebar : tiroir sur mobile ---- */
+/* ---- Navigation : barre d'onglets en bas de l'écran sur téléphone ---- */
 .sidebar {
   position: fixed;
   z-index: 40;
-  top: 0;
-  bottom: 0;
   left: 0;
-  width: min(280px, 85vw);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px 12px;
+  right: 0;
+  bottom: 0;
+  padding: 4px 4px calc(4px + env(safe-area-inset-bottom));
   background: var(--bleu);
-  border-right: 1px solid var(--ligne);
-  transform: translateX(-100%);
-  visibility: hidden;
-  transition: transform 0.2s ease, visibility 0.2s;
-  overflow-y: auto;
-}
-
-.menu-ouvert .sidebar {
-  transform: none;
-  visibility: visible;
-}
-
-.voile {
-  position: fixed;
-  inset: 0;
-  z-index: 35;
-  background: rgba(3, 10, 26, 0.6);
+  border-top: 3px solid var(--jaune);
 }
 
 .sidebar__liens {
@@ -110,31 +100,26 @@
   margin: 0;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 4px;
 }
 
-.sidebar a,
-.sidebar__action,
-.sidebar__replier {
+.sidebar a {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  min-height: 48px;
-  padding: 0 12px;
-  border: 0;
+  justify-content: center;
+  gap: 2px;
+  min-height: 52px;
+  padding: 4px 2px;
   border-radius: var(--rayon-petit);
-  background: transparent;
   color: var(--texte);
   text-decoration: none;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  width: 100%;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
-.sidebar a:hover,
-.sidebar__action:hover,
-.sidebar__replier:hover {
+.sidebar a:hover {
   background: var(--bleu-clair);
 }
 
@@ -143,43 +128,79 @@
   color: var(--fond);
 }
 
-.sidebar__action {
-  color: var(--jaune);
-}
-
 .sidebar__replier {
   display: none;
-  margin-top: auto;
-  color: var(--texte-doux);
 }
 
-/* ---- Grand écran : sidebar en colonne, repliable ---- */
-@media (min-width: 960px) {
-  .barre__menu {
-    display: none;
-  }
+/* La barre du bas ne cache jamais la fin de la page (pied 18+ compris). */
+.colonne {
+  padding-bottom: calc(64px + env(safe-area-inset-bottom));
+}
 
+/* ---- Grand écran : colonne à gauche, repliable ---- */
+@media (min-width: 960px) {
   .barre {
     padding-left: 20px;
+  }
+
+  .colonne {
+    padding-bottom: 0;
   }
 
   .sidebar {
     position: sticky;
     top: var(--barre-h);
+    right: auto;
+    bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     height: calc(100dvh - var(--barre-h));
     width: var(--sidebar-l);
     flex: none;
-    transform: none;
-    visibility: visible;
+    padding: 16px 12px;
+    border-top: 0;
+    border-right: 1px solid var(--ligne);
+    overflow-y: auto;
     transition: width 0.2s ease;
   }
 
-  .voile {
-    display: none;
+  .sidebar__liens {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar a,
+  .sidebar__replier {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 48px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: var(--rayon-petit);
+    background: transparent;
+    color: var(--texte);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .sidebar a[aria-current='page'] {
+    background: var(--jaune);
+    color: var(--fond);
   }
 
   .sidebar__replier {
     display: flex;
+    align-items: center;
+    margin-top: auto;
+    color: var(--texte-doux);
+  }
+
+  .sidebar__replier:hover {
+    background: var(--bleu-clair);
   }
 
   .sidebar-repliee .sidebar {

@@ -254,7 +254,11 @@ function jaugeConfiance(canvas, modele) {
   });
 }
 
-/** Dessine tous les graphiques présents dans la page (les blocs sans donnée n'ont pas de canvas). */
+/**
+ * Dessine les graphiques visibles de la racine (les blocs sans donnée n'ont pas de canvas).
+ * Un graphique dans un onglet caché est dessiné quand l'onglet s'affiche (nouvel appel) :
+ * dessiné caché, il aurait une taille nulle.
+ */
 export function dessinerGraphiques(racine, match, modele) {
   const dessins = {
     'g-forme': (c) => forme(c, match),
@@ -265,6 +269,8 @@ export function dessinerGraphiques(racine, match, modele) {
   };
   for (const [id, dessiner] of Object.entries(dessins)) {
     const canvas = racine.querySelector(`#${id}`);
-    if (canvas) enregistrer(dessiner(canvas));
+    if (!canvas || canvas.dataset.dessine || canvas.offsetParent === null) continue;
+    canvas.dataset.dessine = '1';
+    enregistrer(dessiner(canvas));
   }
 }
