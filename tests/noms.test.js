@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { nomCanonique, normaliserTexte } from '../src/collecte/noms.js';
+import { memeJoueur, nomCanonique, normaliserTexte } from '../src/collecte/noms.js';
 import { lireJSON } from './aides.js';
 
 const equipes = (id) => lireJSON(`data/ligues/${id}.json`).equipes_saison;
@@ -76,6 +76,14 @@ describe('rapprochement des noms d’équipes', () => {
     expect(nomCanonique('Manchester', equipes('en-pl'))).toBeNull(); // City ou United ?
     expect(nomCanonique('FC Barcelone B', equipes('fr-l1'))).toBeNull();
     expect(nomCanonique('Wrexham', equipes('en-pl'))).toBeNull();
+  });
+
+  it('reconnaît un joueur écrit avec son initiale, pas un homonyme', () => {
+    expect(memeJoueur('A. Lacazette', 'Alexandre Lacazette')).toBe(true);
+    expect(memeJoueur('Lacazette', 'Alexandre Lacazette')).toBe(true);
+    expect(memeJoueur('Kylian Mbappé', 'K. Mbappe')).toBe(true);
+    expect(memeJoueur('B. Lacazette', 'Alexandre Lacazette')).toBe(false);
+    expect(memeJoueur('Ethan Mbappé', 'Kylian Mbappé')).toBe(false);
   });
 
   it('normalise accents, apostrophes et lettres spéciales', () => {

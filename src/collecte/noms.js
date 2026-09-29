@@ -133,6 +133,20 @@ function couvertureParSigles(b, a) {
 }
 
 /**
+ * Même joueur ? Nom de famille identique (dernier mot) et prénoms compatibles : « A. Lacazette »,
+ * « Alexandre Lacazette » et « Lacazette » désignent le même joueur ; « B. Lacazette » non.
+ */
+export function memeJoueur(a, b) {
+  const ja = normaliserTexte(a).split(' ').filter(Boolean);
+  const jb = normaliserTexte(b).split(' ').filter(Boolean);
+  if (!ja.length || !jb.length || ja.at(-1) !== jb.at(-1)) return false;
+  const pa = ja.slice(0, -1);
+  const pb = jb.slice(0, -1);
+  if (!pa.length || !pb.length) return true;
+  return pa[0][0] === pb[0][0] && (pa[0].length === 1 || pb[0].length === 1 || pa[0] === pb[0]);
+}
+
+/**
  * Nom de la liste le plus proche de `nom`, ou null si aucun n'est net (score ≥ 0,7) et unique
  * (au moins 0,15 d'avance sur le suivant). Renvoie { nom, score, exact }.
  */
