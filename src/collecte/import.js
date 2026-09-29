@@ -475,6 +475,77 @@ function importerMiseAJour(obj, ctx, rapport) {
   return sortie;
 }
 
+/** Retrouve la fiche (ou l'annonce) d'un match : même jour de Paris, équipes rapprochées. */
+function retrouverMatch(brut, coupEnvoi, ctx) {
+  const jourCible = jourParis(new Date(coupEnvoi));
+  const candidats = [
+    ...[...(ctx.matchs?.values() ?? [])].map((m) => ({ id: m.match_id, noms: [m.equipes.domicile.nom, m.equipes.exterieur.nom], coup_envoi: m.coup_envoi })),
+    ...[...(ctx.annonces?.values() ?? [])].map((a) => ({ id: a.id, noms: [a.domicile, a.exterieur], coup_envoi: a.coup_envoi })),
+  ].filter((c) => jourParis(new Date(c.coup_envoi)) === jourCible);
+  return candidats.find((c) => nomCanonique(brut.domicile, c.noms)?.nom === c.noms[0] && nomCanonique(brut.exterieur, c.noms)?.nom === c.noms[1]) ?? null;
+}
+
+function importerResultats(obj, ctx, rapport) {
+  const sortie = [];
+  for (const brut of Array.isArray(obj.matchs) ? obj.matchs : []) {
+    const coupEnvoi = instantUtc(brut?.coup_envoi);
+    const etiquette = `${texte(brut?.domicile, 60) ?? '?'} – ${texte(brut?.exterieur, 60) ?? '?'}`;
+    if (!coupEnvoi || !texte(brut?.domicile) || !texte(brut?.exterieur)) {
+      rapport.ecartes.push({ match: etiquette, raison: 'Équipes ou heure (UTC avec « Z ») manquantes.' });
+      continue;
+    }
+    if (!url(brut.source)) {
+      rapport.ecartes.push({ match: etiquette, raison: 'Résultat sans URL de source : ignoré.' });
+      continue;
+    }
+    const statut = ['termine', 'reporte', 'abandonne'].includes(brut.statut) ? brut.statut : null;
+    if (!statut) {
+      rapport.ecartes.push({ match: etiquette, raison: 'Match pas encore terminé ou résultat introuvable.' });
+      continue;
+    }
+    const s = score(brut.score);
+    let mt = score(brut.score_mt);
+    if (statut === 'termine' && !s) {
+      rapport.ecartes.push({ match: etiquette, raison: 'Match « terminé » sans score lisible : ignoré.' });
+      continue;
+    }
+    if (s && mt) {
+      const [a, b] = s.split('-').map(Number);
+      const [c, d] = mt.split('-').map(Number);
+      if (c > a || d > b) {
+        mt = null;
+        rapport.ecartes.push({ match: etiquette, raison: 'Score à la mi-temps supérieur au score final : ignoré.' });
+      }
+    }
+    let buteurs = Array.isArray(brut.buteurs)
+      ? brut.buteurs.map((b) => ({ nom: texte(b?.nom, 60), equipe: lieuDE(b?.equipe), minute: entier(b?.minute, 1, 130), csc: b?.csc === true })).filter((b) => b.nom && b.equipe)
+      : null;
+    if (buteurs && s) {
+      // Chaque équipe : ses buteurs + les contre-son-camp de l'adversaire = ses buts.
+      const [bd, be] = s.split('-').map(Number);
+      const pour = (cote) => buteurs.filter((b) => (b.equipe === cote && !b.csc) || (b.equipe !== cote && b.csc)).length;
+      if (pour('D') !== bd || pour('E') !== be) {
+        rapport.ecartes.push({ match: etiquette, raison: `Liste des buteurs incohérente avec le score ${s} : ignorée (les paris buteur se résoudront à la main).` });
+        buteurs = null;
+      }
+    }
+    const trouve = retrouverMatch(brut, coupEnvoi, ctx);
+    if (!trouve) rapport.avertissements.push({ match: etiquette, message: 'Aucune fiche ni match listé correspondant : résultat gardé, mais aucun pari ne pourra y être relié automatiquement.' });
+    sortie.push({
+      match_id: trouve?.id ?? idMatch(coupEnvoi, brut.domicile, brut.exterieur),
+      libelle: trouve ? `${trouve.noms[0]} – ${trouve.noms[1]}` : etiquette,
+      coup_envoi: coupEnvoi,
+      statut,
+      score: s,
+      score_mt: mt,
+      buteurs,
+      source: url(brut.source),
+      importe_le: ctx.maintenant,
+    });
+  }
+  return sortie;
+}
+
 /**
  * ctx : { maintenant (ISO « …Z »), date (AAAA-MM-JJ attendue pour une liste), noms (Map compétition → noms
  * de l'historique), matchs (Map match_id → fiche déjà connue), annonces (Map id → match de la liste du jour) }.
@@ -482,8 +553,9 @@ function importerMiseAJour(obj, ctx, rapport) {
  */
 export function importerReponse(texteColle, ctx) {
   const { objets, erreurs, suite } = extraireReponse(texteColle);
-  const rapport = { erreurs: [...erreurs], ecartes: [], avertissements: [], nouveaux: [], mis_a_jour: [], annonces: 0, suite };
+  const rapport = { erreurs: [...erreurs], ecartes: [], avertissements: [], nouveaux: [], mis_a_jour: [], annonces: 0, resultats: 0, suite };
   const annonces = [];
+  const resultats = [];
   const matchs = new Map();
   const connus = new Map(ctx.matchs ?? []);
   const types = [];
@@ -515,9 +587,13 @@ export function importerReponse(texteColle, ctx) {
       }
     } else if (type === 'maj-matchs') {
       for (const r of importerMiseAJour(obj, { ...ctx, matchs: connus }, rapport)) finaliser(r.match, false, r.changes.length ? r.changes : ['rien de nouveau']);
+    } else if (type === 'resultats-matchs') {
+      const r = importerResultats(obj, { ...ctx, matchs: connus }, rapport);
+      resultats.push(...r);
+      rapport.resultats += r.length;
     } else {
-      rapport.erreurs.push(`Type de réponse inconnu (« ${type ?? 'absent'} ») : attendu liste-matchs, fiches-matchs ou maj-matchs.`);
+      rapport.erreurs.push(`Type de réponse inconnu (« ${type ?? 'absent'} ») : attendu liste-matchs, fiches-matchs, maj-matchs ou resultats-matchs.`);
     }
   }
-  return { types, annonces, matchs: [...matchs.values()], rapport };
+  return { types, annonces, matchs: [...matchs.values()], resultats, rapport };
 }

@@ -109,6 +109,31 @@ RÉPONSE : uniquement un bloc \`\`\`json de cette forme : {"type":"fiches-matchs
 ${SUITE}`;
 }
 
+/** Étape 4 — résultats après le match (pour résoudre les paris du journal). */
+export function promptResultats(matchs) {
+  const liste = matchs.map((m, i) => `${i + 1}. ${m.domicile} vs ${m.exterieur} — coup d'envoi ${m.coup_envoi} (${heure(m.coup_envoi)} heure de Paris)`).join('\n');
+  return `${ENTETE}
+
+MATCHS DONT JE VEUX LE RÉSULTAT DÉFINITIF
+${liste}
+
+Pour chaque match :
+{"domicile": "…", "exterieur": "…", "coup_envoi": "AAAA-MM-JJTHH:MM:SSZ",
+ "statut": "termine" | "reporte" | "abandonne" | null,
+ "score": "2-1", "score_mt": "1-0",
+ "buteurs": [{"nom": "…", "equipe": "D", "minute": 23, "csc": false}],
+ "source": "URL"}
+
+RÈGLES
+1. score = score à la fin du temps réglementaire (90 minutes + arrêts de jeu), SANS prolongation ni tirs au but ; score_mt = score à la mi-temps ; les deux vus du club qui reçoit (domicile-extérieur).
+2. buteurs : tous les buts du match ; equipe « D » ou « E » = équipe du joueur ; « csc »: true pour un but contre son camp (il compte pour l'adversaire).
+3. Match pas encore terminé ou résultat introuvable : statut null et score null. N'invente rien.
+4. source obligatoire (page du match sur un site fiable).
+
+RÉPONSE : uniquement un bloc \`\`\`json de cette forme : {"type":"resultats-matchs","matchs":[ … ]}
+${SUITE}`;
+}
+
 /** Étape 3 — mise à jour avant le match : cotes, absents, compositions, météo. */
 export function promptMiseAJour(matchs) {
   const liste = matchs.map((m, i) => `${i + 1}. ${m.domicile} vs ${m.exterieur} — coup d'envoi ${m.coup_envoi} (${heure(m.coup_envoi)} heure de Paris)`).join('\n');
