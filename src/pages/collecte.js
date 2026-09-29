@@ -133,7 +133,9 @@ export async function pageCollecte(app) {
         <button type="button" class="bouton bouton--discret" id="c-sauver">Sauvegarder (.json)</button>
         <label class="bouton bouton--discret bouton--fichier">Restaurer<input type="file" accept="application/json,.json" id="c-restaurer" hidden></label>
         <button type="button" class="bouton bouton--discret" id="c-effacer">Effacer ce jour</button>
+        <button type="button" class="bouton bouton--discret" id="c-tout-effacer">Effacer tous les matchs</button>
       </p>
+      <p class="aide">« Effacer » retire les matchs, fiches et résultats de cet appareil. Ton journal de paris, tes réglages et l’archive des prédictions (page Fiabilité) sont conservés.</p>
       <p class="etat" data-etat="donnees" role="status" aria-live="polite"></p>
     </section>
     <details class="carte apercu-demande"><summary>Voir la dernière demande copiée</summary><textarea id="c-demande" readonly rows="10" aria-label="Dernière demande"></textarea></details>`;
@@ -357,6 +359,22 @@ export async function pageCollecte(app) {
     await local.supprimer('resultats', ids);
     await local.supprimer('annonces', annonces.filter((a) => a.date === jour).map((a) => a.id));
     etat('donnees', `${ids.length} fiche(s) effacée(s).`);
+    await rafraichir();
+  });
+  $('#c-tout-effacer').addEventListener('click', async () => {
+    const n = (await local.lister('matchs')).length + (await local.lister('annonces')).length;
+    if (!n) {
+      etat('donnees', 'Aucun match à effacer.');
+      return;
+    }
+    if (!window.confirm('Effacer TOUS les matchs, fiches et résultats de cet appareil ?\n\nTon journal de paris, tes réglages et l’archive des prédictions sont conservés. Astuce : « Sauvegarder (.json) » avant, pour pouvoir revenir en arrière.')) return;
+    for (const magasin of ['annonces', 'matchs', 'modeles', 'resultats']) await local.vider(magasin);
+    try {
+      sessionStorage.removeItem('apb.jour');
+    } catch {
+      /* rien à oublier */
+    }
+    etat('donnees', 'Tous les matchs ont été effacés. L’accueil affiche de nouveau la démo.');
     await rafraichir();
   });
 

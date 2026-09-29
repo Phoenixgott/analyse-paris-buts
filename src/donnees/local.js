@@ -73,6 +73,21 @@ export async function ecrire(magasin, objets) {
   navigator.storage?.persist?.().catch(() => {});
 }
 
+/** Vide entièrement un magasin. */
+export async function vider(magasin) {
+  const d = await db();
+  if (!d) {
+    memoire[magasin].clear();
+    return;
+  }
+  const t = d.transaction(magasin, 'readwrite');
+  t.objectStore(magasin).clear();
+  await new Promise((ok, ko) => {
+    t.oncomplete = ok;
+    t.onerror = () => ko(t.error);
+  });
+}
+
 export async function supprimer(magasin, cles) {
   if (!cles.length) return;
   const d = await db();
