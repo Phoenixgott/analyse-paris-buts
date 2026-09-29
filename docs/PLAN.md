@@ -94,7 +94,14 @@ tests/       Vitest
   reçue sur le téléphone). Écarts : journal, résultats et réglages stockés sur l'appareil ; résultats
   collectés par une 4e demande (« résultats ») ; alertes ntfy.sh envoyées depuis le navigateur ; un pari
   buteur non trouvé dans la liste des buteurs reste à trancher à la main (le joueur a-t-il joué ?) ; les
-  limites avertissent et demandent confirmation, sans bloquer.
+  limites avertissent et demandent confirmation, sans bloquer. Alertes validées (reçues sur le
+  téléphone) ; pari test à résoudre avec les résultats du 29/09.
+- Phase 6 : livrée le 29/09/2026, en attente de validation (Brier sur une journée réelle : les matchs du
+  29/09, prédits avant le coup d'envoi puis leurs résultats importés). Archive des prédictions sur
+  l'appareil (jamais après le coup d'envoi) ; backtest walk-forward sur 7 029 matchs réels, relancé
+  chaque nuit. **Décision ouverte** : garder les réglages du cahier des charges (60 j, prior 1) ou passer
+  aux réglages les plus justes (240 j, prior 20) ; et comment présenter les « PARIER » sachant que le
+  backtest ne montre aucune rentabilité des values.
 
 ## Phases
 

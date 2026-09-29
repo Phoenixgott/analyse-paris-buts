@@ -59,13 +59,14 @@ stade et enjeu 3. Chaque rubrique rapporte ses points au prorata des champs rée
 ## Où sont les données
 
 - **Matchs collectés par prompt** : sur l'appareil (IndexedDB « analyse-paris-buts », magasins
-  `annonces`, `matchs`, `modeles`), jamais publiés. Chaque fiche est validée contre ce schéma à l'import
+  `annonces`, `matchs`, `modeles`, `paris`, `resultats`, `reglages`, `predictions`), jamais publiés. Chaque fiche est validée contre ce schéma à l'import
   et à la restauration d'une sauvegarde. `match_id` = `AAAA-MM-JJ-domicile-exterieur` (jour de Paris).
 - **Publiés sur le site** :
 
 ```
 data/index.json                      { jours: [], demo: "demo" }
 data/ligues/<competition_id>.json    historique football-data.co.uk, lu par le modèle dans le navigateur
+data/backtest/resume.json            résultats du backtest (page Fiabilité)
 data/demo/…                          6 matchs fictifs et leurs calculs (npm run demo) ; ligues fictives non publiées
 ```
 

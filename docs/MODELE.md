@@ -70,10 +70,22 @@ Heuristiques simples et visibles une par une dans la fiche. Une donnée absente 
   fournie ÷ 15) + 30 % accord modèle/marché (Over 1,5/2,5/3,5, marge retirée ; 0 dès 15 points d'écart).
 - Verdict : la meilleure value parmi les paris suggérés, sinon **PASSER** avec la raison.
 
-## Limite connue : demi-vie de 60 jours
+## Ce que dit le backtest (phase 6, `scripts/backtest/backtest.js`)
 
-Mesuré sur des ligues simulées (forces constantes, 18 équipes, 8 tirages) : erreur moyenne sur les buts
-attendus de **16 % après 7 journées et 13 % après 20 journées avec 60 jours**, contre ~10 % avec
-120 jours et ~8 % avec 240 jours. Des forces constantes favorisent les longues demi-vies ; dans la
-réalité les équipes évoluent. Le backtest de la phase 6 dira quelle demi-vie est la mieux calibrée.
-Conséquence directe : avec 60 jours, une partie des « values » détectées sont des erreurs du modèle.
+Walk-forward hebdomadaire sur l'historique réel football-data.co.uk : chaque semaine, le modèle est
+ajusté sur les seuls matchs antérieurs, puis prédit la semaine. **7 029 matchs** (saison 2025/26 et
+début 2026/27, 16 championnats), comparés au marché (cotes moyennes Plus/Moins 2,5, marge retirée) :
+
+| Réglages | Brier moyen 1,5/2,5/3,5 | Brier 2,5 (marché : 0,2418) | ROI des values sur 2,5 (cote max) |
+|---|---|---|---|
+| **60 j, prior 1 (actuels)** | 0,2182 | 0,2563 | −5,8 % (3 490 paris) |
+| 240 j, prior 1 | 0,2136 | 0,2509 | −6,2 % |
+| 240 j, prior 20 | 0,2102 | 0,2464 | −9,7 % |
+
+- Le modèle est **trop dispersé** (probabilités trop tranchées : écart-type ~13 points contre ~6 pour le
+  marché) : quand il annonce 20-30 % sur « +2,5 », c'est arrivé ~44 % du temps ; 70-80 % → ~62 %.
+- Une demi-vie plus longue et un prior plus fort améliorent nettement la calibration, **sans atteindre
+  le marché**.
+- **Aucun réglage testé ne rend les « values » rentables** : ce sont surtout des erreurs du modèle.
+
+Le backtest est relancé chaque nuit par la tâche des historiques ; la page « Fiabilité » l'affiche.

@@ -36,6 +36,15 @@ date impossible, cotes incohérentes…). Les matchs restent **sur ton télépho
   abonne-toi à ce nom dans ntfy (serveur ntfy.sh). Alertes : nouveaux value bets après un import, limite
   atteinte, paris résolus. Sans clé ; le nom du canal reste sur ton téléphone.
 
+## Fiabilité du modèle
+
+- **Tes prédictions** : chaque probabilité calculée avant le coup d'envoi est archivée sur l'appareil puis
+  comparée au score réel (Brier, log-loss, calibration, comparaison au marché). Sous 100 matchs évalués,
+  la page affiche « échantillon insuffisant ».
+- **Backtest** : `node scripts/backtest/backtest.js` (aussi chaque nuit) prédit semaine après semaine
+  plus de 7 000 matchs réels avec les seuls matchs antérieurs. Résultat actuel : le modèle est moins
+  précis que le marché et les « values » ne sont pas rentables (détails dans [docs/MODELE.md](docs/MODELE.md)).
+
 L'historique des 16 championnats (résultats, scores à la pause) vient de
 [football-data.co.uk](https://www.football-data.co.uk/), fichiers publics téléchargés chaque nuit par
 une tâche GitHub (`.github/workflows/historiques.yml`), sans clé ni compte.
