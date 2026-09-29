@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-09-29T09:25:39Z",
+ "genere_le": "2026-09-29T10:48:59Z",
  "source": "football-data.co.uk (résultats, scores à la pause, cotes moyennes et maximales Plus/Moins 2,5)",
  "methode": "Walk-forward hebdomadaire : le modèle est ajusté sur les seuls matchs antérieurs au lundi de la semaine prédite ; évaluation sur la saison précédente et la saison en cours.",
  "configurations": [
