@@ -99,7 +99,7 @@ SIGNIFICATION DES CHAMPS
 - cotes : cotes décimales actuelles ; « meilleure » = la plus haute trouvée sur un comparateur (Oddsportal, Oddschecker…) ou chez un bookmaker.
 
 RÈGLES
-1. Chaque bloc rempli doit avoir son URL dans « sources » (classement, forme, stats, h2h, effectifs pour absents et compo, buteurs, cotes, arbitre, meteo, elo). Un bloc sans source sera ignoré par le site.
+1. Chaque bloc rempli doit avoir son URL dans « sources » (classement, forme, stats, h2h, effectifs pour absents et compo, buteurs, cotes, arbitre, meteo, elo) ; si un bloc vient de plusieurs pages, mets la liste de leurs URL : ["URL 1", "URL 2"]. Un bloc sans source sera ignoré par le site.
 2. Recopie ce que publient les sources (SofaScore, FBref, FootyStats, Transfermarkt, WhoScored, site officiel…) ; ne reconstitue pas une statistique de mémoire. Une stat non publiée vaut null.
 3. Ne recopie jamais une cote que tu n'as pas vue.
 4. Dates AAAA-MM-JJ, heures en UTC, nombres décimaux avec un point.

@@ -139,6 +139,14 @@ describe('étape 2 : fiche complète', () => {
     expect(r.rapport.ecartes.some((e) => /2 match\(s\) de forme écarté/.test(e.raison))).toBe(true);
   });
 
+  it('accepte une liste d’URL comme source d’un bloc', () => {
+    const f = structuredClone(FICHE);
+    f.sources.forme = ['https://www.worldfootball.net/teams/a/', 'pas une url', 'https://www.worldfootball.net/teams/b/'];
+    const m2 = importerReponse(enBloc({ type: 'fiches-matchs', matchs: [f] }), ctx()).matchs[0];
+    expect(m2.equipes.domicile.forme).not.toBeNull();
+    expect(m2.sources.find((s) => s.nom.startsWith('forme : ')).nom).toBe('forme : https://www.worldfootball.net/teams/a/ ; https://www.worldfootball.net/teams/b/');
+  });
+
   it('ignore un bloc sans URL de source (arbitre)', () => {
     expect(m.arbitre).toBeNull();
     expect(r.rapport.ecartes.some((e) => /sans URL de source.*arbitre/.test(e.raison))).toBe(true);

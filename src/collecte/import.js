@@ -66,7 +66,12 @@ const texte = (v, max = 160) => (typeof v === 'string' && v.trim() ? v.trim().sl
 const booleen = (v) => (v === true || v === false ? v : null);
 const lieuDE = (v) => (v === 'D' || v === 'E' ? v : null);
 const jour = (v) => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(`${v}T00:00:00Z`)) ? v : null);
-const url = (v) => (typeof v === 'string' && /^https?:\/\/\S+$/i.test(v.trim()) ? v.trim() : null);
+// Une source = une URL, ou une liste d'URL (la forme de deux équipes vient souvent de plusieurs pages).
+const urlSimple = (v) => (typeof v === 'string' && /^https?:\/\/\S+$/i.test(v.trim()) ? v.trim() : null);
+const url = (v) => {
+  const liste = (Array.isArray(v) ? v : [v]).map(urlSimple).filter(Boolean);
+  return liste.length ? liste.join(' ; ') : null;
+};
 const r2 = (x) => Math.round(x * 100) / 100;
 
 export function score(v) {
