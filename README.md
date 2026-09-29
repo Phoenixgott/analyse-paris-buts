@@ -21,6 +21,21 @@ un rapport dit ce qui a été ajouté, rapproché (noms d'équipes) ou écarté,
 date impossible, cotes incohérentes…). Les matchs restent **sur ton téléphone** : pense à
 « Sauvegarder (.json) » de temps en temps.
 
+4. **Après le match** : demande des résultats (score final à 90 minutes, mi-temps, buteurs). Les
+   paris du journal se résolvent alors tout seuls.
+
+## Top picks, journal et alertes
+
+- **Top picks** : les paris qui passent tous les filtres du modèle, par marché, avec la cote minimale et
+  la mise conseillée. Les picks d'un même match sont marqués « lié » : ne les combine pas.
+- **Journal de paris** : « Noter » depuis Top picks ou la fiche d'un match (ou saisie libre), résolution
+  automatique avec les résultats importés (ou à la main), bankroll, gains, ROI, taux de réussite,
+  courbe de bankroll, export CSV. **Limites** : mise maximale par jour et stop-loss journalier ; le site
+  demande confirmation avant de les dépasser.
+- **Alertes** (Journal → Réglages) : installe l'application **ntfy**, génère un nom de canal secret,
+  abonne-toi à ce nom dans ntfy (serveur ntfy.sh). Alertes : nouveaux value bets après un import, limite
+  atteinte, paris résolus. Sans clé ; le nom du canal reste sur ton téléphone.
+
 L'historique des 16 championnats (résultats, scores à la pause) vient de
 [football-data.co.uk](https://www.football-data.co.uk/), fichiers publics téléchargés chaque nuit par
 une tâche GitHub (`.github/workflows/historiques.yml`), sans clé ni compte.

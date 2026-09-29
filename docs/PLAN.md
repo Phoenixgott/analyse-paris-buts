@@ -90,6 +90,11 @@ tests/       Vitest
   nations (liste de 10 matchs puis 3 fiches importées, 0 bloc écarté). La vérification sur une
   journée de Ligue 1 (historique football-data.co.uk utilisé en conditions réelles) reste à faire au
   prochain week-end de championnat.
+- Phase 5 : livrée le 29/09/2026, en attente de validation (pari test résolu automatiquement, alerte
+  reçue sur le téléphone). Écarts : journal, résultats et réglages stockés sur l'appareil ; résultats
+  collectés par une 4e demande (« résultats ») ; alertes ntfy.sh envoyées depuis le navigateur ; un pari
+  buteur non trouvé dans la liste des buteurs reste à trancher à la main (le joueur a-t-il joué ?) ; les
+  limites avertissent et demandent confirmation, sans bloquer.
 
 ## Phases
 
