@@ -1456,6 +1456,49 @@ details[open] > .resume-titre {
   margin-top: 8px;
 }
 
+/* ---- Fiabilité (phase 6) ---- */
+.constat {
+  margin: 8px 0 16px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--jaune);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+}
+
+.constat p {
+  margin: 0 0 8px;
+}
+
+.attenue {
+  opacity: 0.55;
+}
+
+/* Tableaux chiffrés à 5 colonnes : tiennent à 360 px. */
+.table--compacte {
+  font-size: 0.78rem;
+}
+
+.table--compacte th,
+.table--compacte td {
+  padding: 6px 3px;
+}
+
+.table--compacte thead th {
+  font-size: 0.68rem;
+}
+
+.table--compacte .ib {
+  width: 18px;
+  height: 18px;
+  margin-left: 2px;
+  font-size: 0.65rem;
+}
+
+.ligne-actuelle th,
+.ligne-actuelle td {
+  background: var(--jaune-doux);
+}
+
 .etapes-alertes {
   display: grid;
   gap: 16px;

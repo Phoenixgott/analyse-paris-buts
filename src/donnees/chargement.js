@@ -7,6 +7,7 @@ import { jourParis } from '../format.js';
 import * as local from './local.js';
 import { analyserMatch, VERSION_MODELE } from '../../modele/analyser.js';
 import { construireIndex } from '../../scripts/lib/index-jour.js';
+import { instantanePrediction } from '../../modele/archive.js';
 
 const BASE_DONNEES = `${import.meta.env.BASE_URL}data/`;
 const memoire = new Map();
@@ -41,14 +42,27 @@ export async function chargerNoms(ids) {
 const maintenant = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 const jourDe = (m) => jourParis(new Date(m.coup_envoi));
 
+/** Archive la dernière prédiction faite avant le coup d'envoi (jamais après : pas de triche). */
+async function archiver(match, modele) {
+  const instantane = instantanePrediction(match, modele);
+  if (!instantane) return;
+  const deja = await local.lire('predictions', match.match_id);
+  if (deja?.calcule_le === instantane.calcule_le) return;
+  await local.ecrire('predictions', [instantane]);
+}
+
 /** Calcul du modèle pour un match local, mis en cache tant que ni la fiche ni l'historique ne changent. */
 export async function calculerModeleLocal(match) {
   const historique = await chargerHistorique(match.competition.id);
   const cle = `${match.generated_at}|${historique?.maj ?? 'sans-historique'}|${VERSION_MODELE}`;
   const cache = await local.lire('modeles', match.match_id);
-  if (cache?.cle === cle) return cache.modele;
+  if (cache?.cle === cle) {
+    await archiver(match, cache.modele);
+    return cache.modele;
+  }
   const modele = analyserMatch(match, historique?.matchs ?? [], { calculeLe: maintenant() });
   await local.ecrire('modeles', [{ match_id: match.match_id, cle, modele }]);
+  await archiver(match, modele);
   return modele;
 }
 

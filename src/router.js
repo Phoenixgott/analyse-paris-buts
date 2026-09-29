@@ -9,8 +9,8 @@ import { viderTableaux } from './composants/tableau-triable.js';
 import { toutDetruire } from './graphiques/registre.js';
 import { pageAccueil } from './pages/accueil.js';
 import { pageMatch } from './pages/match.js';
-import { pageAVenir } from './pages/a-venir.js';
 import { pageCollecte } from './pages/collecte.js';
+import { pageFiabilite } from './pages/fiabilite.js';
 import { pageTopPicks } from './pages/top-picks.js';
 import { pageJournal } from './pages/journal.js';
 
@@ -20,7 +20,7 @@ const ROUTES = [
   { motif: /^#\/match\/([a-z0-9-]+)\/([a-z0-9-]+)$/, route: 'accueil', page: (app, m) => pageMatch(app, m[1], m[2]) },
   { motif: /^#\/top-picks$/, route: 'top-picks', page: (app) => pageTopPicks(app) },
   { motif: /^#\/journal(?:\?(.*))?$/, route: 'journal', page: (app, m) => pageJournal(app, new URLSearchParams(m[1] ?? '')) },
-  { motif: /^#\/(fiabilite)$/, route: null, page: (app, m) => pageAVenir(app, m[1]) },
+  { motif: /^#\/fiabilite$/, route: 'fiabilite', page: (app) => pageFiabilite(app) },
 ];
 
 let premierAffichage = true;

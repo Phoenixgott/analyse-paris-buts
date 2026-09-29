@@ -4,8 +4,8 @@
 // Sans IndexedDB (navigation privée stricte…), repli en mémoire : les données sont perdues à la
 // fermeture, et la page Récupérer les matchs le signale.
 const NOM = 'analyse-paris-buts';
-const VERSION = 2;
-const CLES = { annonces: 'id', matchs: 'match_id', modeles: 'match_id', paris: 'id', resultats: 'match_id', reglages: 'cle' };
+const VERSION = 3;
+const CLES = { annonces: 'id', matchs: 'match_id', modeles: 'match_id', paris: 'id', resultats: 'match_id', reglages: 'cle', predictions: 'match_id' };
 
 let base = null;
 const memoire = Object.fromEntries(Object.keys(CLES).map((m) => [m, new Map()]));

@@ -316,8 +316,8 @@ export async function pageCollecte(app) {
 
   // Sauvegarde / restauration / effacement.
   $('#c-sauver').addEventListener('click', async () => {
-    const [annonces, matchs, paris, resultats, reglages] = await Promise.all(['annonces', 'matchs', 'paris', 'resultats', 'reglages'].map((m) => local.lister(m)));
-    const contenu = { format: 'analyse-paris-buts/sauvegarde', version: 2, exporte_le: maintenant(), annonces, matchs, paris, resultats, reglages };
+    const [annonces, matchs, paris, resultats, reglages, predictions] = await Promise.all(['annonces', 'matchs', 'paris', 'resultats', 'reglages', 'predictions'].map((m) => local.lister(m)));
+    const contenu = { format: 'analyse-paris-buts/sauvegarde', version: 3, exporte_le: maintenant(), annonces, matchs, paris, resultats, reglages, predictions };
     telecharger(`analyse-paris-buts-sauvegarde-${jourParis()}.json`, JSON.stringify(contenu, null, 1));
     etat('donnees', `Sauvegarde : ${matchs.length} fiche(s), ${annonces.length} match(s) listé(s), ${paris.length} pari(s), ${resultats.length} résultat(s).`);
   });
@@ -332,6 +332,9 @@ export async function pageCollecte(app) {
       const paris = (contenu.paris ?? []).filter((p) => p?.id && p?.libelle_match && p?.marche && Number.isFinite(p?.cote) && Number.isFinite(p?.mise) && p?.statut);
       const resultats = (contenu.resultats ?? []).filter((r) => r?.match_id && r?.statut);
       const reglages = (contenu.reglages ?? []).filter((r) => r?.cle);
+      // Seules les prédictions faites avant le coup d'envoi sont acceptées (pas de réécriture a posteriori).
+      const predictions = (contenu.predictions ?? []).filter((p) => p?.match_id && p?.probas && p.calcule_le < p.coup_envoi);
+      await local.ecrire('predictions', predictions);
       await local.ecrire('matchs', valides);
       await local.ecrire('annonces', annonces);
       await local.ecrire('paris', paris);
