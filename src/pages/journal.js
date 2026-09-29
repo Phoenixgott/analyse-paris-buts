@@ -9,7 +9,7 @@ import { envoyerAlerte, topicAleatoire, topicValide } from '../alertes/ntfy.js';
 import { kpiSimple } from '../composants/carte-kpi.js';
 import { badge } from '../composants/badge.js';
 import { ib } from '../composants/info-bulle.js';
-import { telecharger } from '../composants/presse-papier.js';
+import { copier, telecharger } from '../composants/presse-papier.js';
 import { EXPLICATIONS } from '../explications.js';
 
 const euros = (v) => (v == null ? 'N/D' : `${v.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`);
@@ -134,21 +134,35 @@ export async function pageJournal(app, query = new URLSearchParams()) {
           <label class="champ">Stop-loss par jour (€)<input id="r-stop" inputmode="decimal" value="${esc(reglages.stop_loss ?? '')}"></label>
         </div>
         <p class="aide">Stop-loss : perte nette maximale acceptée sur les paris placés dans la journée. Le site t’avertit (et te demande de confirmer) avant de dépasser une limite.</p>
-        <h3 class="sous-titre">Alertes sur ton téléphone (ntfy.sh)</h3>
-        <p class="aide">1. Installe l’application gratuite <strong>ntfy</strong>. 2. Choisis un nom de canal secret ci-dessous (bouton « Générer »). 3. Dans ntfy, abonne-toi à ce nom (serveur ntfy.sh). Toute personne qui connaît ce nom peut lire tes alertes : garde-le pour toi.</p>
-        <div class="formulaire__ligne formulaire__ligne--bouton">
-          <label class="champ">Nom du canal<input id="r-topic" value="${esc(reglages.ntfy_topic)}" autocomplete="off" spellcheck="false" placeholder="apb-…"></label>
-          <button type="button" class="bouton bouton--discret" id="r-generer">Générer</button>
-        </div>
-        <label class="case"><input type="checkbox" id="r-a-value"${reglages.alertes_value ? ' checked' : ''}> Nouveaux value bets après un import</label>
-        <label class="case"><input type="checkbox" id="r-a-limites"${reglages.alertes_limites ? ' checked' : ''}> Limite du jour atteinte</label>
-        <label class="case"><input type="checkbox" id="r-a-resolutions"${reglages.alertes_resolutions ? ' checked' : ''}> Paris résolus</label>
-        <p class="actions-ligne">
-          <button type="submit" class="bouton">Enregistrer les réglages</button>
-          <button type="button" class="bouton bouton--discret" id="r-tester">Envoyer une alerte test</button>
-        </p>
+        <label class="case"><input type="checkbox" id="r-a-value"${reglages.alertes_value ? ' checked' : ''}> Alerte : nouveaux value bets après un import</label>
+        <label class="case"><input type="checkbox" id="r-a-limites"${reglages.alertes_limites ? ' checked' : ''}> Alerte : limite du jour atteinte</label>
+        <label class="case"><input type="checkbox" id="r-a-resolutions"${reglages.alertes_resolutions ? ' checked' : ''}> Alerte : paris résolus</label>
+        <p class="actions-ligne"><button type="submit" class="bouton">Enregistrer les réglages</button></p>
         <p class="etat" id="r-etat" role="status" aria-live="polite"></p>
       </form>
+    </details>
+
+    <details class="carte section" id="bloc-alertes"${topicValide(reglages.ntfy_topic) ? '' : ' open'}>
+      <summary class="section__titre resume-titre">Alertes sur ton téléphone ${topicValide(reglages.ntfy_topic) ? '<span class="discret">(activées)</span>' : ''}</summary>
+      <ol class="etapes-alertes">
+        <li>
+          <p><strong>Crée ton canal secret.</strong></p>
+          <button type="button" class="bouton" id="r-generer">${topicValide(reglages.ntfy_topic) ? 'Créer un nouveau canal' : 'Créer mon canal'}</button>
+          <p class="canal" id="r-canal"${topicValide(reglages.ntfy_topic) ? '' : ' hidden'}>Ton canal : <code id="r-topic-affiche">${esc(reglages.ntfy_topic)}</code></p>
+        </li>
+        <li>
+          <p><strong>Abonne-toi dans l’appli ntfy</strong> (installée sur ce téléphone).</p>
+          <a class="bouton" id="r-ouvrir-ntfy" href="${topicValide(reglages.ntfy_topic) ? `ntfy://ntfy.sh/${esc(reglages.ntfy_topic)}` : '#'}"${topicValide(reglages.ntfy_topic) ? '' : ' aria-disabled="true"'}>Ouvrir ntfy et m’abonner</a>
+          <p class="aide">Dans ntfy, touche « S’abonner » (Subscribe). Si le bouton n’ouvre rien : dans ntfy, touche <strong>+</strong> en bas à droite, colle le nom du canal (bouton ci-dessous), puis « S’abonner ».</p>
+          <button type="button" class="bouton bouton--petit bouton--discret" id="r-copier">Copier le nom du canal</button>
+        </li>
+        <li>
+          <p><strong>Vérifie</strong> : une notification doit arriver dans ntfy.</p>
+          <button type="button" class="bouton" id="r-tester">Envoyer une alerte test</button>
+        </li>
+      </ol>
+      <p class="etat" id="a-etat" role="status" aria-live="polite"></p>
+      <p class="aide">Toute personne qui connaît ce nom peut lire tes alertes : garde-le pour toi. Elles partent du site vers ntfy.sh, sans clé ni compte.</p>
     </details>`;
 
   const $ = (s) => app.querySelector(s);
@@ -256,14 +270,56 @@ export async function pageJournal(app, query = new URLSearchParams()) {
     $('#reglages-journal').open = true;
     $('#r-bankroll').focus();
   });
-  $('#r-generer').addEventListener('click', () => {
-    $('#r-topic').value = topicAleatoire();
+  // --- Alertes : le canal est enregistré dès sa création (rien d'autre à valider) ---
+  let topic = reglages.ntfy_topic;
+  const afficherCanal = () => {
+    const ok = topicValide(topic);
+    $('#r-canal').hidden = !ok;
+    $('#r-topic-affiche').textContent = topic;
+    $('#r-ouvrir-ntfy').href = ok ? `ntfy://ntfy.sh/${topic}` : '#';
+    $('#r-ouvrir-ntfy').toggleAttribute('aria-disabled', !ok);
+    $('#r-generer').textContent = ok ? 'Créer un nouveau canal' : 'Créer mon canal';
+  };
+  $('#r-generer').addEventListener('click', async () => {
+    if (topicValide(topic) && !window.confirm('Créer un nouveau canal ? Il faudra te réabonner dans ntfy.')) return;
+    topic = topicAleatoire();
+    await ecrireReglages({ ...(await lireReglages()), ntfy_topic: topic });
+    afficherCanal();
+    $('#a-etat').textContent = 'Canal créé et enregistré. Étape suivante : « Ouvrir ntfy et m’abonner ».';
   });
+  $('#r-ouvrir-ntfy').addEventListener('click', (e) => {
+    if (!topicValide(topic)) {
+      e.preventDefault();
+      $('#a-etat').textContent = 'Crée d’abord ton canal (étape 1).';
+    }
+  });
+  $('#r-copier').addEventListener('click', async () => {
+    if (!topicValide(topic)) {
+      $('#a-etat').textContent = 'Crée d’abord ton canal (étape 1).';
+      return;
+    }
+    const ok = await copier(topic);
+    $('#a-etat').textContent = ok ? `Nom copié : ${topic}. Colle-le dans ntfy (bouton +).` : `Copie impossible : recopie ce nom dans ntfy : ${topic}`;
+  });
+  $('#r-tester').addEventListener('click', async () => {
+    if (!topicValide(topic)) {
+      $('#a-etat').textContent = 'Crée d’abord ton canal (étape 1).';
+      return;
+    }
+    try {
+      await envoyerAlerte(topic, 'Alerte test : si tu lis ceci, les alertes fonctionnent. Probabilités estimées, pas des certitudes. 18+', { titre: 'Analyse Paris Buts — test', tags: ['soccer'], priorite: 3 });
+      $('#a-etat').textContent = 'Alerte test envoyée : elle doit arriver dans ntfy d’ici quelques secondes. Rien reçu ? Vérifie l’abonnement (étape 2).';
+    } catch (err) {
+      $('#a-etat').textContent = `Envoi impossible : ${err.message}. Vérifie ta connexion internet.`;
+    }
+  });
+
+  // --- Réglages : bankroll et limites ---
   const lireFormulaire = () => ({
     bankroll_initiale: nombre($('#r-bankroll').value),
     mise_max_jour: nombre($('#r-mise-max').value),
     stop_loss: nombre($('#r-stop').value),
-    ntfy_topic: $('#r-topic').value.trim(),
+    ntfy_topic: topic,
     alertes_value: $('#r-a-value').checked,
     alertes_limites: $('#r-a-limites').checked,
     alertes_resolutions: $('#r-a-resolutions').checked,
@@ -271,10 +327,6 @@ export async function pageJournal(app, query = new URLSearchParams()) {
   $('#j-reglages').addEventListener('submit', async (e) => {
     e.preventDefault();
     const r = lireFormulaire();
-    if (r.ntfy_topic && !topicValide(r.ntfy_topic)) {
-      $('#r-etat').textContent = 'Nom de canal invalide : 12 à 64 caractères (lettres, chiffres, - ou _). Utilise « Générer ».';
-      return;
-    }
     for (const [cle, v] of [['bankroll', r.bankroll_initiale], ['mise max', r.mise_max_jour], ['stop-loss', r.stop_loss]]) {
       if (v != null && v <= 0) {
         $('#r-etat').textContent = `La valeur « ${cle} » doit être positive (ou vide).`;
@@ -284,14 +336,5 @@ export async function pageJournal(app, query = new URLSearchParams()) {
     await ecrireReglages(r);
     $('#r-etat').textContent = 'Réglages enregistrés.';
     setTimeout(() => pageJournal(app), 600);
-  });
-  $('#r-tester').addEventListener('click', async () => {
-    const topic = $('#r-topic').value.trim();
-    try {
-      await envoyerAlerte(topic, 'Alerte test : si tu lis ceci, les alertes fonctionnent. Probabilités estimées, pas des certitudes. 18+', { titre: 'Analyse Paris Buts — test', tags: ['soccer'], priorite: 3 });
-      $('#r-etat').textContent = 'Alerte test envoyée : elle doit arriver dans l’application ntfy.';
-    } catch (err) {
-      $('#r-etat').textContent = `Envoi impossible : ${err.message}.`;
-    }
   });
 }

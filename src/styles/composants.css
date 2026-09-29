@@ -1456,6 +1456,43 @@ details[open] > .resume-titre {
   margin-top: 8px;
 }
 
+.etapes-alertes {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+
+.etapes-alertes li {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.etapes-alertes li::marker {
+  color: var(--jaune);
+  font-weight: 800;
+}
+
+.etapes-alertes p {
+  margin: 0;
+}
+
+.etapes-alertes .bouton {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.bouton[aria-disabled='true'] {
+  opacity: 0.5;
+}
+
+.canal code {
+  font-size: 0.95rem;
+  color: var(--jaune);
+}
+
 /* ---- Prompt IA ---- */
 .prompt__demo {
   display: flex;
