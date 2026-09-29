@@ -78,9 +78,9 @@ function liste(matchs, dossier, tri) {
     .join('');
 }
 
-const CLE_JOUR = 'apb.jour';
+export const CLE_JOUR = 'apb.jour';
 
-function lireJour() {
+export function lireJour() {
   try {
     return sessionStorage.getItem(CLE_JOUR);
   } catch {
@@ -88,7 +88,7 @@ function lireJour() {
   }
 }
 
-function selecteurJour(jour, aujourdhui, jours) {
+export function selecteurJour(jour, aujourdhui, jours) {
   const options = [...new Set([aujourdhui, ...jours])].sort();
   const libelle = (j) => `${j === aujourdhui ? 'Aujourd’hui — ' : ''}${dateLongue(j)}`;
   return `<label class="champ champ--jour">Jour

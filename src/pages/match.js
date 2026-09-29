@@ -308,7 +308,7 @@ export async function pageMatch(app, dossier, matchId) {
     }
     ${sommaire()}
     ${resume(m)}
-    ${sectionModele(calculs, m)}
+    ${sectionModele(calculs, m, dossier)}
     ${sectionPrompt(m, calculs)}
     ${forme(m)}
     ${stats(m, calculs)}

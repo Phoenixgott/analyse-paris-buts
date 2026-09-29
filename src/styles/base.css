@@ -71,6 +71,11 @@ code {
   overflow-wrap: anywhere;
 }
 
+/* L'attribut hidden doit gagner sur les display: grid / flex des composants. */
+[hidden] {
+  display: none !important;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

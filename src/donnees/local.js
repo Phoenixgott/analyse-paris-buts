@@ -1,13 +1,14 @@
 // Stockage local (IndexedDB) des données collectées par prompt : elles restent sur ton appareil.
-// Magasins : annonces (liste du jour), matchs (fiches au schéma), modeles (calculs mis en cache).
+// Magasins : annonces (liste du jour), matchs (fiches au schéma), modeles (calculs mis en cache),
+// paris (journal), resultats (scores après match), reglages (bankroll, limites, alertes).
 // Sans IndexedDB (navigation privée stricte…), repli en mémoire : les données sont perdues à la
 // fermeture, et la page Récupérer les matchs le signale.
 const NOM = 'analyse-paris-buts';
-const VERSION = 1;
-const CLES = { annonces: 'id', matchs: 'match_id', modeles: 'match_id' };
+const VERSION = 2;
+const CLES = { annonces: 'id', matchs: 'match_id', modeles: 'match_id', paris: 'id', resultats: 'match_id', reglages: 'cle' };
 
 let base = null;
-const memoire = { annonces: new Map(), matchs: new Map(), modeles: new Map() };
+const memoire = Object.fromEntries(Object.keys(CLES).map((m) => [m, new Map()]));
 let disponible = true;
 
 function ouvrir() {

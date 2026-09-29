@@ -1,14 +1,4 @@
 const PAGES = {
-  'top-picks': {
-    titre: 'Top picks',
-    phase: 5,
-    texte: 'Les meilleurs value bets du jour par marché (total de buts, 1re mi-temps, buteur), avec un avertissement sur la corrélation des combinés.',
-  },
-  journal: {
-    titre: 'Journal de paris',
-    phase: 5,
-    texte: 'Saisie de tes paris, résolution automatique, ROI, taux de réussite, courbe de bankroll, export CSV et limites personnelles (mise max par jour, stop-loss).',
-  },
   fiabilite: {
     titre: 'Fiabilité du modèle',
     phase: 6,

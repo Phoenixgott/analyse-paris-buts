@@ -20,20 +20,31 @@ function celluleProba(marche) {
   return `<span class="proba">${esc(proba(marche.proba))}</span>${etoile}<span class="cellule-sous">${detail}</span>`;
 }
 
-function verdict(m) {
+function lienJournal(dossier, matchId, marche = null, cote = null) {
+  const q = new URLSearchParams({ dossier, match: matchId });
+  if (marche) q.set('marche', marche);
+  if (cote) q.set('cote', String(cote));
+  return `#/journal?${q}`;
+}
+
+function verdict(m, dossier) {
   const v = m.verdict;
+  const local = dossier === 'local';
+  const autre = local ? `<p class="verdict__actions"><a href="${lienJournal(dossier, m.match_id)}">Noter un autre pari sur ce match</a></p>` : '';
   if (v.decision === 'PARIER') {
     return `<div class="verdict verdict--parier" role="note">
       <p class="verdict__titre"><span class="verdict__decision">PARIER</span> ${esc(v.libelle)}</p>
       <p class="verdict__detail">Probabilité ${esc(proba(v.proba))} · cote ${esc(cote(v.cote))} (minimum ${esc(cote(v.cote_min))}${ib(EXPLICATIONS.cote_min)}) ·
         value <span class="value--pos">${esc(valueTexte(v.value))}</span>${ib(EXPLICATIONS.value)} · mise ${esc(pct(v.mise_pct * 100, 1))} de la bankroll${ib(EXPLICATIONS.mise)}</p>
       <p class="verdict__avert">Probabilités estimées, pas des certitudes. Lis aussi les arguments contre ce pari avant de jouer.</p>
+      ${local ? `<p class="verdict__actions"><a class="bouton bouton--petit" href="${lienJournal(dossier, m.match_id, v.marche, v.cote)}">Noter ce pari dans le journal</a></p>` : m.demo ? '<p class="discret">Match fictif (DÉMO) : il ne peut pas être noté dans le journal.</p>' : ''}
     </div>`;
   }
   return `<div class="verdict verdict--passer" role="note">
     <p class="verdict__titre"><span class="verdict__decision">PASSER</span></p>
     <p class="verdict__detail">${esc(v.raison)}</p>
     <p class="verdict__avert">Passer est un résultat normal et fréquent : aucun pari n’est préférable à un mauvais pari.</p>
+    ${autre}
   </div>`;
 }
 
@@ -105,12 +116,12 @@ function methode(m) {
   </details>`;
 }
 
-export function sectionModele(m, match) {
+export function sectionModele(m, match, dossier = null) {
   if (!m) {
     return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2><p class="nd-bloc">Calculs du modèle non publiés pour ce match (${ND}).</p></section>`;
   }
   if (!m.calculable) {
-    return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2>${verdict(m)}</section>`;
+    return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2>${verdict(m, dossier)}</section>`;
   }
   const { domicile: d, exterieur: e } = match.equipes;
   const kpis = [
@@ -124,7 +135,7 @@ export function sectionModele(m, match) {
   return `<section class="carte section" id="s-modele" aria-labelledby="t-modele">
     <h2 class="section__titre" id="t-modele">Modèle : probabilités estimées</h2>
     <p class="section__sous">Dixon-Coles, calculé à partir des données de la fiche. Probabilités estimées, pas des certitudes.</p>
-    ${verdict(m)}
+    ${verdict(m, dossier)}
     <div class="grille-kpi grille-kpi--3">${kpis.join('')}</div>
     <div class="grille-graphiques">${blocOverUnder(m, match)}${blocJauge(m)}</div>
     <h3 class="sous-titre">Total de buts</h3>

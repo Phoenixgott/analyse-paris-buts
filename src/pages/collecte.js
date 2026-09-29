@@ -3,10 +3,13 @@
 // tu recolles la réponse ici → le site la vérifie, la range sur ton appareil et calcule le modèle.
 import { dateLongue, esc, heure, jourParis } from '../format.js';
 import { COMPETITIONS } from '../collecte/competitions.js';
-import { promptFiches, promptListe, promptMiseAJour } from '../collecte/prompts.js';
+import { promptFiches, promptListe, promptMiseAJour, promptResultats } from '../collecte/prompts.js';
 import { extraireReponse, importerReponse } from '../collecte/import.js';
 import * as local from '../donnees/local.js';
-import { chargerNoms } from '../donnees/chargement.js';
+import { calculerModeleLocal, chargerNoms } from '../donnees/chargement.js';
+import { resumeMatch } from '../../scripts/lib/index-jour.js';
+import { extrairePicks } from '../journal/picks.js';
+import { alerterValueBets, resoudreEnAttente } from '../journal/service.js';
 import { copier, telecharger } from '../composants/presse-papier.js';
 import SCHEMA from '../../schema/match.schema.json';
 import { valider } from '../../schema/valider.js';
@@ -14,6 +17,7 @@ import { valider } from '../../schema/valider.js';
 const CLE_COMPETITIONS = 'apb.competitionsCollecte';
 const MAX_FICHES = 3;
 const MAX_MAJ = 5;
+const MAX_RESULTATS = 10;
 
 const GROUPES = [
   ['Championnats', (c) => c.categorie === 'H' && c.fd],
@@ -54,9 +58,11 @@ function blocCollage(type, consigne) {
 const ETAPES_CLAUDE =
   'Ouvre une nouvelle conversation Claude, <strong>active la recherche web</strong>, colle la demande et envoie. Si Claude écrit « SUITE DISPONIBLE », réponds « continue » et colle aussi la suite ici.';
 
-function rendreRapport(r, types) {
+function rendreRapport(r, types, suites = []) {
   const lignes = [];
   if (r.annonces) lignes.push(`<li class="ok">✓ ${r.annonces} match(s) ajouté(s) à la liste du jour.</li>`);
+  if (r.resultats) lignes.push(`<li class="ok">✓ ${r.resultats} résultat(s) enregistré(s).</li>`);
+  for (const s of suites) lignes.push(`<li class="ok">${esc(s)}</li>`);
   for (const n of r.nouveaux) lignes.push(`<li class="ok">✓ Nouvelle fiche : ${esc(n)}</li>`);
   for (const n of r.mis_a_jour) lignes.push(`<li class="ok">↻ Mise à jour : ${esc(n)}</li>`);
   for (const a of r.avertissements) lignes.push(`<li class="attention">⚠ ${esc(a.match)} : ${esc(a.message)}</li>`);
@@ -112,6 +118,13 @@ export async function pageCollecte(app) {
       <p class="etat" data-etat="maj" role="status" aria-live="polite"></p>
       ${blocCollage('maj', ETAPES_CLAUDE)}`)}
 
+    ${etape(4, 'Après le match : résultats', `
+      <p class="aide">Les scores servent à résoudre automatiquement les paris de ton journal. 1 à ${MAX_RESULTATS} matchs à la fois, une fois les matchs terminés.</p>
+      <div id="liste-resultats" class="liste-choix"></div>
+      <button type="button" class="bouton bouton--large" data-copier="resultats">Copier la demande (résultats)</button>
+      <p class="etat" data-etat="resultats" role="status" aria-live="polite"></p>
+      ${blocCollage('resultats', ETAPES_CLAUDE)}`)}
+
     <section class="carte etape">
       <h2 class="etape__titre">Mes données</h2>
       <p id="resume-donnees" class="aide"></p>
@@ -166,6 +179,21 @@ export async function pageCollecte(app) {
           .join('')
       : '<p class="nd-bloc">Aucune fiche importée pour ce jour.</p>';
 
+    const [resultats, paris] = await Promise.all([local.lister('resultats'), local.lister('paris')]);
+    const scores = new Map(resultats.map((r) => [r.match_id, r]));
+    $('#liste-resultats').innerHTML = matchsJour.length
+      ? matchsJour
+          .map((m) => {
+            const r = scores.get(m.match_id);
+            const enCours = paris.filter((p) => p.match_id === m.match_id && p.statut === 'en_cours').length;
+            return `<label class="choix"><input type="checkbox" name="resultat" value="${esc(m.match_id)}">
+              <span class="choix__heure">${esc(heure(m.coup_envoi))}</span>
+              <span class="choix__texte">${esc(m.equipes.domicile.nom)} – ${esc(m.equipes.exterieur.nom)}<span class="discret">${enCours ? `${enCours} pari(s) en cours` : 'aucun pari en cours'}</span></span>
+              <span class="choix__statut ${r ? 'ok' : ''}">${r ? `${esc(r.score ?? r.statut)}${r.score_mt ? ` (${esc(r.score_mt)})` : ''}` : 'à récupérer'}</span></label>`;
+          })
+          .join('')
+      : '<p class="nd-bloc">Aucune fiche importée pour ce jour.</p>';
+
     const jours = [...new Set(matchs.map(jourDe))].length;
     $('#resume-donnees').textContent = `Sur cet appareil : ${matchs.length} fiche(s) sur ${jours} jour(s). Ce jour (${dateLongue(jour)}) : ${annoncesJour.length} match(s) listé(s), ${matchsJour.length} fiche(s).`;
     $('#lien-jour').href = '#/';
@@ -190,12 +218,12 @@ export async function pageCollecte(app) {
         /* non mémorisé */
       }
     }
-    for (const [n, max] of [['annonce', MAX_FICHES], ['maj', MAX_MAJ]]) {
+    for (const [n, max, zone] of [['annonce', MAX_FICHES, 'fiches'], ['maj', MAX_MAJ, 'maj'], ['resultat', MAX_RESULTATS, 'resultats']]) {
       if (nom !== n) continue;
       const coches = app.querySelectorAll(`input[name=${n}]:checked`);
       if (coches.length > max) {
         e.target.checked = false;
-        etat(n === 'annonce' ? 'fiches' : 'maj', `${max} matchs au maximum par demande.`);
+        etat(zone, `${max} matchs au maximum par demande.`);
       }
     }
   });
@@ -226,10 +254,12 @@ export async function pageCollecte(app) {
         texte: promptFiches(annonces.map((a) => ({ domicile: a.domicile, exterieur: a.exterieur, competition_id: a.competition.palier === 1 ? a.competition.id : 'autre', competition: a.competition.nom, pays: a.competition.pays, coup_envoi: a.coup_envoi, noms_equipes: noms.get(a.competition.id) }))),
       };
     }
-    const ids = [...app.querySelectorAll('input[name=maj]:checked')].map((c) => c.value);
-    if (!ids.length) return { erreur: 'Coche 1 à 5 matchs.' };
+    const nom = type === 'maj' ? 'maj' : 'resultat';
+    const ids = [...app.querySelectorAll(`input[name=${nom}]:checked`)].map((c) => c.value);
+    if (!ids.length) return { erreur: `Coche 1 à ${type === 'maj' ? MAX_MAJ : MAX_RESULTATS} matchs.` };
     const matchs = (await Promise.all(ids.map((id) => local.lire('matchs', id)))).filter(Boolean);
-    return { texte: promptMiseAJour(matchs.map((m) => ({ domicile: m.equipes.domicile.nom, exterieur: m.equipes.exterieur.nom, coup_envoi: m.coup_envoi }))) };
+    const liste = matchs.map((m) => ({ domicile: m.equipes.domicile.nom, exterieur: m.equipes.exterieur.nom, coup_envoi: m.coup_envoi }));
+    return { texte: type === 'maj' ? promptMiseAJour(liste) : promptResultats(liste) };
   }
 
   app.querySelectorAll('[data-copier]').forEach((b) =>
@@ -262,18 +292,34 @@ export async function pageCollecte(app) {
       const r = importerReponse(zone.value, { maintenant: maintenant(), date: dateChoisie(), noms, matchs: connus, annonces });
       await local.ecrire('annonces', r.annonces);
       await local.ecrire('matchs', r.matchs);
-      sortie.innerHTML = rendreRapport(r.rapport, r.types);
-      if (r.annonces.length || r.matchs.length) zone.value = '';
+      await local.ecrire('resultats', r.resultats);
+      const suites = [];
+      // Résultats → résolution automatique des paris du journal.
+      if (r.resultats.length) {
+        const resolus = await resoudreEnAttente();
+        suites.push(resolus.length ? `✓ ${resolus.length} pari(s) du journal résolu(s) automatiquement.` : 'Aucun pari en cours à résoudre avec ces résultats.');
+      }
+      // Fiches ou mises à jour → value bets éventuels → alerte ntfy (si réglée dans le journal).
+      if (r.matchs.length) {
+        const entrees = await Promise.all(r.matchs.map(async (m) => ({ resume: resumeMatch(m), modele: await calculerModeleLocal(m), dossier: 'local' })));
+        const picks = extrairePicks(entrees);
+        if (picks.length) {
+          const a = await alerterValueBets(picks);
+          suites.push(`${picks.length} value bet(s) repéré(s) par le modèle${a.envoye ? ' — alerte envoyée sur ton téléphone' : ''} : voir Top picks.`);
+        }
+      }
+      sortie.innerHTML = rendreRapport(r.rapport, r.types, suites);
+      if (r.annonces.length || r.matchs.length || r.resultats.length) zone.value = '';
       await rafraichir();
     }),
   );
 
   // Sauvegarde / restauration / effacement.
   $('#c-sauver').addEventListener('click', async () => {
-    const [annonces, matchs] = await Promise.all([local.lister('annonces'), local.lister('matchs')]);
-    const contenu = { format: 'analyse-paris-buts/sauvegarde', version: 1, exporte_le: maintenant(), annonces, matchs };
+    const [annonces, matchs, paris, resultats, reglages] = await Promise.all(['annonces', 'matchs', 'paris', 'resultats', 'reglages'].map((m) => local.lister(m)));
+    const contenu = { format: 'analyse-paris-buts/sauvegarde', version: 2, exporte_le: maintenant(), annonces, matchs, paris, resultats, reglages };
     telecharger(`analyse-paris-buts-sauvegarde-${jourParis()}.json`, JSON.stringify(contenu, null, 1));
-    etat('donnees', `Sauvegarde : ${matchs.length} fiche(s), ${annonces.length} match(s) listé(s).`);
+    etat('donnees', `Sauvegarde : ${matchs.length} fiche(s), ${annonces.length} match(s) listé(s), ${paris.length} pari(s), ${resultats.length} résultat(s).`);
   });
   $('#c-restaurer').addEventListener('change', async (e) => {
     const fichier = e.target.files?.[0];
@@ -283,9 +329,15 @@ export async function pageCollecte(app) {
       if (contenu?.format !== 'analyse-paris-buts/sauvegarde') throw new Error('ce fichier n’est pas une sauvegarde d’Analyse Paris Buts');
       const valides = (contenu.matchs ?? []).filter((m) => valider(m, SCHEMA).length === 0);
       const annonces = (contenu.annonces ?? []).filter((a) => a?.id && a?.coup_envoi && a?.competition);
+      const paris = (contenu.paris ?? []).filter((p) => p?.id && p?.libelle_match && p?.marche && Number.isFinite(p?.cote) && Number.isFinite(p?.mise) && p?.statut);
+      const resultats = (contenu.resultats ?? []).filter((r) => r?.match_id && r?.statut);
+      const reglages = (contenu.reglages ?? []).filter((r) => r?.cle);
       await local.ecrire('matchs', valides);
       await local.ecrire('annonces', annonces);
-      etat('donnees', `Restauré : ${valides.length} fiche(s) (${(contenu.matchs ?? []).length - valides.length} refusée(s), non conformes au schéma), ${annonces.length} match(s) listé(s).`);
+      await local.ecrire('paris', paris);
+      await local.ecrire('resultats', resultats);
+      await local.ecrire('reglages', reglages);
+      etat('donnees', `Restauré : ${valides.length} fiche(s) (${(contenu.matchs ?? []).length - valides.length} refusée(s), non conformes au schéma), ${annonces.length} match(s) listé(s), ${paris.length} pari(s), ${resultats.length} résultat(s).`);
     } catch (err) {
       etat('donnees', `Restauration impossible : ${err.message}.`);
     }
@@ -294,11 +346,12 @@ export async function pageCollecte(app) {
   });
   $('#c-effacer').addEventListener('click', async () => {
     const jour = dateChoisie();
-    if (!window.confirm(`Effacer les matchs et fiches du ${dateLongue(jour)} de cet appareil ?`)) return;
+    if (!window.confirm(`Effacer les matchs, fiches et résultats du ${dateLongue(jour)} de cet appareil ? (Les paris du journal sont conservés.)`)) return;
     const [annonces, matchs] = await Promise.all([local.lister('annonces'), local.lister('matchs')]);
     const ids = matchs.filter((m) => jourDe(m) === jour).map((m) => m.match_id);
     await local.supprimer('matchs', ids);
     await local.supprimer('modeles', ids);
+    await local.supprimer('resultats', ids);
     await local.supprimer('annonces', annonces.filter((a) => a.date === jour).map((a) => a.id));
     etat('donnees', `${ids.length} fiche(s) effacée(s).`);
     await rafraichir();

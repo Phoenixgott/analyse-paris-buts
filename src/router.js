@@ -2,7 +2,7 @@
 //   #/                         matchs du jour
 //   #/collecte                 récupérer les matchs (prompts de collecte)
 //   #/match/<dossier>/<id>     fiche match (dossier = « local », « demo » ou AAAA-MM-JJ)
-//   #/top-picks, #/journal, #/fiabilite
+//   #/top-picks · #/journal[?dossier=&match=&marche=&cote=] (pari prérempli) · #/fiabilite
 import { esc } from './format.js';
 import { marquerActif } from './composants/navigation.js';
 import { viderTableaux } from './composants/tableau-triable.js';
@@ -11,12 +11,16 @@ import { pageAccueil } from './pages/accueil.js';
 import { pageMatch } from './pages/match.js';
 import { pageAVenir } from './pages/a-venir.js';
 import { pageCollecte } from './pages/collecte.js';
+import { pageTopPicks } from './pages/top-picks.js';
+import { pageJournal } from './pages/journal.js';
 
 const ROUTES = [
   { motif: /^#?\/?$/, route: 'accueil', page: (app) => pageAccueil(app) },
   { motif: /^#\/collecte$/, route: 'collecte', page: (app) => pageCollecte(app) },
   { motif: /^#\/match\/([a-z0-9-]+)\/([a-z0-9-]+)$/, route: 'accueil', page: (app, m) => pageMatch(app, m[1], m[2]) },
-  { motif: /^#\/(top-picks|journal|fiabilite)$/, route: null, page: (app, m) => pageAVenir(app, m[1]) },
+  { motif: /^#\/top-picks$/, route: 'top-picks', page: (app) => pageTopPicks(app) },
+  { motif: /^#\/journal(?:\?(.*))?$/, route: 'journal', page: (app, m) => pageJournal(app, new URLSearchParams(m[1] ?? '')) },
+  { motif: /^#\/(fiabilite)$/, route: null, page: (app, m) => pageAVenir(app, m[1]) },
 ];
 
 let premierAffichage = true;

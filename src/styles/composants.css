@@ -1351,6 +1351,111 @@ th[aria-sort='descending'] .table__tri {
   font-size: 0.75rem;
 }
 
+/* ---- Journal de paris (phase 5) ---- */
+.badge--gagne {
+  border-color: var(--gain);
+  color: var(--gain);
+  background: rgba(46, 204, 113, 0.12);
+}
+
+.badge--perdu {
+  border-color: var(--perte);
+  color: var(--perte);
+  background: rgba(255, 90, 95, 0.12);
+}
+
+.bandeau--info {
+  border-color: var(--texte-doux);
+  background: var(--carte);
+}
+
+.resume-titre {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0;
+  cursor: pointer;
+}
+
+details[open] > .resume-titre {
+  margin-bottom: 12px;
+}
+
+.formulaire {
+  display: grid;
+  gap: 12px;
+}
+
+.formulaire__ligne {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.formulaire__ligne--bouton {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.liste-paris {
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 960px) {
+  .liste-paris {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.pari {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--ligne);
+  border-left: 4px solid var(--bleu-clair);
+  border-radius: var(--rayon-petit);
+  background: var(--fond);
+}
+
+.pari p {
+  margin: 0;
+}
+
+.pari--gagne {
+  border-left-color: var(--gain);
+}
+
+.pari--perdu {
+  border-left-color: var(--perte);
+}
+
+.pari__haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.pari__titre {
+  font-weight: 700;
+}
+
+.pari__detail {
+  font-size: 0.9rem;
+}
+
+.pari__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.verdict__actions {
+  margin-top: 8px;
+}
+
 /* ---- Prompt IA ---- */
 .prompt__demo {
   display: flex;
