@@ -988,6 +988,21 @@ th[aria-sort='descending'] .table__tri {
   color: var(--texte-doux);
 }
 
+/* Rappel du backtest sous un pari suggéré : ce que ces règles ont donné sur l'historique réel. */
+.rappel-backtest {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-left: 3px solid var(--alerte);
+  border-radius: 6px;
+  background: var(--alerte-fond);
+  font-size: 0.85rem;
+}
+
+.rappel-backtest--gain {
+  border-left-color: var(--ligne);
+  background: transparent;
+}
+
 @media (min-width: 720px) {
   .grille-kpi--3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));

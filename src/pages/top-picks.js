@@ -1,6 +1,7 @@
 // Top picks : les paris qui passent TOUS les filtres du modèle, regroupés par marché.
 import { cote, esc, pct, proba, valueTexte } from '../format.js';
-import { chargerJournee, chargerModele } from '../donnees/chargement.js';
+import { chargerBacktest, chargerJournee, chargerModele } from '../donnees/chargement.js';
+import { rappelBacktest } from '../composants/rappel-backtest.js';
 import { extrairePicks, grouperPicks } from '../journal/picks.js';
 import { lireReglages } from '../journal/service.js';
 import { statistiques } from '../journal/paris.js';
@@ -24,7 +25,7 @@ export async function pageTopPicks(app) {
   const { dossier, jour, aujourdhui, jours, index, reel } = await chargerJournee(lireJour());
   const entrees = await Promise.all(index.matchs.map(async (resume) => ({ resume, modele: await chargerModele(dossier, resume.match_id), dossier })));
   const picks = extrairePicks(entrees);
-  const [reglages, paris] = await Promise.all([lireReglages(), local.lister('paris')]);
+  const [reglages, paris, backtest] = await Promise.all([lireReglages(), local.lister('paris'), chargerBacktest()]);
   const bankroll = statistiques(paris, reglages.bankroll_initiale).bankroll;
 
   const miseEuros = (p) => (bankroll != null && p.mise_pct ? ` · ${(p.mise_pct * bankroll).toFixed(2).replace('.', ',')} €` : '');
@@ -67,6 +68,7 @@ export async function pageTopPicks(app) {
       ${selecteurJour(jour, aujourdhui, jours)}
     </header>
     ${reel ? '' : `<div class="bandeau-demo" role="note">${badgeDemo()}<p>Matchs <strong>fictifs</strong> : ces picks montrent seulement l’interface. Pour les vrais matchs : <a href="#/collecte">Récupérer les matchs</a>.</p></div>`}
+    ${picks.length ? rappelBacktest(backtest) : ''}
     <div class="bandeau-alerte" role="note"><strong>Paris liés.</strong> Deux picks du même match ne sont pas indépendants : ne les combine pas en pensant multiplier tes chances.${ib(AIDE_CORRELATION, 'Pourquoi les paris d’un même match sont-ils liés ?')}</div>
     ${
       picks.length

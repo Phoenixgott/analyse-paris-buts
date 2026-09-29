@@ -59,9 +59,12 @@ function sectionBacktest(bt) {
     <strong>${n4(actuelle.marche.brier_marche)}</strong> pour le marché : il est <strong>${plusPrecisQueMarche ? 'plus' : 'moins'} précis que les bookmakers</strong>.
     Les paris « value » selon les règles du site, sur cette ligne, auraient donné <strong>${actuelle.value.paris.toLocaleString('fr-FR')} paris</strong> pour un ROI de
     <strong class="${actuelle.value.roi >= 0 ? 'value--pos' : 'value--neg'}">${esc(valueTexte(actuelle.value.roi))}</strong>${ib(AIDE_ROI)}.`;
+  const cahier = bt.configurations.find((c) => c.demi_vie === 60 && c.prior === 1 && !c.actuelle);
   const reglagesTexte = meilleure && !meilleure.actuelle
     ? `Les réglages les plus justes testés (demi-vie ${meilleure.demi_vie} j, prior ${meilleure.prior}) rendent les probabilités plus fiables (Brier 2,5 : ${n4(meilleure.marche.brier_modele)}), ${meilleure.marche.brier_modele <= meilleure.marche.brier_marche ? 'au niveau du marché' : 'sans atteindre le marché'} ; ROI simulé des values : ${valueTexte(meilleure.value.roi)}.`
-    : '';
+    : cahier
+      ? `Ce sont les réglages les plus justes testés (prior ${actuelle.prior}). Ceux du cahier des charges (60 j, prior 1) donnaient des probabilités plus tranchées et moins justes (Brier 2,5 : ${n4(cahier.marche.brier_modele)}) ; ROI simulé des values : ${valueTexte(cahier.value.roi)}.`
+      : '';
   const lignes = bt.configurations
     .map((c) => `<tr${c.actuelle ? ' class="ligne-actuelle"' : ''}><th scope="row">${c.demi_vie} j · prior ${c.prior}${c.actuelle ? '<span class="cellule-sous">réglages actuels</span>' : ''}${c === meilleure ? '<span class="cellule-sous">les plus justes</span>' : ''}</th>
       <td class="num">${n4(c.brier_moyen_1_5_a_3_5)}</td><td class="num"><span class="${classeCompare(c.marche.brier_modele, c.marche.brier_marche)}">${n4(c.marche.brier_modele)}</span></td>

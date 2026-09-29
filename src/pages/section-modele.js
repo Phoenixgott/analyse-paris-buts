@@ -7,11 +7,15 @@ import { kpiDuel, kpiSimple } from '../composants/carte-kpi.js';
 import { tableau } from '../composants/tableau-triable.js';
 import { ib } from '../composants/info-bulle.js';
 import { EXPLICATIONS } from '../explications.js';
+import { rappelBacktest } from '../composants/rappel-backtest.js';
 
 const AIDE_AJUSTEMENTS =
   'Chaque ajustement modifie les buts attendus de l’équipe concernée d’un pourcentage fixe (repos ≤ 3 jours −3 %, derby −2 %, arbitre à penaltys ±1-2 %, pluie −3 %, vent fort −4 %, −1,5 % par absent, max −6 %). La somme est plafonnée à ±10 % par équipe. Une donnée absente n’ajuste rien.';
 
-const classeValue = (v) => (v == null ? '' : v > 0 ? 'value--pos' : v < 0 ? 'value--neg' : '');
+const AIDE_FILTRES =
+  'Un pari n’est suggéré que s’il passe tous les filtres : match fiable (qualité des données ≥ 40/100), value d’au moins 5 % et d’au plus 30 % (au-delà, c’est plus probablement une erreur du modèle), probabilité d’au moins 20 % et confiance d’au moins 50/100. Sinon : PASSER.';
+
+const classeValue =(v) => (v == null ? '' : v > 0 ? 'value--pos' : v < 0 ? 'value--neg' : '');
 
 function celluleProba(marche) {
   if (!marche) return `<span class="cote--nd">${ND}</span>`;
@@ -27,7 +31,7 @@ function lienJournal(dossier, matchId, marche = null, cote = null) {
   return `#/journal?${q}`;
 }
 
-function verdict(m, dossier) {
+function verdict(m, dossier, backtest) {
   const v = m.verdict;
   const local = dossier === 'local';
   const autre = local ? `<p class="verdict__actions"><a href="${lienJournal(dossier, m.match_id)}">Noter un autre pari sur ce match</a></p>` : '';
@@ -36,13 +40,14 @@ function verdict(m, dossier) {
       <p class="verdict__titre"><span class="verdict__decision">PARIER</span> ${esc(v.libelle)}</p>
       <p class="verdict__detail">Probabilité ${esc(proba(v.proba))} · cote ${esc(cote(v.cote))} (minimum ${esc(cote(v.cote_min))}${ib(EXPLICATIONS.cote_min)}) ·
         value <span class="value--pos">${esc(valueTexte(v.value))}</span>${ib(EXPLICATIONS.value)} · mise ${esc(pct(v.mise_pct * 100, 1))} de la bankroll${ib(EXPLICATIONS.mise)}</p>
+      ${rappelBacktest(backtest)}
       <p class="verdict__avert">Probabilités estimées, pas des certitudes. Lis aussi les arguments contre ce pari avant de jouer.</p>
       ${local ? `<p class="verdict__actions"><a class="bouton bouton--petit" href="${lienJournal(dossier, m.match_id, v.marche, v.cote)}">Noter ce pari dans le journal</a></p>` : m.demo ? '<p class="discret">Match fictif (DÉMO) : il ne peut pas être noté dans le journal.</p>' : ''}
     </div>`;
   }
   return `<div class="verdict verdict--passer" role="note">
     <p class="verdict__titre"><span class="verdict__decision">PASSER</span></p>
-    <p class="verdict__detail">${esc(v.raison)}</p>
+    <p class="verdict__detail">${esc(v.raison)}${ib(AIDE_FILTRES, 'Quand un pari est-il suggéré ?')}</p>
     <p class="verdict__avert">Passer est un résultat normal et fréquent : aucun pari n’est préférable à un mauvais pari.</p>
     ${autre}
   </div>`;
@@ -116,12 +121,12 @@ function methode(m) {
   </details>`;
 }
 
-export function sectionModele(m, match, dossier = null) {
+export function sectionModele(m, match, dossier = null, backtest = null) {
   if (!m) {
     return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2><p class="nd-bloc">Calculs du modèle non publiés pour ce match (${ND}).</p></section>`;
   }
   if (!m.calculable) {
-    return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2>${verdict(m, dossier)}</section>`;
+    return `<section class="carte section" id="s-modele" aria-labelledby="t-modele"><h2 class="section__titre" id="t-modele">Modèle</h2>${verdict(m, dossier, backtest)}</section>`;
   }
   const { domicile: d, exterieur: e } = match.equipes;
   const kpis = [
@@ -135,7 +140,7 @@ export function sectionModele(m, match, dossier = null) {
   return `<section class="carte section" id="s-modele" aria-labelledby="t-modele">
     <h2 class="section__titre" id="t-modele">Modèle : probabilités estimées</h2>
     <p class="section__sous">Dixon-Coles, calculé à partir des données de la fiche. Probabilités estimées, pas des certitudes.</p>
-    ${verdict(m, dossier)}
+    ${verdict(m, dossier, backtest)}
     <div class="grille-kpi grille-kpi--3">${kpis.join('')}</div>
     <div class="grille-graphiques">${blocOverUnder(m, match)}${blocJauge(m)}</div>
     <h3 class="sous-titre">Total de buts</h3>

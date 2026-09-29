@@ -1,6 +1,6 @@
 // Fiche match — phase 1 : uniquement les données du JSON, aucun calcul de modèle.
 import { ND, cote, dateCourte, dateLongue, entier, esc, heure, mouvement, nombre, pct, resultat, texte } from '../format.js';
-import { chargerMatch, chargerModele } from '../donnees/chargement.js';
+import { chargerBacktest, chargerMatch, chargerModele } from '../donnees/chargement.js';
 import { sectionModele } from './section-modele.js';
 import { activerPrompt, sectionPrompt } from './section-prompt.js';
 import { blocForme, blocRadar, blocTranches } from './blocs-graphiques.js';
@@ -291,7 +291,7 @@ function sommaire() {
 }
 
 export async function pageMatch(app, dossier, matchId) {
-  const [m, calculs] = await Promise.all([chargerMatch(dossier, matchId), chargerModele(dossier, matchId)]);
+  const [m, calculs, backtest] = await Promise.all([chargerMatch(dossier, matchId), chargerModele(dossier, matchId), chargerBacktest()]);
   const { domicile: d, exterieur: e } = m.equipes;
   document.title = `${d.nom} – ${e.nom} — Analyse Paris Buts`;
   const fiable = estFiable(m.qualite_donnees);
@@ -308,7 +308,7 @@ export async function pageMatch(app, dossier, matchId) {
     }
     ${sommaire()}
     ${resume(m)}
-    ${sectionModele(calculs, m, dossier)}
+    ${sectionModele(calculs, m, dossier, backtest)}
     ${sectionPrompt(m, calculs)}
     ${forme(m)}
     ${stats(m, calculs)}
