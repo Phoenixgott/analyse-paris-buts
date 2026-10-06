@@ -1,5 +1,5 @@
 {
- "genere_le": "2026-10-05T11:42:26Z",
+ "genere_le": "2026-10-06T11:24:27Z",
  "source": "football-data.co.uk (résultats, scores à la pause, cotes moyennes et maximales Plus/Moins 2,5)",
  "methode": "Walk-forward hebdomadaire : le modèle est ajusté sur les seuls matchs antérieurs au lundi de la semaine prédite ; évaluation sur la saison précédente et la saison en cours.",
  "configurations": [
@@ -7,22 +7,22 @@
    "demi_vie": 240,
    "prior": 20,
    "actuelle": true,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0623,
     "over_1_5": 0.1767,
     "over_2_5": 0.2451,
-    "over_3_5": 0.2091,
+    "over_3_5": 0.2092,
     "over_4_5": 0.1236,
     "over_5_5": 0.0598,
-    "mt_over_0_5": 0.2051,
-    "mt_over_1_5": 0.2261
+    "mt_over_0_5": 0.205,
+    "mt_over_1_5": 0.2262
    },
    "log_loss": {
     "over_0_5": 0.2449,
     "over_1_5": 0.5372,
     "over_2_5": 0.6832,
-    "over_3_5": 0.6084,
+    "over_3_5": 0.6085,
     "over_4_5": 0.4103,
     "over_5_5": 0.2333,
     "mt_over_0_5": 0.5999,
@@ -30,7 +30,7 @@
    },
    "brier_moyen_1_5_a_3_5": 0.2103,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2465,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.6859,
@@ -46,22 +46,22 @@
    "demi_vie": 60,
    "prior": 1,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0636,
     "over_1_5": 0.1829,
     "over_2_5": 0.2551,
-    "over_3_5": 0.2169,
+    "over_3_5": 0.217,
     "over_4_5": 0.1288,
     "over_5_5": 0.0618,
     "mt_over_0_5": 0.2093,
-    "mt_over_1_5": 0.2314
+    "mt_over_1_5": 0.2315
    },
    "log_loss": {
     "over_0_5": 0.2524,
     "over_1_5": 0.5529,
-    "over_2_5": 0.7059,
-    "over_3_5": 0.6297,
+    "over_2_5": 0.7058,
+    "over_3_5": 0.6298,
     "over_4_5": 0.43,
     "over_5_5": 0.246,
     "mt_over_0_5": 0.6096,
@@ -69,23 +69,23 @@
    },
    "brier_moyen_1_5_a_3_5": 0.2183,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2564,
     "brier_marche": 0.2418,
-    "log_loss_modele": 0.7087,
+    "log_loss_modele": 0.7086,
     "log_loss_marche": 0.6765
    },
    "value": {
-    "paris": 3497,
-    "profit": -204.24,
-    "roi": -0.0584
+    "paris": 3498,
+    "profit": -203.36,
+    "roi": -0.0581
    }
   },
   {
    "demi_vie": 120,
    "prior": 1,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.063,
     "over_1_5": 0.1801,
@@ -100,15 +100,15 @@
     "over_0_5": 0.249,
     "over_1_5": 0.5459,
     "over_2_5": 0.6962,
-    "over_3_5": 0.6205,
-    "over_4_5": 0.4206,
+    "over_3_5": 0.6206,
+    "over_4_5": 0.4205,
     "over_5_5": 0.2392,
     "mt_over_0_5": 0.6055,
-    "mt_over_1_5": 0.6507
+    "mt_over_1_5": 0.6508
    },
    "brier_moyen_1_5_a_3_5": 0.2149,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2525,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.6993,
@@ -124,30 +124,30 @@
    "demi_vie": 240,
    "prior": 1,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0628,
     "over_1_5": 0.1792,
     "over_2_5": 0.2495,
-    "over_3_5": 0.2125,
-    "over_4_5": 0.1254,
+    "over_3_5": 0.2126,
+    "over_4_5": 0.1253,
     "over_5_5": 0.0602,
     "mt_over_0_5": 0.2067,
-    "mt_over_1_5": 0.2277
+    "mt_over_1_5": 0.2278
    },
    "log_loss": {
     "over_0_5": 0.2476,
     "over_1_5": 0.5434,
     "over_2_5": 0.6927,
-    "over_3_5": 0.6174,
+    "over_3_5": 0.6175,
     "over_4_5": 0.4169,
     "over_5_5": 0.2367,
     "mt_over_0_5": 0.6036,
-    "mt_over_1_5": 0.6484
+    "mt_over_1_5": 0.6485
    },
-   "brier_moyen_1_5_a_3_5": 0.2137,
+   "brier_moyen_1_5_a_3_5": 0.2138,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2511,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.696,
@@ -163,30 +163,30 @@
    "demi_vie": 240,
    "prior": 5,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0625,
-    "over_1_5": 0.178,
+    "over_1_5": 0.1779,
     "over_2_5": 0.2473,
-    "over_3_5": 0.2107,
-    "over_4_5": 0.1245,
+    "over_3_5": 0.2108,
+    "over_4_5": 0.1244,
     "over_5_5": 0.0599,
-    "mt_over_0_5": 0.2059,
+    "mt_over_0_5": 0.2058,
     "mt_over_1_5": 0.2269
    },
    "log_loss": {
     "over_0_5": 0.2462,
     "over_1_5": 0.5403,
     "over_2_5": 0.6878,
-    "over_3_5": 0.6125,
+    "over_3_5": 0.6126,
     "over_4_5": 0.4135,
-    "over_5_5": 0.2349,
+    "over_5_5": 0.2348,
     "mt_over_0_5": 0.6017,
-    "mt_over_1_5": 0.6462
+    "mt_over_1_5": 0.6463
    },
    "brier_moyen_1_5_a_3_5": 0.212,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2488,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.6908,
@@ -202,30 +202,30 @@
    "demi_vie": 240,
    "prior": 10,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0624,
-    "over_1_5": 0.1773,
+    "over_1_5": 0.1772,
     "over_2_5": 0.2461,
     "over_3_5": 0.2098,
     "over_4_5": 0.124,
     "over_5_5": 0.0598,
     "mt_over_0_5": 0.2054,
-    "mt_over_1_5": 0.2264
+    "mt_over_1_5": 0.2265
    },
    "log_loss": {
     "over_0_5": 0.2455,
-    "over_1_5": 0.5386,
-    "over_2_5": 0.6851,
-    "over_3_5": 0.61,
-    "over_4_5": 0.4117,
+    "over_1_5": 0.5385,
+    "over_2_5": 0.6852,
+    "over_3_5": 0.6101,
+    "over_4_5": 0.4116,
     "over_5_5": 0.2339,
     "mt_over_0_5": 0.6007,
     "mt_over_1_5": 0.6452
    },
-   "brier_moyen_1_5_a_3_5": 0.2111,
+   "brier_moyen_1_5_a_3_5": 0.211,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2475,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.688,
@@ -241,30 +241,30 @@
    "demi_vie": 365,
    "prior": 20,
    "actuelle": false,
-   "n": 7041,
+   "n": 7042,
    "brier": {
     "over_0_5": 0.0623,
     "over_1_5": 0.1767,
     "over_2_5": 0.2452,
     "over_3_5": 0.2092,
     "over_4_5": 0.1236,
-    "over_5_5": 0.0598,
+    "over_5_5": 0.0597,
     "mt_over_0_5": 0.205,
     "mt_over_1_5": 0.2261
    },
    "log_loss": {
-    "over_0_5": 0.2449,
-    "over_1_5": 0.5373,
+    "over_0_5": 0.2448,
+    "over_1_5": 0.5372,
     "over_2_5": 0.6833,
-    "over_3_5": 0.6085,
+    "over_3_5": 0.6086,
     "over_4_5": 0.4102,
     "over_5_5": 0.2332,
     "mt_over_0_5": 0.5998,
-    "mt_over_1_5": 0.6444
+    "mt_over_1_5": 0.6445
    },
    "brier_moyen_1_5_a_3_5": 0.2104,
    "marche": {
-    "n": 6096,
+    "n": 6097,
     "brier_modele": 0.2466,
     "brier_marche": 0.2418,
     "log_loss_modele": 0.6861,
@@ -340,9 +340,9 @@
     {
      "de": 0.7,
      "a": 0.8,
-     "n": 3977,
+     "n": 3978,
      "p_moy": 0.7531,
-     "frequence": 0.7586
+     "frequence": 0.7587
     },
     {
      "de": 0.8,
@@ -398,9 +398,9 @@
     {
      "de": 0.5,
      "a": 0.6,
-     "n": 2920,
+     "n": 2921,
      "p_moy": 0.5476,
-     "frequence": 0.5726
+     "frequence": 0.5727
     },
     {
      "de": 0.6,
@@ -449,9 +449,9 @@
     {
      "de": 0.2,
      "a": 0.3,
-     "n": 3172,
+     "n": 3173,
      "p_moy": 0.2535,
-     "frequence": 0.2598
+     "frequence": 0.26
     },
     {
      "de": 0.3,
@@ -549,9 +549,9 @@
     {
      "de": 0.6,
      "a": 0.7,
-     "n": 3222,
-     "p_moy": 0.6651,
-     "frequence": 0.6875
+     "n": 3223,
+     "p_moy": 0.6652,
+     "frequence": 0.6876
     },
     {
      "de": 0.7,
@@ -630,9 +630,9 @@
     {
      "de": 0.7,
      "a": 0.8,
-     "n": 3977,
+     "n": 3978,
      "p_moy": 0.7531,
-     "frequence": 0.7586
+     "frequence": 0.7587
     },
     {
      "de": 0.8,
@@ -688,9 +688,9 @@
     {
      "de": 0.5,
      "a": 0.6,
-     "n": 2920,
+     "n": 2921,
      "p_moy": 0.5476,
-     "frequence": 0.5726
+     "frequence": 0.5727
     },
     {
      "de": 0.6,
@@ -739,9 +739,9 @@
     {
      "de": 0.2,
      "a": 0.3,
-     "n": 3172,
+     "n": 3173,
      "p_moy": 0.2535,
-     "frequence": 0.2598
+     "frequence": 0.26
     },
     {
      "de": 0.3,
@@ -839,9 +839,9 @@
     {
      "de": 0.6,
      "a": 0.7,
-     "n": 3222,
-     "p_moy": 0.6651,
-     "frequence": 0.6875
+     "n": 3223,
+     "p_moy": 0.6652,
+     "frequence": 0.6876
     },
     {
      "de": 0.7,
@@ -1066,31 +1066,31 @@
   {
    "id": "es-l2",
    "nom": "La Liga 2",
-   "n": 549,
+   "n": 550,
    "depuis": "2025-08-15",
    "brier": {
-    "over_0_5": 0.0783,
-    "over_1_5": 0.2034,
+    "over_0_5": 0.0782,
+    "over_1_5": 0.2031,
     "over_2_5": 0.2501,
-    "over_3_5": 0.1963,
-    "over_4_5": 0.1171,
-    "over_5_5": 0.0523,
-    "mt_over_0_5": 0.2182,
-    "mt_over_1_5": 0.2236
+    "over_3_5": 0.1969,
+    "over_4_5": 0.1169,
+    "over_5_5": 0.0522,
+    "mt_over_0_5": 0.218,
+    "mt_over_1_5": 0.224
    },
    "log_loss": {
-    "over_0_5": 0.2931,
-    "over_1_5": 0.5964,
+    "over_0_5": 0.2927,
+    "over_1_5": 0.5958,
     "over_2_5": 0.6934,
-    "over_3_5": 0.5808,
-    "over_4_5": 0.3938,
-    "over_5_5": 0.2085,
-    "mt_over_0_5": 0.6283,
-    "mt_over_1_5": 0.6398
+    "over_3_5": 0.5821,
+    "over_4_5": 0.3933,
+    "over_5_5": 0.2082,
+    "mt_over_0_5": 0.6278,
+    "mt_over_1_5": 0.6406
    },
-   "brier_moyen_1_5_a_3_5": 0.2166,
+   "brier_moyen_1_5_a_3_5": 0.2167,
    "marche": {
-    "n": 549,
+    "n": 550,
     "brier_modele": 0.2501,
     "brier_marche": 0.2431,
     "log_loss_modele": 0.6934,
